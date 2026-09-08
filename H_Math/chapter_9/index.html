@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC 2027 Model Test - Higher Math Chapter 9</title>
+    
+    <!-- MathJax Configuration (Must precede script load) -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #eff6ff;
+            --accent: #d97706;
+            --text-dark: #1f2937;
+            --bg-gray: #f8fafc;
+            --border-color: #e2e8f0;
+            --correct-bg: #dcfce7;
+            --correct-border: #16a34a;
+            --wrong-bg: #fee2e2;
+            --wrong-border: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        header h2 {
+            font-size: 18px;
+            color: #4b5563;
+            font-weight: 600;
+        }
+
+        .exam-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            background: var(--primary-light);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: #e2e8f0;
+            color: var(--text-dark);
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-title {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mcq-item {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 15px;
+            transition: border 0.2s;
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .mcq-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-label:hover {
+            background: var(--primary-light);
+        }
+
+        .option-label input {
+            margin-right: 8px;
+        }
+
+        .cq-item {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fafafa;
+        }
+
+        .cq-header {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .cq-stem {
+            background: #fff;
+            padding: 12px;
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .cq-sub-questions {
+            list-style: none;
+        }
+
+        .cq-sub-questions li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submit { background: #16a34a; color: white; }
+        .btn-submit:hover { background: #15803d; }
+        .btn-reset { background: #6b7280; color: white; }
+        .btn-reset:hover { background: #4b5563; }
+        .btn-print { background: var(--primary); color: white; }
+        .btn-print:hover { background: #1d4ed8; }
+
+        .score-board {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--primary-light);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .solution-item {
+            background: #fff;
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            border-radius: 0 6px 6px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 15px; }
+            .exam-info { flex-direction: column; gap: 5px; text-align: center; }
+            .mcq-options { grid-template-columns: 1fr; }
+            .tabs { flex-wrap: wrap; }
+            .tab-btn { flex: 1; text-align: center; }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 0; max-width: 100%; }
+            .tabs, .action-bar, .score-board { display: none !important; }
+            .tab-content { display: block !important; page-break-after: always; }
+            .mcq-options { grid-template-columns: 1fr 1fr; }
+            .section-title { background: #333; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>এসএসসি ২০২৭ মডেল টেস্ট (SSC 2027 Model Test)</h1>
+        <h2>বিষয়: উচ্চতর গণিত | অধ্যায়: ৯ — সূচকীয় ও লগারিদমীয় ফাংশন</h2>
+        <div class="exam-info">
+            <span>সময়: ১ ঘণ্টা ১৫ মিনিট</span>
+            <span>পূর্ণমান: ৪৫ (MCQ: ১৫ + CQ: ৩০)</span>
+        </div>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('mcq-tab', this)">ক-বিভাগ: বহুনির্বাচনি (MCQ)</button>
+        <button class="tab-btn" onclick="switchTab('cq-tab', this)">খ-বিভাগ: সৃজনশীল (CQ)</button>
+        <button class="tab-btn" onclick="switchTab('ans-tab', this)">উত্তরমালা ও সমাধান</button>
+    </div>
+
+    <!-- MCQ TAB -->
+    <div id="mcq-tab" class="tab-content active">
+        <div class="section-title">
+            <span>বহুনির্বাচনি প্রশ্ন (১৫টি)</span>
+            <span>মান: ১৫ × ১ = ১৫</span>
+        </div>
+        <form id="mcq-form">
+            <div id="mcq-list"></div>
+            
+            <div class="action-bar">
+                <button type="button" class="btn btn-submit" onclick="gradeMCQ()">উত্তর সাবমিট ও স্কোর দেখুন</button>
+                <button type="button" class="btn btn-reset" onclick="resetForm()">রিসেট করুন</button>
+                <button type="button" class="btn btn-print" onclick="window.print()">প্রিন্ট / PDF সেভ</button>
+            </div>
+            <div id="score-display" class="score-board"></div>
+        </form>
+    </div>
+
+    <!-- CQ TAB -->
+    <div id="cq-tab" class="tab-content">
+        <div class="section-title">
+            <span>সৃজনশীল প্রশ্ন (যেকোনো ৩টির উত্তর দাও)</span>
+            <span>মান: ৩ × ১০ = ৩০</span>
+        </div>
+        
+        <div class="cq-item">
+            <div class="cq-header">প্রশ্ন-১</div>
+            <div class="cq-stem">
+                <strong>উদ্দীপক:</strong> $P = a^x$, $Q = a^y$, $R = a^z$ এবং $F(x) = \log_k \left(\frac{1+x}{1-x}\right)$
+            </div>
+            <ul class="cq-sub-questions">
+                <li><span>(ক) $\log_2 \sqrt{2} + \log_4 2$ এর মান নির্ণয় করো।</span> <strong>[২]</strong></li>
+                <li><span>(খ) প্রমাণ করো যে, $\left(\frac{P}{Q}\right)^{x+y} \cdot \left(\frac{Q}{R}\right)^{y+z} \cdot \left(\frac{R}{P}\right)^{z+x} = 1$</span> <strong>[৪]</strong></li>
+                <li><span>(গ) দেখাও যে, $F\left(\frac{2x}{1+x^2}\right) = 2 F(x)$</span> <strong>[৪]</strong></li>
+            </ul>
+        </div>
+
+        <div class="cq-item">
+            <div class="cq-header">প্রশ্ন-২</div>
+            <div class="cq-stem">
+                <strong>উদ্দীপক:</strong><br>
+                দৃশ্যকল্প-১: $x = 1 + \log_a (bc)$, $y = 1 + \log_b (ca)$, $z = 1 + \log_c (ab)$<br>
+                দৃশ্যকল্প-২: $g(x) = \frac{4^x - 1}{2^x - 1}$
+            </div>
+            <ul class="cq-sub-questions">
+                <li><span>(ক) $\log_x 400 = 4$ হলে, $x$ এর মান নির্ণয় করো।</span> <strong>[২]</strong></li>
+                <li><span>(খ) দৃশ্যকল্প-১ হতে দেখাও যে, $\frac{1}{x} + \frac{1}{y} + \frac{1}{z} = 1$</span> <strong>[৪]</strong></li>
+                <li><span>(গ) দৃশ্যকল্প-২ এর আলোকে $g(x) = 9$ সমীকরণটি সমাধান করো।</span> <strong>[৪]</strong></li>
+            </ul>
+        </div>
+
+        <div class="cq-item">
+            <div class="cq-header">প্রশ্ন-৩</div>
+            <div class="cq-stem">
+                <strong>উদ্দীপক:</strong> দুটি ফাংশন $f(x) = 3^{2x+1} - 28 \cdot 3^x + 9$ এবং $h(x) = \ln(3x - 2)$
+            </div>
+            <ul class="cq-sub-questions">
+                <li><span>(ক) $3^{x+2} = 81$ হলে, $x$ এর মান কত?</span> <strong>[২]</strong></li>
+                <li><span>(খ) $f(x) = 0$ হলে, $x$ এর মানসমূহ নির্ণয় করো।</span> <strong>[৪]</strong></li>
+                <li><span>(গ) $h(x)$ ফাংশনটির ডোমেন, রেঞ্জ এবং বিপরীত ফাংশন $h^{-1}(x)$ নির্ণয় করো।</span> <strong>[৪]</strong></li>
+            </ul>
+        </div>
+
+        <div class="cq-item">
+            <div class="cq-header">প্রশ্ন-৪</div>
+            <div class="cq-stem">
+                <strong>উদ্দীপক:</strong> $a^{2-x} \cdot b^{5x} = a^{x+3} \cdot b^{3x}$ যেখানে $a, b > 0$ এবং $a \ne b$
+            </div>
+            <ul class="cq-sub-questions">
+                <li><span>(ক) $x^{x\sqrt{x}} = (x\sqrt{x})^x$ সমীকরণটি সমাধান করো।</span> <strong>[২]</strong></li>
+                <li><span>(খ) উদ্দীপকের সমীকরণটি হতে দেখাও যে, $x \log_k \left(\frac{b}{a}\right) = \frac{1}{2} \log_k a$</span> <strong>[৪]</strong></li>
+                <li><span>(গ) যদি $a^x = b^y = c^z$ এবং $b^2 = ac$ হয়, তবে প্রমাণ করো যে, $\frac{1}{x} + \frac{1}{z} = \frac{2}{y}$</span> <strong>[৪]</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SOLUTIONS TAB -->
+    <div id="ans-tab" class="tab-content">
+        <div class="section-title">
+            <span>MCQ উত্তরমালা ও সংক্ষিপ্ত সমাধান</span>
+        </div>
+        <div id="solutions-container"></div>
+    </div>
+</div>
+
+<script>
+    const mcqData = [
+        { q: "$a > 0, a \\ne 1$ এবং $b > 0$ হলে, $a^x = b$ এর ক্ষেত্রে কোনটি সঠিক?", options: ["$x = \\log_b a$", "$x = \\log_a b$", "$a = \\log_x b$", "$b = \\log_a x$"], ans: 1, hint: "$a^x = b \\implies x = \\log_a b$" },
+        { q: "$5^{x+2} = 625$ হলে, $x$ এর মান কত?", options: ["1", "2", "3", "4"], ans: 1, hint: "$5^{x+2} = 5^4 \\implies x+2=4 \\implies x=2$" },
+        { q: "$\\log_k x = p, \\log_k y = q$ এবং $\\log_k z = r$ হলে, $\\log_k \\left(\\frac{x^2 y}{z^3}\\right)$ এর মান কোনটি?", options: ["$2p + q - 3r$", "$p^2 + q - r^3$", "$\\frac{2pq}{3r}$", "$2p + q + 3r$"], ans: 0, hint: "$\\log_k x^2 + \\log_k y - \\log_k z^3 = 2p+q-3r$" },
+        { q: "$f(x) = \\log_{10} (3x - 6)$ ফাংশনটির ডোমেন (Domain) কোনটি?", options: ["$(2, \\infty)$", "$[2, \\infty)$", "$(-\\infty, 2)$", "$\\mathbb{R}$"], ans: 0, hint: "$3x - 6 > 0 \\implies x > 2$" },
+        { q: "$a^b = b^a$ এবং $a = 2b$ হলে, $b$ এর মান কত? ($a, b > 0$)", options: ["1", "2", "3", "4"], ans: 1, hint: "$(2b)^b = b^{2b} \\implies 2^b \\cdot b^b = (b^2)^b \\implies b^2=2b \\implies b=2$" },
+        { q: "$\\sqrt[3]{x \\cdot \\sqrt{x}}$ এর সূচকীয় রূপ কোনটি?", options: ["$x^{1/2}$", "$x^{1/3}$", "$x^{1/6}$", "$x^{5/6}$"], ans: 0, hint: "$(x \\cdot x^{1/2})^{1/3} = (x^{3/2})^{1/3} = x^{1/2}$" },
+        { q: "$\\log_{\\sqrt{3}} 81$ এর মান কত?", options: ["4", "6", "8", "12"], ans: 2, hint: "$(\\sqrt{3})^8 = 81 \\implies \\log_{\\sqrt{3}} (\\sqrt{3})^8 = 8$" },
+        { q: "$f(x) = 2^x$ ফাংশনটির রেঞ্জ (Range) কোনটি?", options: ["$(0, \\infty)$", "$[0, \\infty)$", "$(-\\infty, 0)$", "$\\mathbb{R}$"], ans: 0, hint: "সূচকীয় ফাংশনের মান সর্বদাই ধনাত্মক সূচকীয় সংখ্যা ($>0$)।" },
+        { q: "$2^{x-4} = 4^{a-x}$ হলে, $x$ এর মান কত?", options: ["$\\frac{2a+4}{3}$", "$\\frac{a+4}{3}$", "$2a-4$", "$\\frac{2a-4}{3}$"], ans: 0, hint: "$2^{x-4} = 2^{2a-2x} \\implies x-4=2a-2x \\implies 3x=2a+4$" },
+        { q: "$\\log_a \\sqrt{a \\cdot \\sqrt{a \\cdot \\sqrt{a}}}$ এর মান কত?", options: ["$\\frac{7}{8}$", "$\\frac{3}{4}$", "$\\frac{1}{8}$", "$\\frac{7}{4}$"], ans: 0, hint: "$a^{1/2} \\cdot a^{1/4} \\cdot a^{1/8} = a^{7/8}$" },
+        { q: "$p^x = q, q^y = r$ এবং $r^z = p$ হলে, $xyz$ এর মান কত?", options: ["0", "1", "$pqr$", "-1"], ans: 1, hint: "$p = (q^y)^z = (p^x)^{yz} = p^{xyz} \\implies xyz=1$" },
+        { q: "$f(x) = \\ln(1-x)$ ফাংশনের বিপরীত ফাংশন $f^{-1}(x)$ কোনটি?", options: ["$1 - e^x$", "$e^x - 1$", "$1 + e^x$", "$\\frac{1}{1-x}$"], ans: 0, hint: "$y = \\ln(1-x) \\implies 1-x = e^y \\implies x = 1-e^y$" },
+        { q: "$2^{x+7} = 4^{x+2}$ হলে, $x$ এর মান কত?", options: ["3", "5", "7", "9"], ans: 0, hint: "$x+7 = 2(x+2) \\implies x+7 = 2x+4 \\implies x=3$" },
+        { q: "$\\log_a (x + y) = \\log_a x + \\log_a y$ হলে, $y$ কে $x$ এর মাধ্যমে প্রকাশ করো:", options: ["$y = \\frac{x}{x-1}$", "$y = \\frac{x-1}{x}$", "$y = \\frac{x}{x+1}$", "$y = \\frac{x+1}{x}$"], ans: 0, hint: "$x+y = xy \\implies y(x-1) = x \\implies y = \\frac{x}{x-1}$" },
+        { q: "$a^x = b, b^y = c, c^z = a$ হলে নিচের কোনটি সত্য?", options: ["$x+y+z=1$", "$xyz = 1$", "$xyz = 0$", "$x+y+z=0$"], ans: 1, hint: "$a = (a^{xy})^z = a^{xyz} \\implies xyz = 1$" }
+    ];
+
+    function renderMCQ() {
+        const mcqContainer = document.getElementById('mcq-list');
+        const solContainer = document.getElementById('solutions-container');
+        const labels = ['(ক)', '(খ)', '(গ)', '(ঘ)'];
+
+        mcqContainer.innerHTML = '';
+        solContainer.innerHTML = '';
+
+        mcqData.forEach((item, index) => {
+            const qCard = document.createElement('div');
+            qCard.className = 'mcq-item';
+            qCard.id = `mcq-card-${index}`;
+
+            let optionsHTML = '';
+            item.options.forEach((opt, optIdx) => {
+                optionsHTML += `
+                    <label class="option-label" id="opt-label-${index}-${optIdx}">
+                        <input type="radio" name="q${index}" value="${optIdx}">
+                        <span>${labels[optIdx]} ${opt}</span>
+                    </label>
+                `;
+            });
+
+            qCard.innerHTML = `
+                <div class="mcq-question">${index + 1}. ${item.q}</div>
+                <div class="mcq-options">${optionsHTML}</div>
+            `;
+            mcqContainer.appendChild(qCard);
+
+            const solCard = document.createElement('div');
+            solCard.className = 'solution-item';
+            solCard.innerHTML = `
+                <strong>${index + 1}. সঠিক উত্তর: ${labels[item.ans]} ${item.options[item.ans]}</strong><br>
+                <small style="color: #4b5563;">ব্যাখ্যা: ${item.hint}</small>
+            `;
+            solContainer.appendChild(solCard);
+        });
+
+        if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+            MathJax.typesetPromise().catch(err => console.error(err));
+        }
+    }
+
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+        
+        if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+            MathJax.typesetPromise().catch(err => console.error(err));
+        }
+    }
+
+    function gradeMCQ() {
+        let score = 0;
+        const total = mcqData.length;
+
+        mcqData.forEach((item, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            const card = document.getElementById(`mcq-card-${index}`);
+            
+            card.style.border = '1px solid var(--border-color)';
+            item.options.forEach((_, optIdx) => {
+                const label = document.getElementById(`opt-label-${index}-${optIdx}`);
+                label.style.background = 'transparent';
+                label.style.borderColor = 'var(--border-color)';
+            });
+
+            if (selected) {
+                const val = parseInt(selected.value, 10);
+                if (val === item.ans) {
+                    score++;
+                    document.getElementById(`opt-label-${index}-${val}`).style.background = 'var(--correct-bg)';
+                    document.getElementById(`opt-label-${index}-${val}`).style.borderColor = 'var(--correct-border)';
+                } else {
+                    document.getElementById(`opt-label-${index}-${val}`).style.background = 'var(--wrong-bg)';
+                    document.getElementById(`opt-label-${index}-${val}`).style.borderColor = 'var(--wrong-border)';
+                    document.getElementById(`opt-label-${index}-${item.ans}`).style.background = 'var(--correct-bg)';
+                }
+            } else {
+                document.getElementById(`opt-label-${index}-${item.ans}`).style.background = 'var(--correct-bg)';
+            }
+        });
+
+        const scoreDisplay = document.getElementById('score-display');
+        scoreDisplay.style.display = 'block';
+        scoreDisplay.innerHTML = `আপনার অর্জিত নম্বর: ${score} / ${total}`;
+    }
+
+    function resetForm() {
+        document.getElementById('mcq-form').reset();
+        const scoreDisplay = document.getElementById('score-display');
+        scoreDisplay.style.display = 'none';
+        
+        mcqData.forEach((item, index) => {
+            const card = document.getElementById(`mcq-card-${index}`);
+            card.style.border = '1px solid var(--border-color)';
+            item.options.forEach((_, optIdx) => {
+                const label = document.getElementById(`opt-label-${index}-${optIdx}`);
+                label.style.background = 'transparent';
+                label.style.borderColor = 'var(--border-color)';
+            });
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', renderMCQ);
+</script>
+
+</body>
+</html>

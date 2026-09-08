@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC 2027: Mathematics Workout Sheets</title>
+    
+    <!-- Importing a clean sans-serif font that supports Bengali and English -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for Clean, High-Contrast Theming */
+        :root {
+            --primary-bg: #f4f7f6;
+            --container-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --border-color: #cbd5e1;
+            --table-header-bg: #0f172a; /* Navy Blue */
+            --table-header-text: #ffffff;
+            --row-even: #f8fafc;
+            --row-hover: #f1f5f9;
+            --btn-bg: #2563eb;
+            
+            --btn-hover: #1d4ed8;
+        }
+
+        /* Base Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Header Styles */
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            color: #1a0bf5;
+            background-color: #e2e8f0;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #1e293b;
+            text-align: center;
+            background:#cbd5e1;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        /* Table Styles */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 900px; /* Forces scroll on very small screens to maintain structure */
+        }
+
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        th:last-child, td:last-child {
+            border-right: none;
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--table-header-text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: var(--row-even);
+        }
+
+        tbody tr:hover {
+            background-color: var(--row-hover);
+        }
+
+        /* Specific Column Formatting */
+        .col-group { width: 18%; font-weight: 600; }
+        .col-chap-num { width: 12%; text-align: center; }
+        .col-chap-name { width: 35%; }
+        .col-mt { width: 10%; text-align: center; font-weight: 700; color: var(--btn-bg); }
+        .col-date, .col-score { width: 12.5%; }
+
+        .eng-version {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Print Button */
+        .btn-container {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .btn-print {
+            background-color: var(--btn-bg);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .btn-print:hover {
+            background-color: var(--btn-hover);
+        }
+
+        /* Print Media Query (Optimized for A4 Size) */
+        @media print {
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+            body {
+                background: none;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .table-responsive {
+                border: none;
+                overflow-x: visible;
+            }
+            table {
+                min-width: 100%;
+                border: 2px solid #000;
+            }
+            th, td {
+                border: 1px solid #475569;
+                padding: 10px 8px;
+                font-size: 0.9rem;
+            }
+            th {
+                background-color: #e2e8f0 !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .col-mt { color: #000; }
+            tbody tr {
+                page-break-inside: avoid;
+            }
+            .section-title {
+                margin-top: 1.5rem;
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Model Test SSC 2027 <br>Mathematics & Higher Mathematics</h1>
+        <!-- <p>এই ওয়ার্কআউট শিটটি A4 সাইজে প্রিন্ট করে শিক্ষার্থীদের প্রস্তুতি ট্র্যাক করার জন্য তৈরি করা হয়েছে। বাংলা ও ইংরেজি ভার্সনের সুবিধার্থে অধ্যায়গুলোর নাম উভয় ভাষায় দেওয়া হলো।</p> -->
+    </div>
+
+    <!-- General Mathematics Table -->
+    <h2 class="section-title">Mathematics (সাধারণ গণিত) - Chapter-wise Model Test</h2>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-group">বিভাগ (Group)</th>
+                    <th class="col-chap-num">অধ্যায় (Chapter)</th>
+                    <th class="col-chap-name">অধ্যায়ের নাম (Bangla / English Version)</th>
+                    <th class="col-mt">Model Test</th>
+                    <th class="col-date">তারিখ (Date)</th>
+                    <th class="col-score">প্রাপ্ত নম্বর (Score)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ক-বিভাগ (বীজগণিত)</td>
+                    <td class="col-chap-num">২ ও ৩</td>
+                    <td>সেট ও ফাংশন, বীজগাণিতিক রাশি <span class="eng-version">(Sets & Functions, Algebraic Expressions)</span></td>
+                    <td class="col-mt">MT-01</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ক-বিভাগ (বীজগণিত)</td>
+                    <td class="col-chap-num">৪ ও ৫</td>
+                    <td>সূচক ও লগারিদম, এক চলকবিশিষ্ট সমীকরণ <span class="eng-version">(Exponents & Logarithms, Equations with One Variable)</span></td>
+                    <td class="col-mt">MT-02</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ক-বিভাগ (বীজগণিত)</td>
+                    <td class="col-chap-num">১১ ও ১২</td>
+                    <td>বীজগাণিতিক অনুপাত ও সমানুপাত, দুই চলকবিশিষ্ট সরল সমীকরণ <span class="eng-version">(Algebraic Ratio & Proportion, Simple Simultaneous Equations)</span></td>
+                    <td class="col-mt">MT-03</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ক-বিভাগ (বীজগণিত)</td>
+                    <td class="col-chap-num">১৩</td>
+                    <td>সসীম ধারা <span class="eng-version">(Finite Series)</span></td>
+                    <td class="col-mt">MT-04</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>খ-বিভাগ (জ্যামিতি)</td>
+                    <td class="col-chap-num">৬ ও ৭</td>
+                    <td>রেখা, কোণ ও ত্রিভুজ, ব্যবহারিক জ্যামিতি <span class="eng-version">(Lines, Angles & Triangles, Practical Geometry)</span></td>
+                    <td class="col-mt">MT-05</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>খ-বিভাগ (জ্যামিতি)</td>
+                    <td class="col-chap-num">৮</td>
+                    <td>বৃত্ত <span class="eng-version">(Circle)</span></td>
+                    <td class="col-mt">MT-06</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>খ-বিভাগ (জ্যামিতি)</td>
+                    <td class="col-chap-num">১৪ ও ১৫</td>
+                    <td>অনুপাত, সদৃশতা ও প্রতিসমতা, ক্ষেত্রফল সম্পর্কিত উপপাদ্য <span class="eng-version">(Ratio, Similarity & Symmetry, Area Related Theorems)</span></td>
+                    <td class="col-mt">MT-07</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>গ-বিভাগ (ত্রিকোণমিতি ও পরিমিতি)</td>
+                    <td class="col-chap-num">৯ ও ১০</td>
+                    <td>ত্রিকোণমিতিক অনুপাত, দূরত্ব ও উচ্চতা <span class="eng-version">(Trigonometric Ratio, Distance & Elevation)</span></td>
+                    <td class="col-mt">MT-08</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>গ-বিভাগ (ত্রিকোণমিতি ও পরিমিতি)</td>
+                    <td class="col-chap-num">১৬</td>
+                    <td>পরিমিতি <span class="eng-version">(Mensuration)</span></td>
+                    <td class="col-mt">MT-09</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ঘ-বিভাগ (পরিসংখ্যান)</td>
+                    <td class="col-chap-num">১৭</td>
+                    <td>পরিসংখ্যান <span class="eng-version">(Statistics)</span></td>
+                    <td class="col-mt">MT-10</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Full Syllabus</td>
+                    <td class="col-chap-num">All</td>
+                    <td>সম্পূর্ণ সিলেবাস <span class="eng-version">(Standard Board Pattern)</span></td>
+                    <td class="col-mt">MT-11</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Full Syllabus</td>
+                    <td class="col-chap-num">All</td>
+                    <td>সম্পূর্ণ সিলেবাস <span class="eng-version">(Standard Board Pattern)</span></td>
+                    <td class="col-mt">MT-12</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Higher Mathematics Table -->
+    <h2 class="section-title">Higher Mathematics (উচ্চতর গণিত) - Chapter-wise Model Test</h2>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-group">বিভাগ (Group)</th>
+                    <th class="col-chap-num">অধ্যায় (Chapter)</th>
+                    <th class="col-chap-name">অধ্যায়ের নাম (Bangla / English Version)</th>
+                    <th class="col-mt">Model Test</th>
+                    <th class="col-date">তারিখ (Date)</th>
+                    <th class="col-score">প্রাপ্ত নম্বর (Score)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ক-বিভাগ (বীজগণিত)</td>
+                    <td class="col-chap-num">১ ও ২</td>
+                    <td>সেট ও ফাংশন, বীজগাণিতিক রাশি <span class="eng-version">(Sets & Functions, Algebraic Expressions)</span></td>
+                    <td class="col-mt">HMT-01</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ক-বিভাগ (বীজগণিত)</td>
+                    <td class="col-chap-num">৫ ও ৭</td>
+                    <td>সমীকরণ, অসীম ধারা <span class="eng-version">(Equations, Infinite Series)</span></td>
+                    <td class="col-mt">HMT-02</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ক-বিভাগ (বীজগণিত)</td>
+                    <td class="col-chap-num">৯ ও ১০</td>
+                    <td>সূচকীয় ও লগারিদমীয় ফাংশন, দ্বিপদী বিস্তৃতি <span class="eng-version">(Exponential & Logarithmic Functions, Binomial Expansion)</span></td>
+                    <td class="col-mt">HMT-03</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>খ-বিভাগ (জ্যামিতি ও ভেক্টর)</td>
+                    <td class="col-chap-num">৩</td>
+                    <td>জ্যামিতি <span class="eng-version">(Geometry)</span></td>
+                    <td class="col-mt">HMT-04</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>খ-বিভাগ (জ্যামিতি ও ভেক্টর)</td>
+                    <td class="col-chap-num">১১</td>
+                    <td>স্থানাঙ্ক জ্যামিতি <span class="eng-version">(Coordinate Geometry)</span></td>
+                    <td class="col-mt">HMT-05</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>খ-বিভাগ (জ্যামিতি ও ভেক্টর)</td>
+                    <td class="col-chap-num">১২</td>
+                    <td>সমতলীয় ভেক্টর <span class="eng-version">(Planar Vectors)</span></td>
+                    <td class="col-mt">HMT-06</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>গ-বিভাগ (ত্রিকোণমিতি ও সম্ভাবনা)</td>
+                    <td class="col-chap-num">৮</td>
+                    <td>ত্রিকোণমিতি <span class="eng-version">(Trigonometry)</span></td>
+                    <td class="col-mt">HMT-07</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>গ-বিভাগ (ত্রিকোণমিতি ও সম্ভাবনা)</td>
+                    <td class="col-chap-num">১৩</td>
+                    <td>ঘনজ্যামিতি <span class="eng-version">(Solid Geometry)</span></td>
+                    <td class="col-mt">HMT-08</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>গ-বিভাগ (ত্রিকোণমিতি ও সম্ভাবনা)</td>
+                    <td class="col-chap-num">১৪</td>
+                    <td>সম্ভাবনা <span class="eng-version">(Probability)</span></td>
+                    <td class="col-mt">HMT-09</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Full Syllabus</td>
+                    <td class="col-chap-num">All</td>
+                    <td>সম্পূর্ণ সিলেবাস <span class="eng-version">(Standard Board Pattern)</span></td>
+                    <td class="col-mt">HMT-10</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Full Syllabus</td>
+                    <td class="col-chap-num">All</td>
+                    <td>সম্পূর্ণ সিলেবাস <span class="eng-version">(Standard Board Pattern)</span></td>
+                    <td class="col-mt">HMT-11</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Print Button Wrapper -->
+    <div class="btn-container no-print">
+        <button class="btn-print" onclick="handlePrint()">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+            </svg>
+            Print A4 Tracker Sheet
+        </button>
+    </div>
+</div>
+
+<!-- JavaScript functionality -->
+<script>
+    /**
+     * Triggers the browser's native print dialogue.
+     * The '.no-print' class defined in CSS ensures the button 
+     * is hidden automatically on the physical paper copy.
+     */
+    function handlePrint() {
+        window.print();
+    }
+</script>
+</body>
+</html>

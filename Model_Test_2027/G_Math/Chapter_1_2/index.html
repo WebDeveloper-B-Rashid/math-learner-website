@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC Preparation Test 2027 - Mathematics</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --bg: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #cbd5e1;
+            --brand-color: #0c4a6e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; padding-bottom: 60px; }
+
+        /* Top Marquee */
+        .top-marquee {
+            background-color: var(--brand-color);
+            color: #fff;
+            padding: 8px 0;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .header-container { max-width: 950px; margin: 0 auto; text-align: center; }
+        .exam-meta h1 { font-size: 1.6rem; color: var(--primary); margin-bottom: 4px; text-transform: uppercase; }
+        .exam-meta p { font-size: 1rem; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
+        .exam-meta .chapters { color: var(--brand-color); font-size: 1.1rem; background: #e0f2fe; display: inline-block; padding: 2px 12px; border-radius: 4px; margin-top: 5px; }
+
+        .controls { display: flex; gap: 15px; align-items: center; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
+        
+        .btn { padding: 10px 22px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s ease; font-size: 1rem; }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+        .btn-outline.active, .btn-outline:hover { background: var(--primary); color: white; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-secondary { background: #64748b; color: white; }
+        .btn-secondary:hover { background: #475569; }
+
+        .timer-box { font-size: 1.3rem; font-weight: 700; background: #e2e8f0; padding: 8px 20px; border-radius: 8px; color: var(--danger); display: none; border: 2px solid #cbd5e1; }
+
+        .main-container { max-width: 950px; margin: 30px auto; padding: 0 20px; }
+        .intro-card, .result-card { background: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--border); text-align: center; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        .time-logs { display: flex; justify-content: center; gap: 30px; margin: 20px 0; font-size: 1.1rem; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--border); }
+        .time-logs span { font-weight: 700; color: var(--brand-color); }
+
+        .question-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 25px; margin-bottom: 20px; display: none; }
+        .question-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; color: var(--text-main); }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        .option-label { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border: 2px solid var(--border); border-radius: 8px; cursor: pointer; background: #f8fafc; }
+        .option-label:hover { background: #eff6ff; border-color: var(--primary); }
+        .option-label input[type="radio"] { accent-color: var(--primary); width: 20px; height: 20px; cursor: pointer; }
+        .opt-prefix { font-weight: 700; color: var(--primary); margin-right: 5px; }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); z-index: 1000; overflow-y: auto; padding: 20px; }
+        .modal-content { background: var(--card-bg); max-width: 850px; margin: 40px auto; padding: 35px; border-radius: 12px; position: relative; }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; border: none; background: none; color: var(--text-muted); }
+        .solution-box { border-top: 2px solid var(--border); padding: 20px 0; margin-top: 15px; }
+        .correct-ans-tag { color: var(--success); font-weight: 700; background: #f0fdf4; padding: 8px 12px; border-radius: 6px; display: inline-block; margin-top: 10px; }
+
+        .print-only-header { display: none; }
+
+        /* A4 Print Optimization */
+        @media print {
+            @page { size: A4; margin: 12mm 15mm; }
+            body { background: #fff; color: #000; font-size: 11pt; }
+            .top-marquee, header, .intro-card, .btn, .result-card, .modal, .timer-box, .footer-info { display: none !important; }
+            .main-container { margin: 0; padding: 0; max-width: 100%; }
+            
+            .print-only-header { display: block; text-align: center; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 15px; }
+            .print-only-header h1 { font-size: 18pt; margin-bottom: 5px; }
+            .print-only-header p { margin: 3px 0; font-size: 12pt; font-weight: bold; }
+            .student-fields { display: flex; justify-content: space-between; margin-top: 15px; font-size: 11pt; text-align: left; }
+            .student-fields div { border-bottom: 1px dashed #000; width: 30%; padding-bottom: 3px; }
+
+            #questions-wrapper { display: block !important; column-count: 2; column-gap: 25px; column-rule: 1px solid #ddd; }
+            
+            .question-card { display: block !important; border: none; padding: 0; margin-bottom: 18px; box-shadow: none; break-inside: avoid; }
+            .question-title { font-size: 11pt; margin-bottom: 8px; font-weight: bold; }
+            
+            .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+            .option-label { padding: 0; border: none; background: transparent; font-size: 10.5pt; gap: 5px; pointer-events: none; }
+            .option-label input[type="radio"] { appearance: none; width: 12px; height: 12px; border: 1px solid #000; border-radius: 50%; display: inline-block; position: relative; top: 2px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-marquee">
+    <marquee behavior="scroll" direction="left" scrollamount="6">
+        Presented by Luxury Ponno | Instructor: Rashid Sir, Assistant Professor in Mathematics | Contact: 01711008786 | S.S.C Preparation Test 2027
+    </marquee>
+</div>
+
+<!-- Prompt start -->
+
+ <!-- Make a MCQ questions for S S C Preparation Test 2027 
+ Subject: Mathematics, Subject Code: 109, 
+ Time: 30 Miniutes, MCQ - 30. Full Marks: 30, 
+ Taking 15 MCQ questions from the attesed first image files 
+ and other 15 MCQ questions from the attesed 2nd image files, 
+ One button "Bangla Version" for bangla versions students and 
+ other button "English Version" for english versions students to start the exam, 
+ After end the exam the students submit their Answer Sheet by click on the "Submit" buttons 
+ or auto submit if time end. then both versions students get their Scoure out of 30 Marks 
+ and right or worng answers, then give me deatails solutions of each MCQ questions 
+ when the students click on the "See Complete Solutions" Buttons. 
+ Making this MCQ questions using HTML, CSS and JavaScript properly write error free code. 
+ Contact: 01711008786, Rashid Sir, Assistant Professor in Mathematics. -->
+
+ <!-- Edit prompt -->
+
+ <!-- Ok very nice, Please add Chapter 1 and 2, Start Time and End Time and 
+ give me print option A4 size single page both site wit cover the MCQ questions. -->
+
+<!-- Prompt End -->
+
+<header>
+    <div class="header-container">
+        <div class="exam-meta">
+            <h1>S. S. C. Preparation Test 2027</h1>
+            <p>Subject: Mathematics | Subject Code: 109</p>
+            <div class="chapters"><b>Syllabus: Chapter 1 (Real Numbers) & Chapter 2 (Algebraic Functions)</b></div>
+            <p style="margin-top: 8px;">Time: 30 Minutes | Full Marks: 30</p>
+        </div>
+        <div class="controls">
+            <button class="btn btn-outline active" id="btn-bn" onclick="setLanguage('bn')">Bangla Version</button>
+            <button class="btn btn-outline" id="btn-en" onclick="setLanguage('en')">English Version</button>
+            <div class="timer-box" id="timer-display">30:00</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+    
+    <!-- Print Header (Hidden on Screen) -->
+    <div class="print-only-header" id="print-header">
+        <h1>S S C Preparation Test 2027</h1>
+        <p>Subject: Mathematics (Code: 109) | Full Marks: 30 | Time: 30 Minutes</p>
+        <p>Syllabus: Chapter 1 (Real Numbers) & Chapter 2 (Algebraic Functions)</p>
+        <p style="font-size: 10pt; font-weight: normal;">Instructor: Rashid Sir | Contact: 01711008786 | Courtesy: luxuryponno.com</p>
+        <div class="student-fields">
+            <div>Student Name:</div>
+            <div>Roll No:</div>
+            <div>Date:</div>
+        </div>
+    </div>
+
+    <!-- Intro Screen -->
+    <div class="intro-card" id="intro-screen">
+        <h2 id="intro-title" style="font-size: 1.8rem; color: var(--brand-color);">অনলাইন বহুনির্বাচনি পরীক্ষায় স্বাগতম</h2>
+        <p style="margin: 20px 0; font-size: 1.1rem; color: var(--text-muted);" id="intro-desc">
+            উপরে আপনার পছন্দের ভাষা নির্বাচন করুন এবং পরীক্ষা শুরু করুন বোতামে ক্লিক করুন।
+        </p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
+            <button class="btn btn-primary" style="padding: 14px 40px; font-size: 1.2rem;" onclick="startExam()" id="start-btn">পরীক্ষা শুরু করুন (Start Exam)</button>
+            <button class="btn btn-secondary" style="padding: 14px 30px; font-size: 1.1rem;" onclick="window.print()" id="print-btn">Print Question Paper</button>
+        </div>
+    </div>
+
+    <!-- Questions Container -->
+    <form id="exam-form" onsubmit="return false;">
+        <div id="questions-wrapper"></div>
+        <div style="text-align: center; margin-top: 40px;">
+            <button type="button" class="btn btn-success" style="display: none; padding: 15px 50px; font-size: 1.2rem;" id="submit-btn" onclick="submitExam()">Submit Answer Sheet</button>
+        </div>
+    </form>
+
+    <!-- Result Screen -->
+    <div class="result-card" id="result-screen" style="display: none;">
+        <h2 style="color: var(--brand-color); font-size: 2.2rem;">Exam Completed!</h2>
+        
+        <div class="time-logs">
+            <div>Start Time: <br><span id="start-time-log">--:--</span></div>
+            <div>End Time: <br><span id="end-time-log">--:--</span></div>
+            <div>Duration: <br><span id="duration-log">--:--</span></div>
+        </div>
+
+        <p style="font-size: 1.6rem; margin: 25px 0;">Your Score: <strong id="score-display" style="color: var(--success); font-size: 2.5rem;">0</strong> / 30</p>
+        
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="openSolutionsModal()">See Complete Solutions</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="solutions-modal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeSolutionsModal()">&times;</button>
+        <h2 style="color: var(--brand-color); margin-bottom: 10px; border-bottom: 2px solid var(--primary); padding-bottom: 15px;">Complete Solutions</h2>
+        <div id="solutions-wrapper" style="margin-top: 10px;"></div>
+    </div>
+</div>
+
+<script>
+    let currentLang = 'bn';
+    let timerInterval;
+    let timeRemaining = 30 * 60; 
+    let isSubmitted = false;
+    
+    let startTimeObj = null;
+    let endTimeObj = null;
+
+    const bnPrefixes = ['(ক)', '(খ)', '(গ)', '(ঘ)'];
+    const enPrefixes = ['(a)', '(b)', '(c)', '(d)'];
+
+    // 30 Questions Array 
+    const questionsData = [
+        { id: 1, q_bn: "১। \\(0.\\dot{2}\\dot{7} \\div 0.\\dot{5} = ?\\)", q_en: "1. What is the value of \\(0.\\dot{2}\\dot{7} \\div 0.\\dot{5}\\)?", options_bn: ["\\(5.4\\)", "\\(0.54\\)", "\\(0.5\\)", "\\(0.17\\)"], options_en: ["\\(5.4\\)", "\\(0.54\\)", "\\(0.5\\)", "\\(0.17\\)"], correct: 2, sol_bn: "ব্যাখ্যা: \\(0.\\dot{2}\\dot{7} = \\frac{27}{99}\\) এবং \\(0.\\dot{5} = \\frac{5}{9}\\)। অতএব, \\(\\frac{27}{99} \\div \\frac{5}{9} = \\frac{27}{99} \\times \\frac{9}{5} = \\frac{3}{11} \\times \\frac{11}{5} \\times ...\\) হিসাব করলে পাওয়া যায় \\(0.5\\)।", sol_en: "Explanation: \\(0.\\dot{2}\\dot{7} = \\frac{27}{99}\\) and \\(0.\\dot{5} = \\frac{5}{9}\\). \\(\\frac{27}{99} \\times \\frac{9}{5} = 0.5\\)." },
+        { id: 2, q_bn: "২। \\(0.\\dot{2} \\div 0.0\\dot{4}\\) এর মান কত?", q_en: "2. What is the value of \\(0.\\dot{2} \\div 0.0\\dot{4}\\)?", options_bn: ["\\(0.5\\)", "\\(0.\\dot{5}\\)", "\\(5\\)", "\\(9\\)"], options_en: ["\\(0.5\\)", "\\(0.\\dot{5}\\)", "\\(5\\)", "\\(9\\)"], correct: 2, sol_bn: "ব্যাখ্যা: \\(0.\\dot{2} = \\frac{2}{9}\\) এবং \\(0.0\\dot{4} = \\frac{4}{90}\\)। সুতরাং, \\(\\frac{2}{9} \\times \\frac{90}{4} = 5\\)।", sol_en: "Explanation: \\(0.\\dot{2} = \\frac{2}{9}\\) and \\(0.0\\dot{4} = \\frac{4}{90}\\). \\(\\frac{2}{9} \\times \\frac{90}{4} = 5\\)." },
+        { id: 3, q_bn: "৩। চারটি ক্রমিক স্বাভাবিক সংখ্যার গুণফলের সাথে কত যোগ করলে যোগফল একটি পূর্ণবর্গ সংখ্যা হবে?", q_en: "3. How much should be added to the product of 4 consecutive natural numbers to make it a perfect square?", options_bn: ["\\(1\\)", "\\(4\\)", "\\(9\\)", "\\(81\\)"], options_en: ["\\(1\\)", "\\(4\\)", "\\(9\\)", "\\(81\\)"], correct: 0, sol_bn: "ব্যাখ্যা: যেকোনো চারটি ক্রমিক স্বাভাবিক সংখ্যার গুণফলের সাথে \\(1\\) যোগ করলে তা পূর্ণবর্গ সংখ্যা হয়।", sol_en: "Explanation: The product of four consecutive natural numbers plus \\(1\\) is always a perfect square." },
+        { id: 4, q_bn: "৪। \\(a, b, c \\in \\mathbb{R}\\); \\(a > b > 0\\) এবং \\(c < 0\\) হলে নিচের কোনটি সঠিক?", q_en: "4. If \\(a > b > 0\\) and \\(c < 0\\), which is correct?", options_bn: ["\\(ac = bc\\)", "\\(ac > bc\\)", "\\(ac < bc\\)", "\\(ab < bc\\)"], options_en: ["\\(ac = bc\\)", "\\(ac > bc\\)", "\\(ac < bc\\)", "\\(ab < bc\\)"], correct: 2, sol_bn: "ব্যাখ্যা: অসমতাকে কোনো ঋণাত্মক সংখ্যা (\\(c < 0\\)) দ্বারা গুণ করলে অসমতার চিহ্ন পাল্টে যায়।", sol_en: "Explanation: Multiplying an inequality by a negative number reverses the inequality sign." },
+        { id: 5, q_bn: "৫। \\(0.0025\\) এর বর্গমূল কোন ধরনের সংখ্যা?", q_en: "5. What type of number is the square root of \\(0.0025\\)?", options_bn: ["আবৃত্ত দশমিক", "অনাবৃত্ত অসীম", "অসীম দশমিক", "সসীম দশমিক"], options_en: ["Recurring decimal", "Non-recurring", "Infinite", "Terminating"], correct: 3, sol_bn: "ব্যাখ্যা: \\(\\sqrt{0.0025} = 0.05\\), তাই এটি সসীম দশমিক সংখ্যা।", sol_en: "Explanation: \\(\\sqrt{0.0025} = 0.05\\), it is a terminating decimal." },
+        { id: 6, q_bn: "৬। \\(0.99973...\\) এর তিন দশমিক স্থান পর্যন্ত আসন্ন মান কোনটি?", q_en: "6. Approximate value of \\(0.99973...\\) up to three decimal places?", options_bn: ["\\(0.999\\)", "\\(0.99\\dot{9}\\)", "\\(1.000\\)", "\\(0.100\\)"], options_en: ["\\(0.999\\)", "\\(0.99\\dot{9}\\)", "\\(1.000\\)", "\\(0.100\\)"], correct: 2, sol_bn: "ব্যাখ্যা: চতুর্থ দশমিক স্থানের অঙ্কটি \\(7\\), তাই তৃতীয় স্থানের অঙ্কের সাথে 1 যোগ হয়ে \\(1.000\\) হবে।", sol_en: "Explanation: 4th decimal digit is 7, round up the 3rd decimal to get \\(1.000\\)." },
+        { id: 7, q_bn: "৭। \\(p, q\\) সহমৌলিক হলে, \\(\\sqrt{\\frac{p}{q}}\\) কোন ধরনের সংখ্যা (\\(q > 1\\))?", q_en: "7. If \\(p, q\\) are co-prime, what type of number is \\(\\sqrt{\\frac{p}{q}}\\) (\\(q > 1\\))?", options_bn: ["পূর্ণ", "মূলদ", "অমূলদ", "মৌলিক"], options_en: ["Integer", "Rational", "Irrational", "Prime"], correct: 2, sol_bn: "ব্যাখ্যা: \\(\\frac{p}{q}\\) পূর্ণবর্গ নয়, তাই এর বর্গমূল একটি অমূলদ সংখ্যা।", sol_en: "Explanation: Fraction cannot be a perfect square, thus irrational." },
+        { id: 8, q_bn: "৮। যে কোনো বিজোড় পূর্ণসংখ্যার বর্গ কোন ধরনের সংখ্যা?", q_en: "8. The square of any odd integer is what type of number?", options_bn: ["জোড়", "বিজোড়", "অমূলদ সংখ্যা", "ঋণাত্মক"], options_en: ["Even", "Odd", "Irrational", "Negative"], correct: 1, sol_bn: "ব্যাখ্যা: বিজোড় সংখ্যার বর্গ সর্বদা বিজোড় সংখ্যা হয়।", sol_en: "Explanation: The square of an odd integer is always odd." },
+        { id: 9, q_bn: "৯। \\(n \\in \\mathbb{N}\\) এর জন্য কোনটি সর্বদাই বিজোড় সংখ্যা?", q_en: "9. For \\(n \\in \\mathbb{N}\\), which is always an odd number?", options_bn: ["\\(n + 2\\)", "\\(n + 1\\)", "\\(2n + 1\\)", "\\(2n\\)"], options_en: ["\\(n + 2\\)", "\\(n + 1\\)", "\\(2n + 1\\)", "\\(2n\\)"], correct: 2, sol_bn: "ব্যাখ্যা: \\(2n\\) জোড়, তাই \\(2n+1\\) সর্বদা বিজোড়।", sol_en: "Explanation: \\(2n\\) is even, so \\(2n+1\\) is always odd." },
+        { id: 10, q_bn: "১০। দুইটি ক্রমিক জোড় সংখ্যার গুণফল কত দ্বারা বিভাজ্য?", q_en: "10. Product of two consecutive even numbers is always divisible by?", options_bn: ["\\(7\\)", "\\(5\\)", "\\(6\\)", "\\(8\\)"], options_en: ["\\(7\\)", "\\(5\\)", "\\(6\\)", "\\(8\\)"], correct: 3, sol_bn: "ব্যাখ্যা: \\(4n(n+1)\\) সর্বদা \\(8\\) দ্বারা বিভাজ্য।", sol_en: "Explanation: Contains at least three factors of 2, so divisible by 8." },
+        { id: 11, q_bn: "১১। শূন্য (0) কোন ধরনের সংখ্যা?", q_en: "11. What type of number is zero (0)?", options_bn: ["মূলদ", "অমূলদ", "স্বাভাবিক", "উপরের সবকয়টি"], options_en: ["Rational", "Irrational", "Natural", "All above"], correct: 0, sol_bn: "ব্যাখ্যা: 0 কে \\(\\frac{0}{1}\\) আকারে লেখা যায়, তাই মূলদ।", sol_en: "Explanation: Can be written as \\(\\frac{0}{1}\\), so it's rational." },
+        { id: 12, q_bn: "১২। \\(\\sqrt{529}\\) এর বর্গমূল কী ধরনের সংখ্যা?", q_en: "12. What type of number is \\(\\sqrt{529}\\)?", options_bn: ["মূলদ সংখ্যা", "পূর্ণসংখ্যা", "স্বাভাবিক সংখ্যা", "অমূলদ সংখ্যা"], options_en: ["Rational", "Integer", "Natural number", "Irrational"], correct: 2, sol_bn: "ব্যাখ্যা: \\(23\\) স্বাভাবিক সংখ্যা।", sol_en: "Explanation: \\(23\\) is a natural number." },
+        { id: 13, q_bn: "১৩। সেটগুলোর মধ্যে নিচের কোনটি সঠিক?", q_en: "13. Which subset relation is correct?", options_bn: ["\\(\\mathbb{N} \\subset \\mathbb{Q} \\subset \\mathbb{N}\\)", "\\(\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}\\)", "\\(\\mathbb{Z} \\subset \\mathbb{R} \\subset \\mathbb{N}\\)", "\\(\\mathbb{R} \\subset \\mathbb{Q} \\subset \\mathbb{N}\\)"], options_en: ["\\(\\mathbb{N} \\subset \\mathbb{Q} \\subset \\mathbb{N}\\)", "\\(\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}\\)", "\\(\\mathbb{Z} \\subset \\mathbb{R} \\subset \\mathbb{N}\\)", "\\(\\mathbb{R} \\subset \\mathbb{Q} \\subset \\mathbb{N}\\)"], correct: 1, sol_bn: "ব্যাখ্যা: \\(\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}\\) সঠিক ক্রম।", sol_en: "Explanation: Correct hierarchy is \\(\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}\\)." },
+        { id: 14, q_bn: "১৪। \\(2.0\\dot{3}\\) এর সামান্য ভগ্নাংশ কোনটি?", q_en: "14. Vulgar fraction form of \\(2.0\\dot{3}\\)?", options_bn: ["\\(\\frac{203}{100}\\)", "\\(\\frac{203}{90}\\)", "\\(\\frac{203}{99}\\)", "\\(\\frac{61}{30}\\)"], options_en: ["\\(\\frac{203}{100}\\)", "\\(\\frac{203}{90}\\)", "\\(\\frac{203}{99}\\)", "\\(\\frac{61}{30}\\)"], correct: 3, sol_bn: "ব্যাখ্যা: \\(\\frac{203 - 20}{90} = \\frac{183}{90} = \\frac{61}{30}\\)।", sol_en: "Explanation: \\(\\frac{183}{90} = \\frac{61}{30}\\)." },
+        { id: 15, q_bn: "১৫। \\(3.\\dot{4} - 2.1\\dot{3} = ?\\)", q_en: "15. \\(3.\\dot{4} - 2.1\\dot{3} = ?\\)", options_bn: ["\\(\\frac{131}{90}\\)", "\\(\\frac{108}{90}\\)", "\\(\\frac{118}{90}\\)", "\\(\\frac{128}{90}\\)"], options_en: ["\\(\\frac{131}{90}\\)", "\\(\\frac{108}{90}\\)", "\\(\\frac{118}{90}\\)", "\\(\\frac{128}{90}\\)"], correct: 2, sol_bn: "ব্যাখ্যা: \\(\\frac{310}{90} - \\frac{192}{90} = \\frac{118}{90}\\)।", sol_en: "Explanation: \\(\\frac{310}{90} - \\frac{192}{90} = \\frac{118}{90}\\)." },
+        
+        { id: 16, q_bn: "১৬। \\(P(x) = x^3 - 4x + 3\\) হলে \\(P(2) = ?\\)", q_en: "16. If \\(P(x) = x^3 - 4x + 3\\), \\(P(2) = ?\\)", options_bn: ["\\(0\\)", "\\(2\\)", "\\(3\\)", "\\(4\\)"], options_en: ["\\(0\\)", "\\(2\\)", "\\(3\\)", "\\(4\\)"], correct: 2, sol_bn: "ব্যাখ্যা: \\(P(2) = 2^3 - 4(2) + 3 = 8 - 8 + 3 = 3\\)।", sol_en: "Explanation: \\(8 - 8 + 3 = 3\\)." },
+        { id: 17, q_bn: "১৭। \\(f(x) = 3x^2 + 4Kx\\), \\(f(-2) = 0\\) হলে \\(K = ?\\)", q_en: "17. \\(f(x) = 3x^2 + 4Kx\\), if \\(f(-2) = 0\\), \\(K = ?\\)", options_bn: ["\\(\\frac{3}{2}\\)", "\\(-\\frac{3}{2}\\)", "\\(3\\)", "\\(-3\\)"], options_en: ["\\(\\frac{3}{2}\\)", "\\(-\\frac{3}{2}\\)", "\\(3\\)", "\\(-3\\)"], correct: 0, sol_bn: "ব্যাখ্যা: \\(12 - 8K = 0 \\Rightarrow K = \\frac{3}{2}\\)।", sol_en: "Explanation: \\(12 - 8K = 0 \\Rightarrow K = 3/2\\)." },
+        { id: 18, q_bn: "১৮। \\(f(x) = x^3 + Px^2 - 6x - 9\\), \\(f(-3) = 0\\) হলে \\(P = ?\\)", q_en: "18. \\(f(x) = x^3 + Px^2 - 6x - 9\\), if \\(f(-3) = 0\\), \\(P = ?\\)", options_bn: ["\\(-4\\)", "\\(-2\\)", "\\(2\\)", "\\(6\\)"], options_en: ["\\(-4\\)", "\\(-2\\)", "\\(2\\)", "\\(6\\)"], correct: 2, sol_bn: "ব্যাখ্যা: \\(-27 + 9P + 18 - 9 = 0 \\Rightarrow P = 2\\)।", sol_en: "Explanation: \\(9P - 18 = 0 \\Rightarrow P = 2\\)." },
+        { id: 19, q_bn: "১৯। \\(f(y) = y^2 - (a + \\frac{1}{a})y + 1 = 0\\) হলে \\(y = ?\\)", q_en: "19. If \\(y^2 - (a + \\frac{1}{a})y + 1 = 0\\), roots are?", options_bn: ["\\(0, a\\)", "\\(0, \\frac{1}{a}\\)", "\\(a, -\\frac{1}{a}\\)", "\\(a, \\frac{1}{a}\\)"], options_en: ["\\(0, a\\)", "\\(0, \\frac{1}{a}\\)", "\\(a, -\\frac{1}{a}\\)", "\\(a, \\frac{1}{a}\\)"], correct: 3, sol_bn: "ব্যাখ্যা: উৎপাদকে বিশ্লেষণ করলে মূল পাওয়া যায় \\(a\\) এবং \\(\\frac{1}{a}\\)।", sol_en: "Explanation: Roots are \\(a\\) and \\(1/a\\)." },
+        { id: 20, q_bn: "২০। \\(f(x) = \\frac{x}{2} + 1\\) হলে, \\(f(\\frac{1}{x}) = ?\\)", q_en: "20. If \\(f(x) = \\frac{x}{2} + 1\\), \\(f(\\frac{1}{x}) = ?\\)", options_bn: ["\\(2x + 1\\)", "\\(\\frac{1}{2x} + 1\\)", "\\(\\frac{1}{2x}\\)", "\\(\\frac{2}{x} + 1\\)"], options_en: ["\\(2x + 1\\)", "\\(\\frac{1}{2x} + 1\\)", "\\(\\frac{1}{2x}\\)", "\\(\\frac{2}{x} + 1\\)"], correct: 1, sol_bn: "ব্যাখ্যা: \\(x\\) এর স্থলে \\(\\frac{1}{x}\\) বসালে \\(\\frac{1}{2x} + 1\\) হয়।", sol_en: "Explanation: Substitute to get \\(1/(2x) + 1\\)." },
+        { id: 21, q_bn: "২১। \\(f(x) = \\frac{x - 3}{x + 1}\\) হলে, \\(f(0) = ?\\)", q_en: "21. If \\(f(x) = \\frac{x - 3}{x + 1}\\), \\(f(0) = ?\\)", options_bn: ["\\(-6\\)", "\\(-3\\)", "\\(-2\\)", "\\(0\\)"], options_en: ["\\(-6\\)", "\\(-3\\)", "\\(-2\\)", "\\(0\\)"], correct: 1, sol_bn: "ব্যাখ্যা: \\(\\frac{0 - 3}{0 + 1} = -3\\)।", sol_en: "Explanation: \\(-3/1 = -3\\)." },
+        { id: 22, q_bn: "২২। \\(f(x) = x^2 - 2x + 3\\) হলে \\(f(\\frac{1}{2}) = ?\\)", q_en: "22. If \\(f(x) = x^2 - 2x + 3\\), \\(f(\\frac{1}{2}) = ?\\)", options_bn: ["\\(\\frac{7}{4}\\)", "\\(\\frac{9}{4}\\)", "\\(\\frac{11}{4}\\)", "\\(\\frac{13}{4}\\)"], options_en: ["\\(\\frac{7}{4}\\)", "\\(\\frac{9}{4}\\)", "\\(\\frac{11}{4}\\)", "\\(\\frac{13}{4}\\)"], correct: 1, sol_bn: "ব্যাখ্যা: \\(\\frac{1}{4} - 1 + 3 = \\frac{9}{4}\\)।", sol_en: "Explanation: \\(0.25 - 1 + 3 = 2.25 = 9/4\\)." },
+        { id: 23, q_bn: "২৩। \\(f(x) = x^3 - x - 24 = 0\\) হলে \\(x = ?\\)", q_en: "23. If \\(x^3 - x - 24 = 0\\), \\(x = ?\\)", options_bn: ["\\(2\\)", "\\(3\\)", "\\(4\\)", "\\(6\\)"], options_en: ["\\(2\\)", "\\(3\\)", "\\(4\\)", "\\(6\\)"], correct: 1, sol_bn: "ব্যাখ্যা: \\(x = 3\\) এর জন্য সমীকরণটি 0 হয়।", sol_en: "Explanation: \\(3^3 - 3 - 24 = 0\\)." },
+        { id: 24, q_bn: "২৪। \\(f(x) = x^4 - mx^2 + 5\\), \\(f(-1) = 0\\) হলে \\(m = ?\\)", q_en: "24. \\(f(x) = x^4 - mx^2 + 5\\), \\(f(-1) = 0\\), \\(m = ?\\)", options_bn: ["\\(6\\)", "\\(4\\)", "\\(-4\\)", "\\(-6\\)"], options_en: ["\\(6\\)", "\\(4\\)", "\\(-4\\)", "\\(-6\\)"], correct: 0, sol_bn: "ব্যাখ্যা: \\(1 - m + 5 = 0 \\Rightarrow m = 6\\)।", sol_en: "Explanation: \\(6 - m = 0 \\Rightarrow m = 6\\)." },
+        { id: 25, q_bn: "২৫। \\(g(y) = y^2 - 13y + 40 = 0\\) হলে, \\(y = ?\\)", q_en: "25. Roots of \\(y^2 - 13y + 40 = 0\\)?", options_bn: ["\\(5, 8\\)", "\\(-5, -8\\)", "\\(5, -8\\)", "\\(5, 7\\)"], options_en: ["\\(5, 8\\)", "\\(-5, -8\\)", "\\(5, -8\\)", "\\(5, 7\\)"], correct: 0, sol_bn: "ব্যাখ্যা: \\((y-5)(y-8) = 0\\)।", sol_en: "Explanation: \\((y-5)(y-8) = 0\\)." },
+        { id: 26, q_bn: "২৬। \\(S = \\{(2,1), (2,2), (2,3)\\}\\) ডোমেন কোনটি?", q_en: "26. Domain of \\(S = \\{(2,1), (2,2), (2,3)\\}\\)?", options_bn: ["\\(\\{1, 2, 3\\}\\)", "\\(\\{2, 2, 2\\}\\)", "\\(\\{2\\}\\)", "\\(\\emptyset\\)"], options_en: ["\\(\\{1, 2, 3\\}\\)", "\\(\\{2, 2, 2\\}\\)", "\\(\\{2\\}\\)", "\\(\\emptyset\\)"], correct: 2, sol_bn: "ব্যাখ্যা: প্রথম উপাদান কেবল 2।", sol_en: "Explanation: First element is 2." },
+        { id: 27, q_bn: "২৭। \\(R = \\{(-3,2), (3,3), (4,3)\\}\\) ডোমেন কোনটি?", q_en: "27. Domain of \\(R = \\{(-3,2), (3,3), (4,3)\\}\\)?", options_bn: ["\\(\\{2, 3\\}\\)", "\\(\\{3, 4\\}\\)", "\\(\\{-3, 3, 4\\}\\)", "\\(\\{2, 3, 3\\}\\)"], options_en: ["\\(\\{2, 3\\}\\)", "\\(\\{3, 4\\}\\)", "\\(\\{-3, 3, 4\\}\\)", "\\(\\{2, 3, 3\\}\\)"], correct: 2, sol_bn: "ব্যাখ্যা: প্রথম উপাদানগুলো -3, 3, 4।", sol_en: "Explanation: First elements are -3, 3, 4." },
+        { id: 28, q_bn: "২৮। \\(S = \\{(3,1), (3,2), (4,2)\\}\\) রেঞ্জ কোনটি?", q_en: "28. Range of \\(S = \\{(3,1), (3,2), (4,2)\\}\\)?", options_bn: ["\\(\\{1, 2\\}\\)", "\\(\\{3, 4\\}\\)", "\\(\\{1, 2, 2\\}\\)", "\\(\\{3, 4, 4\\}\\)"], options_en: ["\\(\\{1, 2\\}\\)", "\\(\\{3, 4\\}\\)", "\\(\\{1, 2, 2\\}\\)", "\\(\\{3, 4, 4\\}\\)"], correct: 0, sol_bn: "ব্যাখ্যা: দ্বিতীয় উপাদানগুলো 1, 2।", sol_en: "Explanation: Second elements are 1, 2." },
+        { id: 29, q_bn: "২৯। \\(f(x) = x^3 + k^2x^2 + 2kx - 14\\), \\(f(-1) = 0\\) হলে \\(k = ?\\)", q_en: "29. \\(f(-1) = 0\\) for \\(f(x) = x^3 + k^2x^2 + 2kx - 14\\), find \\(k\\).", options_bn: ["\\(5, 3\\)", "\\(-5, 3\\)", "\\(5, -3\\)", "\\(-5, -3\\)"], options_en: ["\\(5, 3\\)", "\\(-5, 3\\)", "\\(5, -3\\)", "\\(-5, -3\\)"], correct: 2, sol_bn: "ব্যাখ্যা: \\(k^2 - 2k - 15 = 0 \\Rightarrow (k-5)(k+3) = 0\\)।", sol_en: "Explanation: \\((k-5)(k+3) = 0\\)." },
+        { id: 30, q_bn: "৩০। \\(f(x) = x^2 - 3x + 2 = 0\\) হলে, \\(x = ?\\)", q_en: "30. Roots of \\(x^2 - 3x + 2 = 0\\)?", options_bn: ["\\(-1, -2\\)", "\\(0, -2\\)", "\\(-1, 0\\)", "\\(1, 2\\)"], options_en: ["\\(-1, -2\\)", "\\(0, -2\\)", "\\(-1, 0\\)", "\\(1, 2\\)"], correct: 3, sol_bn: "ব্যাখ্যা: \\((x-1)(x-2) = 0\\)।", sol_en: "Explanation: \\((x-1)(x-2) = 0\\)." }
+    ];
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.getElementById('btn-bn').classList.toggle('active', lang === 'bn');
+        
+        document.getElementById('intro-title').innerText = lang === 'bn' ? "অনলাইন বহুনির্বাচনি পরীক্ষায় স্বাগতম" : "Welcome to the Online MCQ Exam";
+        document.getElementById('intro-desc').innerText = lang === 'bn' ? "উপরে আপনার পছন্দের ভাষা নির্বাচন করুন এবং পরীক্ষা শুরু করুন বোতামে ক্লিক করুন।" : "Select your language above and click Start Exam.";
+        document.getElementById('start-btn').innerText = lang === 'bn' ? "পরীক্ষা শুরু করুন (Start Exam)" : "Start Exam";
+        document.getElementById('submit-btn').innerText = lang === 'bn' ? "উত্তরপত্র জমা দিন" : "Submit Answer Sheet";
+        document.getElementById('print-btn').innerText = lang === 'bn' ? "প্রশ্নপত্র প্রিন্ট করুন" : "Print Question Paper";
+
+        renderQuestions();
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    function renderQuestions() {
+        const wrapper = document.getElementById('questions-wrapper');
+        wrapper.innerHTML = '';
+
+        questionsData.forEach((q) => {
+            const title = currentLang === 'bn' ? q.q_bn : q.q_en;
+            const options = currentLang === 'bn' ? q.options_bn : q.options_en;
+            const prefixes = currentLang === 'bn' ? bnPrefixes : enPrefixes;
+
+            let optionsHtml = '';
+            options.forEach((opt, optIndex) => {
+                optionsHtml += `
+                    <label class="option-label">
+                        <input type="radio" name="q_${q.id}" value="${optIndex}">
+                        <span><span class="opt-prefix">${prefixes[optIndex]}</span> ${opt}</span>
+                    </label>
+                `;
+            });
+
+            const cardHtml = `
+                <div class="question-card" id="card-${q.id}">
+                    <div class="question-title">${title}</div>
+                    <div class="options-grid">${optionsHtml}</div>
+                </div>
+            `;
+            wrapper.insertAdjacentHTML('beforeend', cardHtml);
+        });
+    }
+
+    function formatTime(date) {
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; 
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        return hours + ':' + minutes + ' ' + ampm;
+    }
+
+    function startExam() {
+        startTimeObj = new Date();
+        
+        document.getElementById('intro-screen').style.display = 'none';
+        document.getElementById('timer-display').style.display = 'block';
+        document.getElementById('submit-btn').style.display = 'inline-block';
+
+        const cards = document.querySelectorAll('.question-card');
+        cards.forEach(card => card.style.display = 'block');
+
+        document.getElementById('btn-en').disabled = true;
+        document.getElementById('btn-bn').disabled = true;
+
+        startTimer();
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    function startTimer() {
+        const timerDisplay = document.getElementById('timer-display');
+        timerInterval = setInterval(() => {
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                if (!isSubmitted) {
+                    alert(currentLang === 'bn' ? "সময় শেষ! স্বয়ংক্রিয়ভাবে জমা হচ্ছে।" : "Time is up! Auto-submitting.");
+                    submitExam();
+                }
+                return;
+            }
+            timeRemaining--;
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerDisplay.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            if(timeRemaining < 60) {
+                timerDisplay.style.backgroundColor = '#fee2e2';
+                timerDisplay.style.borderColor = 'var(--danger)';
+            }
+        }, 1000);
+    }
+
+    function submitExam() {
+        if (isSubmitted) return;
+        isSubmitted = true;
+        clearInterval(timerInterval);
+        
+        endTimeObj = new Date();
+
+        let score = 0;
+        questionsData.forEach(q => {
+            const selected = document.querySelector(`input[name="q_${q.id}"]:checked`);
+            if (selected && parseInt(selected.value) === q.correct) score++;
+        });
+
+        document.getElementById('questions-wrapper').style.display = 'none';
+        document.getElementById('submit-btn').style.display = 'none';
+        document.getElementById('timer-display').style.display = 'none';
+
+        document.getElementById('result-screen').style.display = 'block';
+        document.getElementById('score-display').innerText = score;
+        
+        // Populate Times
+        document.getElementById('start-time-log').innerText = formatTime(startTimeObj);
+        document.getElementById('end-time-log').innerText = formatTime(endTimeObj);
+        
+        let diffMs = endTimeObj - startTimeObj;
+        let diffMins = Math.floor(diffMs / 60000);
+        let diffSecs = Math.floor((diffMs % 60000) / 1000);
+        document.getElementById('duration-log').innerText = `${diffMins}m ${diffSecs}s`;
+        
+        document.getElementById('btn-en').disabled = false;
+        document.getElementById('btn-bn').disabled = false;
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openSolutionsModal() {
+        const wrapper = document.getElementById('solutions-wrapper');
+        wrapper.innerHTML = '';
+
+        questionsData.forEach(q => {
+            const title = currentLang === 'bn' ? q.q_bn : q.q_en;
+            const options = currentLang === 'bn' ? q.options_bn : q.options_en;
+            const prefixes = currentLang === 'bn' ? bnPrefixes : enPrefixes;
+            const correctText = `${prefixes[q.correct]} ${options[q.correct]}`;
+            const explanation = currentLang === 'bn' ? q.sol_bn : q.sol_en;
+            
+            const selected = document.querySelector(`input[name="q_${q.id}"]:checked`);
+            let userAnsHtml = '';
+            if (selected) {
+                const userVal = parseInt(selected.value);
+                const isCorrect = userVal === q.correct;
+                userAnsHtml = `<div style="color: ${isCorrect ? 'var(--success)' : 'var(--danger)'}; font-weight: 600; margin-bottom: 5px;">
+                                ${currentLang === 'bn' ? 'আপনার উত্তর:' : 'Your Answer:'} ${prefixes[userVal]} ${options[userVal]} ${isCorrect ? '✔' : '✘'}
+                               </div>`;
+            } else {
+                userAnsHtml = `<div style="color: var(--danger); font-weight: 600; margin-bottom: 5px;">
+                                ${currentLang === 'bn' ? 'উত্তর দেওয়া হয়নি' : 'Not Answered'} ✘
+                               </div>`;
+            }
+
+            wrapper.insertAdjacentHTML('beforeend', `
+                <div class="solution-box">
+                    <div style="font-weight: 600; margin-bottom: 10px; font-size: 1.05rem;">${title}</div>
+                    ${userAnsHtml}
+                    <div class="correct-ans-tag">✔ ${currentLang === 'bn' ? 'সঠিক উত্তর:' : 'Correct Answer:'} ${correctText}</div>
+                    <div style="color: var(--brand-color); background: #f8fafc; padding: 10px; border-left: 3px solid var(--primary); margin-top: 8px;">
+                        ${explanation}
+                    </div>
+                </div>
+            `);
+        });
+
+        document.getElementById('solutions-modal').style.display = 'block';
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    function closeSolutionsModal() {
+        document.getElementById('solutions-modal').style.display = 'none';
+    }
+
+    window.onload = () => { setLanguage('bn'); };
+</script>
+</body>
+</html>

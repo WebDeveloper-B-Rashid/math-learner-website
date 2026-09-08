@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC 2027 - Higher Mathematics MCQ Exam</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary: #000000;
+            --bg-color: #f4f7f6;
+            --paper: #ffffff;
+            --text: #2c3e50;
+            --correct: #27ae60;
+            --wrong: #c0392b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Serif', 'Noto Serif Bengali', serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 11pt;
+        }
+
+        /* Language Toggle Classes */
+        body.lang-bn .en { display: none !important; }
+        body.lang-en .bn { display: none !important; }
+
+        /* Setup / Pre-exam Screen */
+        #setup-screen {
+            max-width: 600px;
+            margin: 50px auto;
+            background: var(--paper);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        #setup-screen h2 { margin-bottom: 20px; }
+        #setup-screen select, #setup-screen button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border: 2px solid var(--primary);
+            background: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: inherit;
+            font-weight: 600;
+        }
+        #setup-screen button {
+            background: var(--primary);
+            color: #fff;
+        }
+        #setup-screen button:hover { background: #333; }
+
+        /* Main Exam Container */
+        #exam-container {
+            display: none; /* Hidden until started */
+            width: 210mm; /* A4 Width */
+            margin: 20px auto;
+            background: var(--paper);
+            padding: 15mm;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* Sticky Status Bar */
+        #status-bar {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            font-weight: bold;
+            font-size: 14pt;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .timer { color: var(--wrong); }
+
+        /* Header */
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        header h1 { font-size: 24pt; letter-spacing: 1px; }
+        header .contact { font-weight: 600; margin-bottom: 5px; }
+        header h2 { font-size: 16pt; }
+        header h3 { font-size: 12pt; font-weight: normal; }
+        
+        .exam-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        /* Question Layout */
+        .mcq-grid {
+            display: column;
+        }
+        
+        .question-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background: #fafafa;
+            page-break-inside: avoid;
+        }
+
+        .q-stem {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 12pt;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .options li {
+            background: #fff;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .options li:hover { background: #f0f0f0; }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 16pt;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: inherit;
+            font-weight: bold;
+        }
+        .submit-btn:hover { background: #333; }
+
+        /* Results & Solutions */
+        #results-panel {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f6f3;
+            border-left: 5px solid var(--correct);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #results-panel h2 { font-size: 20pt; margin-bottom: 10px; }
+        
+        .action-btn {
+            padding: 10px 20px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12pt;
+            margin-top: 10px;
+            font-family: inherit;
+        }
+
+        .solution-box {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+            font-size: 10.5pt;
+        }
+
+        /* Post-exam styling for questions */
+        .show-solutions .solution-box { display: block; }
+        .correct-ans { background: #d4edda !important; border-color: #c3e6cb !important; }
+        .wrong-ans { background: #f8d7da !important; border-color: #f5c6cb !important; }
+
+        /* Print Layout Optimization */
+        @media print {
+            body { background: #fff; }
+            #setup-screen, #status-bar, .submit-btn, #results-panel { display: none !important; }
+            #exam-container {
+                display: block !important;
+                margin: 0; padding: 0; box-shadow: none; width: 100%;
+            }
+            .question-block { border: none; background: transparent; padding: 5px 0; margin-bottom: 10px;}
+            .solution-box { display: none !important; } /* Hide solutions on print */
+            @page { size: A4; margin: 15mm; }
+        }
+    </style>
+</head>
+<body class="lang-bn">
+
+    <div id="setup-screen">
+        <h2 class="bn">এসএসসি ২০২৭ - উচ্চতর গণিত বহুনির্বাচনি পরীক্ষা</h2>
+        <h2 class="en">SSC 2027 - Higher Math MCQ Exam</h2>
+        
+        <p class="bn" style="margin-bottom: 20px;">পরীক্ষা শুরু করার আগে আপনার ভার্সন নির্বাচন করুন।</p>
+        <p class="en" style="margin-bottom: 20px;">Please select your version before starting the exam.</p>
+
+        <select id="lang-select" onchange="changeLanguage(this.value)">
+            <option value="bn">বাংলা ভার্সন (Bangla Version)</option>
+            <option value="en">English Version</option>
+        </select>
+        <br>
+        <button onclick="startExam()">
+            <span class="bn">পরীক্ষা শুরু করুন (Start Exam)</span>
+            <span class="en">Start Exam</span>
+        </button>
+    </div>
+
+    <div id="exam-container">
+        
+        <div id="status-bar">
+            <div>
+                <span class="bn">সময় বাকি: </span><span class="en">Time Left: </span>
+                <span class="timer" id="timer-display">50:00</span>
+            </div>
+            <button class="action-btn" onclick="window.print()" style="margin-top:0; padding: 5px 10px; background: #000;">
+                <span class="bn">🖨️ প্রিন্ট প্রশ্ন</span><span class="en">🖨️ Print Questions</span>
+            </button>
+        </div>
+
+        <header>
+            <h1>Luxury Ponno</h1>
+            <p class="contact">
+                <span class="bn">হটলাইন: 01711008786</span>
+                <span class="en">Hotline: 01711008786</span>
+            </p>
+            <h2>
+                <span class="bn">এসএসসি ২০২৭ মডেল টেস্ট</span>
+                <span class="en">SSC 2027 Model Test</span>
+            </h2>
+            <h3>
+                <span class="bn">বিষয়: উচ্চতর গণিত (অধ্যায় ১ - সেট ও ফাংশন) | বহুনির্বাচনি প্রশ্ন (MCQ)</span>
+                <span class="en">Subject: Higher Mathematics (Chapter 1 - Sets & Functions) | Multiple Choice Questions</span>
+            </h3>
+        </header>
+
+        <div class="exam-info">
+            <span>
+                <span class="bn">বিষয় কোড: ১২৬</span>
+                <span class="en">Subject Code: 126</span>
+            </span>
+            <span>
+                <span class="bn">পূর্ণমান: ৫০</span>
+                <span class="en">Full Marks: 50</span>
+            </span>
+            <span>
+                <span class="bn">সময়: ৫০ মিনিট</span>
+                <span class="en">Time: 50 Minutes</span>
+            </span>
+        </div>
+
+        <form id="mcq-form">
+            <div class="mcq-grid">
+
+                <div class="question-block" data-answer="d">
+                    <div class="q-stem">
+                        <span class="bn">১. \(A = \{a, b, c\}\) হলে \(P(A)\) এর প্রকৃত উপসেট সংখ্যা কত?</span>
+                        <span class="en">1. If \(A = \{a, b, c\}\), what is the number of proper subsets of \(P(A)\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q1" value="a"> <span>(a) 3</span></label></li>
+                        <li><label><input type="radio" name="q1" value="b"> <span>(b) 6</span></label></li>
+                        <li><label><input type="radio" name="q1" value="c"> <span>(c) 8</span></label></li>
+                        <li><label><input type="radio" name="q1" value="d"> <span>(d) 7</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong> 
+                        <span class="bn">উপাদান সংখ্যা \(n = 3\)। মোট উপসেট \(2^3 = 8\)। প্রকৃত উপসেট সংখ্যা = \(2^n - 1 = 8 - 1 = 7\)।</span>
+                        <span class="en">Number of elements \(n = 3\). Total subsets \(2^3 = 8\). Proper subsets = \(2^n - 1 = 8 - 1 = 7\).</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="b">
+                    <div class="q-stem">
+                        <span class="bn">২. \(f(x) = \sqrt{x-2}\) ফাংশনটির ডোমেন কোনটি?</span>
+                        <span class="en">2. What is the domain of the function \(f(x) = \sqrt{x-2}\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q2" value="a"> <span>(a) \(x > 2\)</span></label></li>
+                        <li><label><input type="radio" name="q2" value="b"> <span>(b) \(x \ge 2\)</span></label></li>
+                        <li><label><input type="radio" name="q2" value="c"> <span>(c) \(x < 2\)</span></label></li>
+                        <li><label><input type="radio" name="q2" value="d"> <span>(d) \(x \le 2\)</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">বর্গমূলের ভেতরের মান অঋণাত্মক হতে হবে। অর্থাৎ, \(x - 2 \ge 0 \implies x \ge 2\)।</span>
+                        <span class="en">The value inside the square root must be non-negative. So, \(x - 2 \ge 0 \implies x \ge 2\).</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="c">
+                    <div class="q-stem">
+                        <span class="bn">৩. \(f(x) = 2x + 1\) হলে \(f^{-1}(5)\) এর মান কত?</span>
+                        <span class="en">3. If \(f(x) = 2x + 1\), what is the value of \(f^{-1}(5)\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q3" value="a"> <span>(a) 1</span></label></li>
+                        <li><label><input type="radio" name="q3" value="b"> <span>(b) 11</span></label></li>
+                        <li><label><input type="radio" name="q3" value="c"> <span>(c) 2</span></label></li>
+                        <li><label><input type="radio" name="q3" value="d"> <span>(d) 3</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">ধরি, \(f(x) = 5 \implies 2x + 1 = 5 \implies 2x = 4 \implies x = 2\)।</span>
+                        <span class="en">Let \(f(x) = 5 \implies 2x + 1 = 5 \implies 2x = 4 \implies x = 2\).</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="b">
+                    <div class="q-stem">
+                        <span class="bn">৪. ডি মরগানের সূত্রানুসারে \((A \cup B)'\) এর সমান কোনটি?</span>
+                        <span class="en">4. According to De Morgan's Law, which of the following is equal to \((A \cup B)'\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q4" value="a"> <span>(a) \(A' \cup B'\)</span></label></li>
+                        <li><label><input type="radio" name="q4" value="b"> <span>(b) \(A' \cap B'\)</span></label></li>
+                        <li><label><input type="radio" name="q4" value="c"> <span>(c) \(A \cap B'\)</span></label></li>
+                        <li><label><input type="radio" name="q4" value="d"> <span>(d) \(A' \cap B\)</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">ডি মরগানের সূত্র: \((A \cup B)' = A' \cap B'\)।</span>
+                        <span class="en">De Morgan's Law states: \((A \cup B)' = A' \cap B'\).</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="a">
+                    <div class="q-stem">
+                        <span class="bn">৫. \(A = \{x \in \mathbb{N} : x < 5\}\) এবং \(B = \{x \in \mathbb{N} : x\) জোড় সংখ্যা\(\}\) হলে \(A \cap B\) কত?</span>
+                        <span class="en">5. If \(A = \{x \in \mathbb{N} : x < 5\}\) and \(B = \{x \in \mathbb{N} : x \text{ is an even number}\}\), what is \(A \cap B\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q5" value="a"> <span>(a) \(\{2, 4\}\)</span></label></li>
+                        <li><label><input type="radio" name="q5" value="b"> <span>(b) \(\{2\}\)</span></label></li>
+                        <li><label><input type="radio" name="q5" value="c"> <span>(c) \(\{4\}\)</span></label></li>
+                        <li><label><input type="radio" name="q5" value="d"> <span>(d) \(\{2, 4, 6\}\)</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">\(A = \{1, 2, 3, 4\}\) এবং \(B = \{2, 4, 6, 8, \dots\}\)। সুতরাং, \(A \cap B = \{2, 4\}\)।</span>
+                        <span class="en">\(A = \{1, 2, 3, 4\}\) and \(B = \{2, 4, 6, 8, \dots\}\). Therefore, \(A \cap B = \{2, 4\}\).</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="c">
+                    <div class="q-stem">
+                        <span class="bn">৬. যদি \(n(A) = 4\) এবং \(n(B) = 5\) হয় এবং \(A \cap B = \emptyset\), তবে \(n(A \cup B)\) কত?</span>
+                        <span class="en">6. If \(n(A) = 4\) and \(n(B) = 5\), and \(A \cap B = \emptyset\), what is \(n(A \cup B)\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q6" value="a"> <span>(a) 1</span></label></li>
+                        <li><label><input type="radio" name="q6" value="b"> <span>(b) 20</span></label></li>
+                        <li><label><input type="radio" name="q6" value="c"> <span>(c) 9</span></label></li>
+                        <li><label><input type="radio" name="q6" value="d"> <span>(d) 4</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">\(n(A \cup B) = n(A) + n(B) - n(A \cap B) = 4 + 5 - 0 = 9\)।</span>
+                        <span class="en">\(n(A \cup B) = n(A) + n(B) - n(A \cap B) = 4 + 5 - 0 = 9\).</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="d">
+                    <div class="q-stem">
+                        <span class="bn">৭. \(f(x) = \frac{x}{x-1}\) ফাংশনটির রেঞ্জ কোনটি?</span>
+                        <span class="en">7. What is the range of the function \(f(x) = \frac{x}{x-1}\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q7" value="a"> <span>(a) \(\mathbb{R} \setminus \{0\}\)</span></label></li>
+                        <li><label><input type="radio" name="q7" value="b"> <span>(b) \(\mathbb{R}\)</span></label></li>
+                        <li><label><input type="radio" name="q7" value="c"> <span>(c) \(\mathbb{R} \setminus \{-1\}\)</span></label></li>
+                        <li><label><input type="radio" name="q7" value="d"> <span>(d) \(\mathbb{R} \setminus \{1\}\)</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">ধরি \(y = \frac{x}{x-1} \implies yx - y = x \implies x(y - 1) = y \implies x = \frac{y}{y-1}\)। এখানে \(y \neq 1\)। রেঞ্জ \(\mathbb{R} \setminus \{1\}\)।</span>
+                        <span class="en">Let \(y = \frac{x}{x-1} \implies yx - y = x \implies x(y - 1) = y \implies x = \frac{y}{y-1}\). Here \(y \neq 1\). Range is \(\mathbb{R} \setminus \{1\}\).</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="a">
+                    <div class="q-stem">
+                        <span class="bn">৮. \(S = \{(1,2), (2,3), (3,4)\}\) অন্বয়টির ডোমেন কোনটি?</span>
+                        <span class="en">8. What is the domain of the relation \(S = \{(1,2), (2,3), (3,4)\}\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q8" value="a"> <span>(a) \(\{1, 2, 3\}\)</span></label></li>
+                        <li><label><input type="radio" name="q8" value="b"> <span>(b) \(\{2, 3, 4\}\)</span></label></li>
+                        <li><label><input type="radio" name="q8" value="c"> <span>(c) \(\{1, 4\}\)</span></label></li>
+                        <li><label><input type="radio" name="q8" value="d"> <span>(d) \(\{1, 2, 3, 4\}\)</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">ডোমেন হলো ক্রোমজোড়গুলোর প্রথম উপাদানসমূহের সেট। ডোম \(S = \{1, 2, 3\}\)।</span>
+                        <span class="en">The domain is the set of the first elements of the ordered pairs. Dom \(S = \{1, 2, 3\}\).</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="b">
+                    <div class="q-stem">
+                        <span class="bn">৯. একটি সেটের উপাদান সংখ্যা \(n\) হলে, এর উপসেট সংখ্যা কত?</span>
+                        <span class="en">9. If a set has \(n\) elements, what is the total number of its subsets?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q9" value="a"> <span>(a) \(n^2\)</span></label></li>
+                        <li><label><input type="radio" name="q9" value="b"> <span>(b) \(2^n\)</span></label></li>
+                        <li><label><input type="radio" name="q9" value="c"> <span>(c) \(2n\)</span></label></li>
+                        <li><label><input type="radio" name="q9" value="d"> <span>(d) \(2^n - 1\)</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">সূত্রের সাহায্যে আমরা জানি, \(n\) উপাদান বিশিষ্ট সেটের উপসেট সংখ্যা \(2^n\)।</span>
+                        <span class="en">By formula, a set with \(n\) elements has \(2^n\) subsets.</span>
+                    </div>
+                </div>
+
+                <div class="question-block" data-answer="c">
+                    <div class="q-stem">
+                        <span class="bn">১০. \(f(x) = x^2\) ফাংশনটি \(\mathbb{R} \to \mathbb{R}\) এ কেমন ফাংশন?</span>
+                        <span class="en">10. What type of function is \(f(x) = x^2\) from \(\mathbb{R} \to \mathbb{R}\)?</span>
+                    </div>
+                    <ul class="options">
+                        <li><label><input type="radio" name="q10" value="a"> <span>(a) এক-এক (One-one)</span></label></li>
+                        <li><label><input type="radio" name="q10" value="b"> <span>(b) অনটু (Onto)</span></label></li>
+                        <li><label><input type="radio" name="q10" value="c"> <span>(c) এক-এক নয় (Not one-one)</span></label></li>
+                        <li><label><input type="radio" name="q10" value="d"> <span>(d) বাইজেক্টিভ (Bijective)</span></label></li>
+                    </ul>
+                    <div class="solution-box">
+                        <strong>Solution:</strong>
+                        <span class="bn">যেহেতু \(f(2) = 4\) এবং \(f(-2) = 4\), ভিন্ন ইনপুটের একই আউটপুট। তাই এটি এক-এক নয়।</span>
+                        <span class="en">Since \(f(2) = 4\) and \(f(-2) = 4\), different inputs give the same output. Thus, it is not one-one.</span>
+                    </div>
+                </div>
+                
+                </div>
+
+            <button type="button" class="submit-btn" id="submit-exam-btn" onclick="submitExam()">
+                <span class="bn">উত্তরপত্র জমা দিন (Submit Answer Sheet)</span>
+                <span class="en">Submit Answer Sheet</span>
+            </button>
+        </form>
+
+        <div id="results-panel">
+            <h2>
+                <span class="bn">পরীক্ষা সমাপ্ত!</span>
+                <span class="en">Exam Completed!</span>
+            </h2>
+            <p>
+                <span class="bn">শুরুর সময়: </span><span class="en">Start Time: </span> <span id="start-time-lbl">-</span><br>
+                <span class="bn">জমার সময়: </span><span class="en">End Time: </span> <span id="end-time-lbl">-</span>
+            </p>
+            <h1 style="margin: 15px 0; font-size: 30pt;">
+                <span class="bn">প্রাপ্ত নম্বর: </span><span class="en">Your Score: </span>
+                <span id="score-lbl">0</span> / <span id="total-lbl">50</span>
+            </h1>
+            <button class="action-btn" onclick="showSolutions()">
+                <span class="bn">সম্পূর্ণ সমাধান দেখুন</span>
+                <span class="en">See Complete Solutions</span>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        let examDuration = 50 * 60; // 50 minutes in seconds
+        let timerInterval;
+        let startTime;
+
+        // Language toggle setup
+        function changeLanguage(lang) {
+            document.body.className = 'lang-' + lang;
+        }
+
+        // Initialize user language selection on load
+        window.onload = function() {
+            changeLanguage(document.getElementById('lang-select').value);
+        }
+
+        function formatTimeText(date) {
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+
+        function startExam() {
+            // Hide setup, show exam
+            document.getElementById('setup-screen').style.display = 'none';
+            document.getElementById('exam-container').style.display = 'block';
+
+            // Record start time
+            startTime = new Date();
+            document.getElementById('start-time-lbl').innerText = formatTimeText(startTime);
+
+            // Start Timer
+            startTimer();
+        }
+
+        function startTimer() {
+            const display = document.getElementById('timer-display');
+            
+            timerInterval = setInterval(function () {
+                let minutes = parseInt(examDuration / 60, 10);
+                let seconds = parseInt(examDuration % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--examDuration < 0) {
+                    clearInterval(timerInterval);
+                    display.textContent = "00:00";
+                    alert(document.body.classList.contains('lang-bn') ? "সময় শেষ! স্বয়ংক্রিয়ভাবে খাতা জমা দেওয়া হচ্ছে।" : "Time is up! Auto-submitting the answer sheet.");
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function submitExam() {
+            // Stop timer
+            clearInterval(timerInterval);
+            
+            // Record End Time
+            let endTime = new Date();
+            document.getElementById('end-time-lbl').innerText = formatTimeText(endTime);
+
+            // Scoring Logic
+            let score = 0;
+            const questions = document.querySelectorAll('.question-block');
+            const totalQuestions = questions.length; // Dynamically adjusts to however many you add (up to 50)
+            
+            document.getElementById('total-lbl').innerText = totalQuestions;
+
+            questions.forEach(q => {
+                const correctAns = q.getAttribute('data-answer');
+                const selectedOption = q.querySelector('input[type="radio"]:checked');
+                
+                // Highlight options based on answers
+                const allLabels = q.querySelectorAll('li');
+                
+                if (selectedOption) {
+                    if (selectedOption.value === correctAns) {
+                        score++;
+                        selectedOption.closest('li').classList.add('correct-ans');
+                    } else {
+                        selectedOption.closest('li').classList.add('wrong-ans');
+                        // Highlight the correct one as well
+                        q.querySelector(`input[value="${correctAns}"]`).closest('li').classList.add('correct-ans');
+                    }
+                } else {
+                    // If unanswered, just highlight correct answer
+                    q.querySelector(`input[value="${correctAns}"]`).closest('li').classList.add('correct-ans');
+                }
+
+                // Disable all inputs in this question to prevent cheating after submission
+                q.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.disabled = true;
+                });
+            });
+
+            // Display Score
+            document.getElementById('score-lbl').innerText = score;
+            document.getElementById('submit-exam-btn').style.display = 'none';
+            document.getElementById('results-panel').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showSolutions() {
+            document.getElementById('exam-container').classList.add('show-solutions');
+            
+            // Reprocess mathjax to ensure solutions render perfectly if they were hidden
+            MathJax.typesetPromise().then(() => {
+                console.log("Solutions Rendered");
+            });
+        }
+    </script>
+</body>
+</html>

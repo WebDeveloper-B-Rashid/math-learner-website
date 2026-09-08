@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HMT-01 | Sets & Functions, Algebraic Expressions | Bilingual Exam</title>
+<style>
+  :root{
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --ink:#172033;
+    --muted:#687087;
+    --line:#dbe2ee;
+    --accent:#1f5fbf;
+    --accent2:#0f8b6d;
+    --danger:#c0392b;
+    --soft:#edf4ff;
+    --shadow:0 10px 30px rgba(24,48,84,.09);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans Bengali","SolaimanLipi",sans-serif;line-height:1.55}
+  .wrap{max-width:1150px;margin:auto;padding:20px}
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(244,247,251,.96);backdrop-filter:blur(8px);padding:10px 0 12px;border-bottom:1px solid var(--line)}
+  .toolbar{max-width:1150px;margin:auto;padding:0 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  .toolbar .group{display:flex;gap:8px;flex-wrap:wrap}
+  button{border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;transition:.2s}
+  button:hover{transform:translateY(-1px)}
+  .primary{background:var(--accent);color:#fff}
+  .green{background:var(--accent2);color:#fff}
+  .light{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .danger{background:var(--danger);color:#fff}
+  .header{background:linear-gradient(135deg,#ffffff,#eef5ff);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px;padding:26px;margin:18px 0}
+  .header-grid{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+  .badge{display:inline-block;padding:5px 9px;background:#e8f1ff;color:#134b9e;border-radius:999px;font-weight:700;font-size:13px;margin-bottom:8px}
+  h1{font-size:clamp(24px,4vw,40px);line-height:1.15;margin:4px 0 10px}
+  h2{font-size:clamp(20px,3vw,28px);margin:0 0 12px}
+  h3{margin:0 0 10px}
+  .meta{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px;margin-top:16px}
+  .meta div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .meta b{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .codebox{min-width:120px;text-align:center;background:#172033;color:#fff;border-radius:14px;padding:18px}
+  .codebox strong{font-size:26px}
+  .lang-note{font-size:14px;color:var(--muted)}
+  .section{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px;margin:18px 0}
+  .section-head{display:flex;gap:15px;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}
+  .timer{font-family:ui-monospace,Consolas,monospace;font-size:24px;font-weight:800;color:var(--danger);white-space:nowrap}
+  .timer.small{font-size:18px}
+  .question{border:1px solid var(--line);border-radius:14px;padding:16px;margin:13px 0;background:#fff}
+  .qtitle{font-weight:800;margin-bottom:8px}
+  .marks{float:right;color:var(--accent);font-size:13px}
+  .subq{margin:8px 0 8px 18px}
+  input[type=text], input[type=number], textarea{
+    width:100%;border:1px solid #cfd8e6;border-radius:9px;padding:10px;font-size:15px;background:#fcfdff
+  }
+  textarea{min-height:78px;resize:vertical}
+  .answer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+  .option{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin:7px 0;cursor:pointer}
+  .option:hover{background:#f8fbff}
+  .option input{margin-top:4px}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .result{display:none;margin-top:14px;padding:14px;border-radius:12px;background:#eef9f5;border:1px solid #bfe7d7;font-weight:700}
+  .solution{display:none;margin-top:12px;padding:14px;background:#f8fbff;border-left:4px solid var(--accent);border-radius:8px}
+  .solution p{margin:7px 0}
+  .hidden{display:none!important}
+  .notice{background:#fff8e8;border:1px solid #f0d48c;padding:12px 14px;border-radius:12px;margin:10px 0}
+  .scoreboard{background:#172033;color:#fff;border-radius:16px;padding:18px;margin:18px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:center}
+  .scoreboard b{display:block;font-size:26px}
+  .scoreboard span{font-size:12px;opacity:.8}
+  .footer{text-align:center;color:var(--muted);padding:30px 10px}
+  .bn{font-family:"Noto Sans Bengali","SolaimanLipi",Arial,sans-serif}
+  @media(max-width:760px){
+    .wrap{padding:12px}
+    .toolbar{padding:0 12px}
+    .header-grid{grid-template-columns:1fr}
+    .codebox{justify-self:start}
+    .meta{grid-template-columns:repeat(2,1fr)}
+    .section-head{flex-direction:column}
+    .answer-grid{grid-template-columns:1fr}
+    .scoreboard{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ===== A4 PRINT LAYOUT =====
+     Page 1: CQ + Short Questions
+     Page 2: MCQ in two columns
+     Following pages: Complete Solutions */
+  .print-solutions{display:none}
+  @page{size:A4 portrait;margin:7mm}
+  @media print{
+    body{background:#fff;color:#000;font-size:9pt;line-height:1.22}
+    .topbar,.scoreboard,.footer,.actions,.notice,.lang-note,.timer,.section-head button{display:none!important}
+    .wrap{max-width:none;padding:0;margin:0}
+    .header{margin:0 0 3mm;padding:2.5mm;border:1px solid #777;border-radius:0;box-shadow:none}
+    .header-grid{grid-template-columns:1fr auto;gap:5mm}
+    h1{font-size:16pt;margin:0 0 1mm} h2{font-size:13pt;margin:0 0 1mm}
+    .header .meta{grid-template-columns:repeat(4,1fr);gap:1.5mm;margin-top:1.5mm}
+    .header .meta div{padding:1mm;border:1px solid #aaa;border-radius:0}
+    .header .meta b{font-size:6.5pt}
+    .codebox{min-width:20mm;padding:3mm;border-radius:0}.codebox strong{font-size:16pt}
+    main{display:block!important} #enExam{display:none!important} #bnExam{display:block!important}
+    body[data-print-lang="en"] #bnExam{display:none!important}
+    body[data-print-lang="en"] #enExam{display:block!important}
+    #bnExam>.section:nth-child(1),#enExam>.section:nth-child(1),
+    #bnExam>.section:nth-child(2),#enExam>.section:nth-child(2){
+      margin:0 0 2mm;padding:0;border:0;box-shadow:none
+    }
+    .section-head{display:block;border-bottom:1px solid #555;padding-bottom:1mm;margin-bottom:1mm}
+    .section-head h2{display:inline}
+    .question{padding:1.3mm;margin:1mm 0;border:1px solid #aaa;border-radius:0;box-shadow:none;page-break-inside:avoid}
+    .question p{margin:.6mm 0}.qtitle{margin-bottom:.5mm}.subq{margin:.6mm 0 .6mm 3mm}
+    input[type=text]{width:28mm;padding:.5mm;font-size:8.5pt;border:0;border-bottom:1px solid #555;border-radius:0}
+    .cq-bn label,.cq-en label{display:none!important}.solution{display:none!important}
+    #bnExam>.section:nth-child(3),#enExam>.section:nth-child(3){
+      page-break-before:always;margin:0;padding:0;border:0;box-shadow:none
+    }
+    #mcqBn,#mcqEn{column-count:2;column-gap:7mm;column-fill:auto}
+    #mcqBn .question,#mcqEn .question{
+      break-inside:avoid;border:0;border-bottom:1px dotted #999;border-radius:0;
+      padding:1mm 0;margin:0;font-size:8.2pt
+    }
+    #mcqBn .qtitle,#mcqEn .qtitle{font-weight:700;margin-bottom:.3mm}
+    #mcqBn .option,#mcqEn .option{border:0;padding:.15mm 0;margin:0;display:block}
+    #mcqBn .option input,#mcqEn .option input{display:none}
+    #mcqBn .option span,#mcqEn .option span{display:block}
+    .print-solutions{display:block!important;page-break-before:always;margin:0;padding:0;border:0}
+    body[data-print-lang="bn"] #printSolutionsEn,body[data-print-lang="bn"] #printMcqSolutionsEn{display:none!important}
+    body[data-print-lang="en"] #printSolutionsBn,body[data-print-lang="en"] #printMcqSolutionsBn{display:none!important}
+    .print-solutions h2{font-size:15pt;border-bottom:1px solid #555;padding-bottom:1.5mm}
+    .print-solutions h3{font-size:11pt;margin:3mm 0 1mm}
+    .print-sol{border:1px solid #aaa;padding:2mm;margin-bottom:2mm}
+    .print-sol p{margin:1mm 0}.solution-grid{column-count:2;column-gap:7mm}
+    .solution-grid p{break-inside:avoid;margin:0 0 1.5mm}
+  }
+
+  @media print{
+    body{background:#fff;font-size:12pt}
+    .topbar,.actions,.scoreboard,.footer,.lang-note{display:none!important}
+    .wrap{max-width:none;padding:0}
+    .header,.section,.question{box-shadow:none;border-color:#bbb}
+    .section{page-break-inside:avoid}
+    .question{page-break-inside:avoid}
+    input,textarea{border:1px solid #999!important;background:#fff!important}
+    .solution{display:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="toolbar">
+    <div class="group">
+      <button class="primary" onclick="setLang('bn')">বাংলা Version</button>
+      <button class="green" onclick="setLang('en')">English Version</button>
+      <button class="light" onclick="showHome()">All Sections</button>
+    </div>
+    <div class="group">
+      <button class="light" onclick="printVersion('bn')">🖨 Print বাংলা A4</button><button class="light" onclick="printVersion('en')">🖨 Print English A4</button>
+      <button class="danger" onclick="resetExam()">Reset Exam</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="header">
+    <div class="header-grid">
+      <div>
+        <span class="badge">ক-বিভাগ (বীজগণিত) • Section A (Algebra)</span>
+        <h1>সেট ও ফাংশন, বীজগাণিতিক রাশি<br><small style="font-size:.55em;font-weight:500">(Sets & Functions, Algebraic Expressions)</small></h1>
+        <p class="lang-note">Choose your version above. CQ: answer any 2 of 3. Short: answer all 5. MCQ: answer all 30.</p>
+        <div class="meta">
+          <div><b>CQ Time</b>30 minutes</div>
+          <div><b>Short Time</b>10 minutes</div>
+          <div><b>MCQ Time</b>30 minutes</div>
+          <div><b>Total Marks</b>60</div>
+        </div>
+      </div>
+      <div class="codebox"><div>HMT</div><strong>01</strong></div>
+    </div>
+  </section>
+
+  <div id="scoreboard" class="scoreboard">
+    <div><b id="cqScore">0/20</b><span>CQ</span></div>
+    <div><b id="shortScore">0/10</b><span>Short</span></div>
+    <div><b id="mcqScore">0/30</b><span>MCQ</span></div>
+    <div><b id="totalScore">0/60</b><span>Total</span></div>
+  </div>
+
+  <!-- ==================== BANGLA ==================== -->
+  <main id="bnExam" class="bn">
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>সৃজনশীল প্রশ্ন (CQ)</h2>
+          <div>৩টি প্রশ্নের মধ্যে যেকোনো ২টি উত্তর দাও। প্রতিটি প্রশ্ন ১০ নম্বর।</div>
+        </div>
+        <div>
+          <div class="timer" id="cqTimerBn">30:00</div>
+          <button class="light" onclick="startTimer('cqTimerBn',30)">Start CQ Timer</button>
+        </div>
+      </div>
+      <div class="notice">স্বয়ংক্রিয় স্কোরের জন্য প্রতিটি উপ-প্রশ্নের নির্দিষ্ট উত্তর ঘরে সংক্ষিপ্ত উত্তর লিখুন। ২টির বেশি CQ নির্বাচন করলে প্রথম ২টি নির্বাচিত CQ মূল্যায়িত হবে।</div>
+
+      <div class="question cq-bn" data-cq="bn1">
+        <div class="qtitle">প্রশ্ন ১ <span class="marks">১০ নম্বর</span></div>
+        <p>ধরা যাক, U = {1,2,3,4,5,6,7,8,9,10}, A = {2,4,6,8,10} এবং B = {2,3,5,7}।</p>
+        <label><input type="checkbox" class="cqPickBn"> এই CQ-টি মূল্যায়নের জন্য নির্বাচন করো</label>
+        <div class="subq">(ক) A ∩ B নির্ণয় কর। <input type="text" data-answer="2" data-mark="2" placeholder="উত্তর"></div>
+        <div class="subq">(খ) A ∪ B-তে মোট উপাদান সংখ্যা কত? <input type="text" data-answer="8" data-mark="2" placeholder="সংখ্যা"></div>
+        <div class="subq">(গ) n(A′) কত? <input type="text" data-answer="5" data-mark="3" placeholder="সংখ্যা"></div>
+        <div class="subq">(ঘ) n(A∪B)=n(A)+n(B)-n(A∩B) যাচাই করে ডানপাশের মান লিখ। <input type="text" data-answer="8" data-mark="3" placeholder="সংখ্যা"></div>
+        <div class="solution"><b>সমাধান:</b><p>A∩B={2}; A∪B={2,3,4,5,6,7,8,10}, তাই ৮টি উপাদান। U-তে ১০টি ও A-তে ৫টি, তাই n(A′)=৫। সূত্রের ডানপাশ = ৫+৪−১=৮।</p></div>
+      </div>
+
+      <div class="question cq-bn" data-cq="bn2">
+        <div class="qtitle">প্রশ্ন ২ <span class="marks">১০ নম্বর</span></div>
+        <p>f(x)=2x+3 এবং g(x)=x²−1।</p>
+        <label><input type="checkbox" class="cqPickBn"> এই CQ-টি মূল্যায়নের জন্য নির্বাচন করো</label>
+        <div class="subq">(ক) f(2) কত? <input type="text" data-answer="7" data-mark="2"></div>
+        <div class="subq">(খ) g(3) কত? <input type="text" data-answer="8" data-mark="2"></div>
+        <div class="subq">(গ) (g∘f)(1) কত? <input type="text" data-answer="24" data-mark="3"></div>
+        <div class="subq">(ঘ) f(x)=11 হলে x-এর মান কত? <input type="text" data-answer="4" data-mark="3"></div>
+        <div class="solution"><b>সমাধান:</b><p>f(2)=7, g(3)=8। f(1)=5, তাই g(f(1))=g(5)=25−1=24। 2x+3=11 ⇒ 2x=8 ⇒ x=4।</p></div>
+      </div>
+
+      <div class="question cq-bn" data-cq="bn3">
+        <div class="qtitle">প্রশ্ন ৩ <span class="marks">১০ নম্বর</span></div>
+        <p>P(x)=x²−5x+6 এবং Q(x)=x−2।</p>
+        <label><input type="checkbox" class="cqPickBn"> এই CQ-টি মূল্যায়নের জন্য নির্বাচন করো</label>
+        <div class="subq">(ক) P(2) কত? <input type="text" data-answer="0" data-mark="2"></div>
+        <div class="subq">(খ) P(x)-কে উৎপাদকে বিশ্লেষণ করলে অপর উৎপাদকটি x−2 হলে সেটি কী? <input type="text" data-answer="x-3" data-mark="2"></div>
+        <div class="subq">(গ) P(x)=0 সমীকরণের বৃহত্তর মূল কত? <input type="text" data-answer="3" data-mark="3"></div>
+        <div class="subq">(ঘ) P(x)÷Q(x)-এর ভাগফল লিখ। <input type="text" data-answer="x-3" data-mark="3"></div>
+        <div class="solution"><b>সমাধান:</b><p>P(x)=x²−5x+6=(x−2)(x−3)। তাই P(2)=0, অপর উৎপাদক x−3, মূল 2 ও 3; বৃহত্তর মূল 3 এবং P(x)÷(x−2)=x−3।</p></div>
+      </div>
+
+      <div class="actions">
+        <button class="green" onclick="submitCQ('bn')">Submit CQ & Get Score</button>
+        <button class="light" onclick="toggleSolutions(this)">Complete Solutions</button>
+        <button class="light" onclick="window.print()">Print CQ</button>
+      </div>
+      <div class="result" id="cqResultBn"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><h2>সংক্ষিপ্ত প্রশ্ন</h2><div>সব ৫টি প্রশ্নের উত্তর দাও। প্রতিটি ২ নম্বর।</div></div>
+        <div><div class="timer small" id="shortTimerBn">10:00</div><button class="light" onclick="startTimer('shortTimerBn',10)">Start Short Timer</button></div>
+      </div>
+      <div id="shortBn">
+        <div class="question"><b>১.</b> A={1,2,3} হলে n(P(A)) কত? <input type="text" data-answer="8" data-mark="2"><div class="solution">n(P(A))=2³=8.</div></div>
+        <div class="question"><b>২.</b> f(x)=3x−2 হলে f(4) কত? <input type="text" data-answer="10" data-mark="2"><div class="solution">f(4)=12−2=10.</div></div>
+        <div class="question"><b>৩.</b> x²−9 এর একটি ধনাত্মক উৎপাদক (রৈখিক) লিখ। <input type="text" data-answer="x+3|x-3" data-mark="2"><div class="solution">x²−9=(x−3)(x+3); যেকোনো একটি গ্রহণযোগ্য।</div></div>
+        <div class="question"><b>৪.</b> (a+b)²−(a−b)² = ? <input type="text" data-answer="4ab" data-mark="2"><div class="solution">বিস্তৃত করলে 4ab.</div></div>
+        <div class="question"><b>৫.</b> A⊆B এবং B⊆A হলে A ও B-এর সম্পর্ক কী? <input type="text" data-answer="a=b|b=a|equal|সমান" data-mark="2"><div class="solution">A=B.</div></div>
+      </div>
+      <div class="actions">
+        <button class="green" onclick="submitShort('bn')">Submit Short & Get Score</button>
+        <button class="light" onclick="toggleSolutions(this)">Complete Solutions</button>
+        <button class="light" onclick="window.print()">Print Short</button>
+      </div>
+      <div class="result" id="shortResultBn"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><h2>বহুনির্বাচনি প্রশ্ন (MCQ)</h2><div>সব ৩০টি প্রশ্নের উত্তর দাও। প্রতিটি ১ নম্বর।</div></div>
+        <div><div class="timer" id="mcqTimerBn">30:00</div><button class="primary" onclick="startTimer('mcqTimerBn',30,true)">Start MCQ Timer</button></div>
+      </div>
+      <div id="mcqBn"></div>
+      <div class="actions">
+        <button class="green" onclick="submitMCQ('bn')">Submit MCQ & Get Score</button>
+        <button class="light" onclick="toggleMcqSolutions('bn')">Complete Solutions</button>
+        <button class="light" onclick="window.print()">Print MCQ</button>
+      </div>
+      <div class="result" id="mcqResultBn"></div>
+      <div class="solution" id="mcqSolBn"></div>
+    </section>
+  </main>
+
+  <!-- ==================== ENGLISH ==================== -->
+  <main id="enExam" class="hidden">
+    <section class="section">
+      <div class="section-head">
+        <div><h2>Creative Questions (CQ)</h2><div>Answer any 2 questions out of 3. Each question carries 10 marks.</div></div>
+        <div><div class="timer" id="cqTimerEn">30:00</div><button class="light" onclick="startTimer('cqTimerEn',30)">Start CQ Timer</button></div>
+      </div>
+      <div class="notice">For automatic scoring, enter concise answers in the provided fields. If you select more than two CQs, only the first two selected CQs are graded.</div>
+
+      <div class="question cq-en" data-cq="en1">
+        <div class="qtitle">Question 1 <span class="marks">10 marks</span></div>
+        <p>Let U={1,2,3,4,5,6,7,8,9,10}, A={2,4,6,8,10}, and B={2,3,5,7}.</p>
+        <label><input type="checkbox" class="cqPickEn"> Select this CQ for grading</label>
+        <div class="subq">(a) Find A∩B. <input type="text" data-answer="2" data-mark="2"></div>
+        <div class="subq">(b) How many elements are in A∪B? <input type="text" data-answer="8" data-mark="2"></div>
+        <div class="subq">(c) Find n(A′). <input type="text" data-answer="5" data-mark="3"></div>
+        <div class="subq">(d) Verify n(A∪B)=n(A)+n(B)−n(A∩B); enter the RHS value. <input type="text" data-answer="8" data-mark="3"></div>
+        <div class="solution"><b>Solution:</b><p>A∩B={2}; A∪B={2,3,4,5,6,7,8,10}, so it has 8 elements. Since n(U)=10 and n(A)=5, n(A′)=5. RHS=5+4−1=8.</p></div>
+      </div>
+
+      <div class="question cq-en" data-cq="en2">
+        <div class="qtitle">Question 2 <span class="marks">10 marks</span></div>
+        <p>f(x)=2x+3 and g(x)=x²−1.</p>
+        <label><input type="checkbox" class="cqPickEn"> Select this CQ for grading</label>
+        <div class="subq">(a) Find f(2). <input type="text" data-answer="7" data-mark="2"></div>
+        <div class="subq">(b) Find g(3). <input type="text" data-answer="8" data-mark="2"></div>
+        <div class="subq">(c) Find (g∘f)(1). <input type="text" data-answer="24" data-mark="3"></div>
+        <div class="subq">(d) If f(x)=11, find x. <input type="text" data-answer="4" data-mark="3"></div>
+        <div class="solution"><b>Solution:</b><p>f(2)=7, g(3)=8. Since f(1)=5, g(f(1))=g(5)=25−1=24. Also 2x+3=11 ⇒ x=4.</p></div>
+      </div>
+
+      <div class="question cq-en" data-cq="en3">
+        <div class="qtitle">Question 3 <span class="marks">10 marks</span></div>
+        <p>P(x)=x²−5x+6 and Q(x)=x−2.</p>
+        <label><input type="checkbox" class="cqPickEn"> Select this CQ for grading</label>
+        <div class="subq">(a) Find P(2). <input type="text" data-answer="0" data-mark="2"></div>
+        <div class="subq">(b) If one factor is x−2, find the other factor. <input type="text" data-answer="x-3" data-mark="2"></div>
+        <div class="subq">(c) Find the larger root of P(x)=0. <input type="text" data-answer="3" data-mark="3"></div>
+        <div class="subq">(d) Find the quotient P(x)÷Q(x). <input type="text" data-answer="x-3" data-mark="3"></div>
+        <div class="solution"><b>Solution:</b><p>P(x)=x²−5x+6=(x−2)(x−3). Therefore P(2)=0, the other factor is x−3, the larger root is 3, and the quotient is x−3.</p></div>
+      </div>
+
+      <div class="actions">
+        <button class="green" onclick="submitCQ('en')">Submit CQ & Get Score</button>
+        <button class="light" onclick="toggleSolutions(this)">Complete Solutions</button>
+        <button class="light" onclick="window.print()">Print CQ</button>
+      </div>
+      <div class="result" id="cqResultEn"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><h2>Short Questions</h2><div>Answer all 5 questions. Each carries 2 marks.</div></div>
+        <div><div class="timer small" id="shortTimerEn">10:00</div><button class="light" onclick="startTimer('shortTimerEn',10)">Start Short Timer</button></div>
+      </div>
+      <div id="shortEn">
+        <div class="question"><b>1.</b> If A={1,2,3}, find n(P(A)). <input type="text" data-answer="8" data-mark="2"><div class="solution">n(P(A))=2³=8.</div></div>
+        <div class="question"><b>2.</b> If f(x)=3x−2, find f(4). <input type="text" data-answer="10" data-mark="2"><div class="solution">f(4)=12−2=10.</div></div>
+        <div class="question"><b>3.</b> Write one positive linear factor of x²−9. <input type="text" data-answer="x+3|x-3" data-mark="2"><div class="solution">x²−9=(x−3)(x+3); either linear factor is accepted.</div></div>
+        <div class="question"><b>4.</b> (a+b)²−(a−b)² = ? <input type="text" data-answer="4ab" data-mark="2"><div class="solution">Expanding gives 4ab.</div></div>
+        <div class="question"><b>5.</b> If A⊆B and B⊆A, what is the relation between A and B? <input type="text" data-answer="a=b|b=a|equal" data-mark="2"><div class="solution">A=B.</div></div>
+      </div>
+      <div class="actions">
+        <button class="green" onclick="submitShort('en')">Submit Short & Get Score</button>
+        <button class="light" onclick="toggleSolutions(this)">Complete Solutions</button>
+        <button class="light" onclick="window.print()">Print Short</button>
+      </div>
+      <div class="result" id="shortResultEn"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><h2>Multiple Choice Questions (MCQ)</h2><div>Answer all 30 questions. Each carries 1 mark.</div></div>
+        <div><div class="timer" id="mcqTimerEn">30:00</div><button class="primary" onclick="startTimer('mcqTimerEn',30,true)">Start MCQ Timer</button></div>
+      </div>
+      <div id="mcqEn"></div>
+      <div class="actions">
+        <button class="green" onclick="submitMCQ('en')">Submit MCQ & Get Score</button>
+        <button class="light" onclick="toggleMcqSolutions('en')">Complete Solutions</button>
+        <button class="light" onclick="window.print()">Print MCQ</button>
+      </div>
+      <div class="result" id="mcqResultEn"></div>
+      <div class="solution" id="mcqSolEn"></div>
+    </section>
+  </main>
+
+
+  <section id="printSolutionsBn" class="print-solutions bn">
+    <h2>সম্পূর্ণ সমাধান — CQ ও সংক্ষিপ্ত প্রশ্ন</h2>
+    <h3>CQ সমাধান</h3>
+    <div class="print-sol">
+      <p><b>প্রশ্ন ১:</b> A∩B={2}; A∪B={2,3,4,5,6,7,8,10}, তাই n(A∪B)=8। n(A′)=10−5=5। RHS=5+4−1=8।</p>
+      <p><b>প্রশ্ন ২:</b> f(2)=7, g(3)=8। f(1)=5, তাই g(f(1))=24। 2x+3=11 ⇒ x=4।</p>
+      <p><b>প্রশ্ন ৩:</b> P(x)=x²−5x+6=(x−2)(x−3)। তাই P(2)=0, অপর উৎপাদক x−3, বৃহত্তর মূল 3 এবং ভাগফল x−3।</p>
+    </div>
+    <h3>সংক্ষিপ্ত প্রশ্নের সমাধান</h3>
+    <div class="print-sol">
+      <p><b>১.</b> n(P(A))=2³=8।</p><p><b>২.</b> f(4)=3×4−2=10।</p>
+      <p><b>৩.</b> x²−9=(x−3)(x+3); যেকোনো একটি উৎপাদক গ্রহণযোগ্য।</p>
+      <p><b>৪.</b> (a+b)²−(a−b)²=4ab।</p><p><b>৫.</b> A⊆B এবং B⊆A ⇒ A=B।</p>
+    </div>
+  </section>
+  <section id="printSolutionsEn" class="print-solutions">
+    <h2>Complete Solutions — CQ & Short Questions</h2>
+    <h3>CQ Solutions</h3>
+    <div class="print-sol">
+      <p><b>Question 1:</b> A∩B={2}; A∪B={2,3,4,5,6,7,8,10}, so n(A∪B)=8. n(A′)=10−5=5. RHS=5+4−1=8.</p>
+      <p><b>Question 2:</b> f(2)=7, g(3)=8. f(1)=5, hence g(f(1))=24. 2x+3=11 ⇒ x=4.</p>
+      <p><b>Question 3:</b> P(x)=x²−5x+6=(x−2)(x−3). Thus P(2)=0, the other factor is x−3, the larger root is 3, and the quotient is x−3.</p>
+    </div>
+    <h3>Short Question Solutions</h3>
+    <div class="print-sol">
+      <p><b>1.</b> n(P(A))=2³=8.</p><p><b>2.</b> f(4)=3×4−2=10.</p>
+      <p><b>3.</b> x²−9=(x−3)(x+3); either factor is acceptable.</p>
+      <p><b>4.</b> (a+b)²−(a−b)²=4ab.</p><p><b>5.</b> A⊆B and B⊆A ⇒ A=B.</p>
+    </div>
+  </section>
+  <section id="printMcqSolutionsBn" class="print-solutions bn"><h2>সম্পূর্ণ MCQ সমাধান</h2><div class="solution-grid" id="printBnSolGrid"></div></section>
+  <section id="printMcqSolutionsEn" class="print-solutions"><h2>Complete MCQ Solutions</h2><div class="solution-grid" id="printEnSolGrid"></div></section>
+
+  <div class="footer">HMT-01 • Sets & Functions, Algebraic Expressions • Responsive HTML/CSS/JavaScript Exam</div>
+</div>
+
+<script>
+const mcqData = [
+ {bn:"A={1,2,3} হলে n(A) কত?",en:"If A={1,2,3}, what is n(A)?",o:["2","3","4","8"],a:1,sol:"A has 3 elements."},
+ {bn:"A={1,2} হলে P(A)-তে উপাদান সংখ্যা কত?",en:"If A={1,2}, how many elements are in P(A)?",o:["2","3","4","6"],a:2,sol:"n(P(A))=2²=4."},
+ {bn:"A∩∅ এর মান কোনটি?",en:"What is A∩∅?",o:["A","∅","U","{0}"],a:1,sol:"Intersection with the empty set is empty."},
+ {bn:"A∪∅ এর মান কোনটি?",en:"What is A∪∅?",o:["A","∅","U","A′"],a:0,sol:"Union with empty set is A."},
+ {bn:"A∪A′ = ?",en:"A∪A′ = ?",o:["A","∅","U","A′"],a:2,sol:"A set union its complement is U."},
+ {bn:"A∩A′ = ?",en:"A∩A′ = ?",o:["A","∅","U","A′"],a:1,sol:"A set and its complement are disjoint."},
+ {bn:"n(A)=4 হলে n(P(A)) কত?",en:"If n(A)=4, what is n(P(A))?",o:["8","12","16","20"],a:2,sol:"2⁴=16."},
+ {bn:"f(x)=x+2 হলে f(3)=?",en:"If f(x)=x+2, f(3)=?",o:["3","4","5","6"],a:2,sol:"3+2=5."},
+ {bn:"f(x)=2x হলে f(5)=?",en:"If f(x)=2x, f(5)=?",o:["5","7","10","25"],a:2,sol:"2×5=10."},
+ {bn:"f(x)=x² হলে f(−3)=?",en:"If f(x)=x², f(−3)=?",o:["−9","−6","6","9"],a:3,sol:"(−3)²=9."},
+ {bn:"f(x)=x+1, g(x)=2x হলে (f∘g)(2)=?",en:"If f(x)=x+1, g(x)=2x, find (f∘g)(2).",o:["4","5","6","8"],a:1,sol:"g(2)=4, then f(4)=5."},
+ {bn:"f(x)=x+1, g(x)=2x হলে (g∘f)(2)=?",en:"If f(x)=x+1, g(x)=2x, find (g∘f)(2).",o:["4","5","6","8"],a:2,sol:"f(2)=3, then g(3)=6."},
+ {bn:"এক-এক ফাংশনে ভিন্ন ইনপুটের আউটপুট কেমন?",en:"In a one-to-one function, distinct inputs have ___ outputs.",o:["same","distinct","zero","undefined"],a:1,sol:"Distinct inputs map to distinct outputs."},
+ {bn:"x²−4 এর উৎপাদক কোনটি?",en:"Which is a factorization of x²−4?",o:["(x−2)(x+2)","(x−4)(x+1)","(x−2)²","(x+4)(x−1)"],a:0,sol:"Difference of squares."},
+ {bn:"x²+2x+1 = ?",en:"x²+2x+1 = ?",o:["(x−1)²","(x+1)²","(x+2)(x−1)","x(x+2)"],a:1,sol:"Perfect square trinomial."},
+ {bn:"a²−b² = ?",en:"a²−b² = ?",o:["(a−b)²","(a+b)²","(a−b)(a+b)","a(a−b)"],a:2,sol:"Difference of two squares."},
+ {bn:"(a+b)² = ?",en:"(a+b)² = ?",o:["a²+b²","a²+2ab+b²","a²−2ab+b²","2a²+2b²"],a:1,sol:"Square of a binomial."},
+ {bn:"(a−b)² = ?",en:"(a−b)² = ?",o:["a²−2ab+b²","a²+2ab+b²","a²−b²","a²+b²"],a:0,sol:"Square of a difference."},
+ {bn:"x²−5x+6 এর মূল কোন জোড়া?",en:"What are the roots of x²−5x+6=0?",o:["1,6","2,3","−2,−3","3,5"],a:1,sol:"(x−2)(x−3)=0."},
+ {bn:"x²−9x+20 এর উৎপাদক কোনটি?",en:"Which factorization equals x²−9x+20?",o:["(x−4)(x−5)","(x+4)(x+5)","(x−2)(x−10)","(x−1)(x−20)"],a:0,sol:"−4−5=−9 and 4×5=20."},
+ {bn:"x=2 হলে x³−2x এর মান?",en:"At x=2, what is x³−2x?",o:["2","4","6","8"],a:1,sol:"8−4=4."},
+ {bn:"P(x)=x²+1 হলে P(0)=?",en:"If P(x)=x²+1, P(0)=?",o:["0","1","2","−1"],a:1,sol:"0²+1=1."},
+ {bn:"x−3 দ্বারা P(x) বিভাজ্য হলে P(3)=?",en:"If x−3 is a factor of P(x), then P(3)=?",o:["−3","0","1","3"],a:1,sol:"By the Factor Theorem, P(3)=0."},
+ {bn:"x+2 দ্বারা P(x) বিভাজ্য হলে কোন মানে P(x)=0?",en:"If x+2 is a factor of P(x), for which x is P(x)=0?",o:["−2","0","2","4"],a:0,sol:"x+2=0 ⇒ x=−2."},
+ {bn:"(x+3)(x−3)=?",en:"(x+3)(x−3)=?",o:["x²−9","x²+9","x²−6x+9","x²+6x+9"],a:0,sol:"Difference of squares."},
+ {bn:"2x²+6x এর গসাগু উৎপাদক বের করলে কী হয়?",en:"Factor out the GCF from 2x²+6x.",o:["2x(x+3)","2(x²+3)","x(2x+3)","6x(x+1)"],a:0,sol:"GCF is 2x."},
+ {bn:"A={1,2}, B={2,3} হলে A∩B=?",en:"If A={1,2}, B={2,3}, A∩B=?",o:["{1}","{2}","{3}","{1,2,3}"],a:1,sol:"Common element is 2."},
+ {bn:"A={1,2}, B={2,3} হলে A∪B=?",en:"If A={1,2}, B={2,3}, A∪B=?",o:["{2}","{1,3}","{1,2,3}","∅"],a:2,sol:"Union collects all distinct elements."},
+ {bn:"n(A)=5, n(B)=4, n(A∩B)=2 হলে n(A∪B)=?",en:"If n(A)=5, n(B)=4, n(A∩B)=2, find n(A∪B).",o:["7","9","11","3"],a:0,sol:"5+4−2=7."},
+ {bn:"f(x)=3x+1 হলে f(x)=10 এর জন্য x=?",en:"If f(x)=3x+1 and f(x)=10, find x.",o:["2","3","4","9"],a:1,sol:"3x+1=10 ⇒ x=3."}
+];
+
+function renderMCQ(lang){
+  const box=document.getElementById(lang==='bn'?'mcqBn':'mcqEn');
+  box.innerHTML='';
+  mcqData.forEach((q,i)=>{
+    const d=document.createElement('div');
+    d.className='question';
+    const txt=lang==='bn'?q.bn:q.en;
+    d.innerHTML=`<div class="qtitle">${i+1}. ${txt}</div>`+
+      q.o.map((opt,j)=>`<label class="option"><input type="radio" name="${lang}mcq${i}" value="${j}"><span>${String.fromCharCode(65+j)}. ${opt}</span></label>`).join('');
+    box.appendChild(d);
+  });
+}
+
+function normalize(s){
+  return (s||'').toLowerCase().replace(/\s+/g,'').replace(/[{}()\[\],]/g,'').replace(/−/g,'-').replace(/\^/g,'');
+}
+function correctInput(inp){
+  const val=normalize(inp.value);
+  const answers=inp.dataset.answer.split('|').map(normalize);
+  return answers.includes(val);
+}
+
+function printVersion(lang){
+  document.body.dataset.printLang=lang;
+  if(typeof mcqData!=="undefined"){
+    const b=document.getElementById("printBnSolGrid"), e=document.getElementById("printEnSolGrid");
+    const make=()=>mcqData.map((q,i)=>`<p><b>${i+1}. ${String.fromCharCode(65+q.a)}</b> — ${q.sol}</p>`).join("");
+    if(b)b.innerHTML=make(); if(e)e.innerHTML=make();
+  }
+  window.print();
+}
+
+function setLang(lang){
+  document.getElementById('bnExam').classList.toggle('hidden',lang!=='bn');
+  document.getElementById('enExam').classList.toggle('hidden',lang!=='en');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showHome(){
+  document.getElementById('bnExam').classList.remove('hidden');
+  document.getElementById('enExam').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function submitCQ(lang){
+  const cls=lang==='bn'?'.cq-bn':'.cq-en';
+  const picks=[...document.querySelectorAll(cls+' input[type=checkbox]:checked')].slice(0,2);
+  if(picks.length<2){
+    alert(lang==='bn'?'মূল্যায়নের জন্য ঠিক ২টি CQ নির্বাচন করুন।':'Please select exactly 2 CQs for grading.');
+    return;
+  }
+  let score=0;
+  picks.forEach(p=>{
+    const q=p.closest('.question');
+    q.querySelectorAll('input[type=text]').forEach(inp=>{if(correctInput(inp)) score+=Number(inp.dataset.mark||0)});
+  });
+  const id=lang==='bn'?'cqResultBn':'cqResultEn';
+  const r=document.getElementById(id); r.style.display='block';
+  r.textContent=(lang==='bn'?`CQ স্কোর: ${score}/20`:`CQ Score: ${score}/20`);
+  document.getElementById('cqScore').textContent=score+'/20';
+  updateTotal();
+}
+function submitShort(lang){
+  const root=document.getElementById(lang==='bn'?'shortBn':'shortEn');
+  let score=0;
+  root.querySelectorAll('input[type=text]').forEach(inp=>{if(correctInput(inp)) score+=Number(inp.dataset.mark||0)});
+  const r=document.getElementById(lang==='bn'?'shortResultBn':'shortResultEn');
+  r.style.display='block'; r.textContent=(lang==='bn'?`সংক্ষিপ্ত প্রশ্নের স্কোর: ${score}/10`:`Short Question Score: ${score}/10`);
+  document.getElementById('shortScore').textContent=score+'/10';
+  updateTotal();
+}
+function submitMCQ(lang){
+  let score=0,answered=0;
+  mcqData.forEach((q,i)=>{
+    const picked=document.querySelector(`input[name="${lang}mcq${i}"]:checked`);
+    if(picked){answered++; if(Number(picked.value)===q.a) score++;}
+  });
+  const r=document.getElementById(lang==='bn'?'mcqResultBn':'mcqResultEn');
+  r.style.display='block';
+  r.textContent=(lang==='bn'?`MCQ স্কোর: ${score}/30 • উত্তর দেওয়া হয়েছে: ${answered}/30`:`MCQ Score: ${score}/30 • Answered: ${answered}/30`);
+  document.getElementById('mcqScore').textContent=score+'/30';
+  updateTotal();
+}
+function updateTotal(){
+  const get=id=>Number(document.getElementById(id).textContent.split('/')[0])||0;
+  const total=get('cqScore')+get('shortScore')+get('mcqScore');
+  document.getElementById('totalScore').textContent=total+'/60';
+}
+function toggleSolutions(btn){
+  const section=btn.closest('.section');
+  const sols=section.querySelectorAll('.solution');
+  const show=[...sols].some(x=>x.style.display!=='block');
+  sols.forEach(x=>x.style.display=show?'block':'none');
+}
+function toggleMcqSolutions(lang){
+  const box=document.getElementById(lang==='bn'?'mcqSolBn':'mcqSolEn');
+  if(box.style.display==='block'){box.style.display='none';return;}
+  box.innerHTML='<b>'+(lang==='bn'?'সম্পূর্ণ MCQ সমাধান':'Complete MCQ Solutions')+'</b>'+
+    mcqData.map((q,i)=>`<p><b>${i+1}. ${String.fromCharCode(65+q.a)}</b> — ${q.sol}</p>`).join('');
+  box.style.display='block';
+}
+const timers={};
+function startTimer(id,mins,autoSubmit=false){
+  if(timers[id]) clearInterval(timers[id]);
+  let t=mins*60;
+  const el=document.getElementById(id);
+  timers[id]=setInterval(()=>{
+    const m=Math.floor(t/60),s=t%60;
+    el.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    if(t<=0){
+      clearInterval(timers[id]); el.textContent='00:00';
+      alert('Time is up!');
+      if(autoSubmit) submitMCQ(id.endsWith('Bn')?'bn':'en');
+      return;
+    }
+    t--;
+  },1000);
+}
+function resetExam(){
+  if(!confirm('Reset all answers and scores?')) return;
+  document.querySelectorAll('input').forEach(i=>{if(i.type==='text')i.value='';else i.checked=false});
+  document.querySelectorAll('.result,.solution').forEach(x=>x.style.display='none');
+  ['cqScore','shortScore','mcqScore'].forEach((id,i)=>document.getElementById(id).textContent='0/'+[20,10,30][i]);
+  document.getElementById('totalScore').textContent='0/60';
+  Object.values(timers).forEach(clearInterval);
+  ['cqTimerBn','cqTimerEn'].forEach(id=>document.getElementById(id).textContent='30:00');
+  ['shortTimerBn','shortTimerEn'].forEach(id=>document.getElementById(id).textContent='10:00');
+  ['mcqTimerBn','mcqTimerEn'].forEach(id=>document.getElementById(id).textContent='30:00');
+}
+renderMCQ('bn'); renderMCQ('en'); setLang('bn');
+</script>
+</body>
+</html>

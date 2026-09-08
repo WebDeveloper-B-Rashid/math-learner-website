@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC 2026 Higher Math - Bilingual MCQ Test</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+        };
+    </script>
+
+    <style>
+        /* Modern, Clean, and Professional CSS */
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --success-bg: #dcfce7;
+            --success-border: #22c55e;
+            --success-text: #166534;
+            --error-bg: #fee2e2;
+            --error-border: #ef4444;
+            --error-text: #991b1b;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Business Marquee Header */
+        .marquee-wrapper {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 22s linear infinite;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* Page Layout */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-titles {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header-titles h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-titles p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* 2-Column Question Card */
+        .question-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .lang-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .col-header {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .q-text {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Options Framework */
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #f8fafc;
+        }
+
+        .option-label:hover {
+            border-color: #94a3b8;
+            background: #f1f5f9;
+        }
+
+        .option-label input[type="radio"] {
+            margin-top: 5px;
+            transform: scale(1.2);
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        /* Action Row */
+        .action-row {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border);
+            display: flex;
+            justify-content: center;
+        }
+
+        .check-btn {
+            background-color: var(--accent);
+            color: #ffffff;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .check-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Solution Area */
+        .solution-box {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid;
+            animation: slideDown 0.3s ease;
+        }
+
+        .feedback-badge {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .status-correct {
+            background-color: var(--success-bg);
+            border-color: var(--success-border);
+        }
+        .status-correct .feedback-badge { color: var(--success-text); }
+
+        .status-wrong {
+            background-color: var(--error-bg);
+            border-color: var(--error-border);
+        }
+        .status-wrong .feedback-badge { color: var(--error-text); }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile First Responsiveness */
+        @media (max-width: 850px) {
+            .q-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .question-card {
+                padding: 1.5rem;
+            }
+            .action-row {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            Luxury Ponno - Helpline: 01711008786 &nbsp; | &nbsp; SSC 2026 Model Tests &nbsp; | &nbsp; Higher Mathematics Chapter 1 Preparation (Bilingual Edition)
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header-titles">
+            <h1>SSC 2026: Higher Mathematics (Code: 126)</h1>
+            <p>Chapter 1: Sets and Functions - Bilingual MCQ Bank</p>
+        </div>
+
+        <div id="quiz-container"></div>
+    </div>
+
+    <script>
+        /**
+         * 30 MCQ Question Data
+         * Using String.raw prevents backslash escaping issues with LaTeX.
+         */
+        const quizData = [
+            {
+                ans: 1, // Index of correct option (0=a, 1=b, 2=c, 3=d)
+                qB: String.raw`$A = \{x : x^2 + 5x + 6 = 0\}$ হলে $A$ সেটের তালিকা রূপ কোনটি?`,
+                qE: String.raw`If $A = \{x : x^2 + 5x + 6 = 0\}$, which one is the roster form of set $A$?`,
+                oB: [String.raw`$\{2, 3\}$`, String.raw`$\{-2, -3\}$`, String.raw`$\{5, 6\}$`, String.raw`$\{-5, -6\}$`],
+                oE: [String.raw`$\{2, 3\}$`, String.raw`$\{-2, -3\}$`, String.raw`$\{5, 6\}$`, String.raw`$\{-5, -6\}$`],
+                sB: String.raw`$x^2 + 5x + 6 = 0 \implies (x+2)(x+3) = 0 \implies x = -2, -3$। অতএব, $A = \{-2, -3\}$।`,
+                sE: String.raw`$x^2 + 5x + 6 = 0 \implies (x+2)(x+3) = 0 \implies x = -2, -3$. Therefore, $A = \{-2, -3\}$.`
+            },
+            {
+                ans: 0,
+                qB: String.raw`$S = \{x \in \mathbb{R} : x^2 + 1 = 0\}$ হলে নিচের কোনটি সঠিক?`,
+                qE: String.raw`If $S = \{x \in \mathbb{R} : x^2 + 1 = 0\}$, which of the following is correct?`,
+                oB: [String.raw`$S = \emptyset$`, String.raw`$S = \mathbb{R}$`, String.raw`$S = \{1\}$`, String.raw`$S = \{-1\}$`],
+                oE: [String.raw`$S = \emptyset$`, String.raw`$S = \mathbb{R}$`, String.raw`$S = \{1\}$`, String.raw`$S = \{-1\}$`],
+                sB: String.raw`$x^2 = -1 \implies x = \pm \sqrt{-1} \notin \mathbb{R}$। বাস্তব সংখ্যার বর্গ ঋণাত্মক হতে পারে না, তাই $S$ ফাঁকা সেট।`,
+                sE: String.raw`$x^2 = -1 \implies x = \pm \sqrt{-1} \notin \mathbb{R}$. The square of any real number cannot be negative, so $S$ is an empty set.`
+            },
+            {
+                ans: 0,
+                qB: String.raw`নিচের কোনটি ফাঁকা সেট?`,
+                qE: String.raw`Which of the following is an empty set?`,
+                oB: [String.raw`$\{x \in \mathbb{N} : x \text{ মৌলিক এবং } 13 < x < 17\}$`, String.raw`$\{x \in \mathbb{N} : x \text{ মৌলিক এবং } 13 \le x < 17\}$`, String.raw`$\{x \in \mathbb{N} : x \text{ মৌলিক এবং } 13 < x \le 17\}$`, String.raw`$\{x \in \mathbb{N} : x \text{ মৌলিক এবং } 13 \le x \le 17\}$`],
+                oE: [String.raw`$\{x \in \mathbb{N} : x \text{ is prime and } 13 < x < 17\}$`, String.raw`$\{x \in \mathbb{N} : x \text{ is prime and } 13 \le x < 17\}$`, String.raw`$\{x \in \mathbb{N} : x \text{ is prime and } 13 < x \le 17\}$`, String.raw`$\{x \in \mathbb{N} : x \text{ is prime and } 13 \le x \le 17\}$`],
+                sB: String.raw`১৩ ও ১৭ এর মধ্যবর্তী পূর্ণসংখ্যাগুলো হলো ১৪, ১৫, ১৬, যার কোনটিই মৌলিক সংখ্যা নয়।`,
+                sE: String.raw`The integers between 13 and 17 are 14, 15, 16, none of which are prime.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`নিচের কোনটি অসীম (অনন্ত) সেট?`,
+                qE: String.raw`Which of the following is an infinite set?`,
+                oB: [String.raw`$\{x \in \mathbb{N} : 1 \le x \le 10\}$`, String.raw`$\{x \in \mathbb{R} : 1 \le x \le 10\}$`, String.raw`$\{x \in \mathbb{Z} : -10 \le x \le 10\}$`, String.raw`$\{x \in \mathbb{N} : 2 < x < 5\}$`],
+                oE: [String.raw`$\{x \in \mathbb{N} : 1 \le x \le 10\}$`, String.raw`$\{x \in \mathbb{R} : 1 \le x \le 10\}$`, String.raw`$\{x \in \mathbb{Z} : -10 \le x \le 10\}$`, String.raw`$\{x \in \mathbb{N} : 2 < x < 5\}$`],
+                sB: String.raw`যেকোনো দুটি ভিন্ন বাস্তব সংখ্যার মধ্যে অসংখ্য বাস্তব সংখ্যা বিদ্যমান।`,
+                sE: String.raw`Between any two distinct real numbers, there are infinitely many real numbers.`
+            },
+            {
+                ans: 3,
+                qB: String.raw`$A = \{x \in \mathbb{Z} : 9 \le x^2 \le 36\}$ হলে $A$ সেটের উপসেট সংখ্যা কত?`,
+                qE: String.raw`If $A = \{x \in \mathbb{Z} : 9 \le x^2 \le 36\}$, what is the number of subsets of set $A$?`,
+                oB: ["16", "32", "64", "256"],
+                oE: ["16", "32", "64", "256"],
+                sB: String.raw`$x \in \{-6, -5, -4, -3, 3, 4, 5, 6\}$। উপাদান সংখ্যা $n = 8$। উপসেট সংখ্যা $= 2^8 = 256$।`,
+                sE: String.raw`$x \in \{-6, -5, -4, -3, 3, 4, 5, 6\}$. Elements $n = 8$. Subsets $= 2^8 = 256$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$A = \{1, 2, 4, 8\}$ হলে $A$ এর প্রকৃত উপসেট সংখ্যা কত?`,
+                qE: String.raw`If $A = \{1, 2, 4, 8\}$, what is the number of proper subsets of $A$?`,
+                oB: ["16", "15", "14", "8"],
+                oE: ["16", "15", "14", "8"],
+                sB: String.raw`উপাদান সংখ্যা $n = 4$। প্রকৃত উপসেট সংখ্যা $= 2^n - 1 = 16 - 1 = 15$।`,
+                sE: String.raw`Elements $n = 4$. Proper subsets $= 2^n - 1 = 16 - 1 = 15$.`
+            },
+            {
+                ans: 2,
+                qB: String.raw`যদি $A$ সসীম সেট হয় এবং $B, A$ এর একটি প্রকৃত উপসেট হয়, তবে কোনটি সঠিক?`,
+                qE: String.raw`If $A$ is a finite set and $B$ is a proper subset of $A$, which is correct?`,
+                oB: [String.raw`$n(B) \le n(A)$`, String.raw`$n(A) < n(B)$`, String.raw`$n(B) < n(A)$`, String.raw`$n(A) = n(B)$`],
+                oE: [String.raw`$n(B) \le n(A)$`, String.raw`$n(A) < n(B)$`, String.raw`$n(B) < n(A)$`, String.raw`$n(A) = n(B)$`],
+                sB: String.raw`প্রকৃত উপসেটে অন্তত একটি উপাদান কম থাকে। অতএব, $n(B) < n(A)$।`,
+                sE: String.raw`A proper subset has at least one fewer element. Therefore, $n(B) < n(A)$.`
+            },
+            {
+                ans: 3,
+                qB: String.raw`$A = \emptyset$ হলে নিচের কোনটি সঠিক নয়?`,
+                qE: String.raw`If $A = \emptyset$, which of the following is NOT correct?`,
+                oB: [String.raw`$\emptyset \subseteq A$`, String.raw`$A \sim A$`, String.raw`$n(A) = 0$`, String.raw`$\{0\} \subseteq A$`],
+                oE: [String.raw`$\emptyset \subseteq A$`, String.raw`$A \sim A$`, String.raw`$n(A) = 0$`, String.raw`$\{0\} \subseteq A$`],
+                sB: String.raw`$\{0\}$ সেটের একটি উপাদান রয়েছে ($0$), কিন্তু $A$ সেটে কোনো উপাদান নেই।`,
+                sE: String.raw`The set $\{0\}$ contains an element, whereas $A$ contains no elements.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$P$ ও $Q$ সেটের জন্য $P \subset Q$ হলে কোনটি সঠিক?`,
+                qE: String.raw`For sets $P$ and $Q$, if $P \subset Q$, which of the following is correct?`,
+                oB: [String.raw`$P' \subset Q'$`, String.raw`$P \cap Q = P$`, String.raw`$P' \cup Q' = Q'$`, String.raw`$P \cup Q = P$`],
+                oE: [String.raw`$P' \subset Q'$`, String.raw`$P \cap Q = P$`, String.raw`$P' \cup Q' = Q'$`, String.raw`$P \cup Q = P$`],
+                sB: String.raw`$P \subset Q$ হলে $P$ এর সকল উপাদান $Q$ তে বিদ্যমান। তাই ছেদ সেট হবে $P$।`,
+                sE: String.raw`If $P \subset Q$, all elements of $P$ are in $Q$. Hence, their intersection is $P$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`নিচের কোন শর্তে $A$ ও $B$ সেটদ্বয় সমান ($A = B$) হবে?`,
+                qE: String.raw`Under which of the following conditions are two sets $A$ and $B$ equal?`,
+                oB: [String.raw`$A \setminus B = \emptyset$`, String.raw`$A \subseteq B \text{ এবং } B \subseteq A$`, String.raw`$A \cap B = \emptyset$`, String.raw`$n(A) = n(B)$`],
+                oE: [String.raw`$A \setminus B = \emptyset$`, String.raw`$A \subseteq B \text{ and } B \subseteq A$`, String.raw`$A \cap B = \emptyset$`, String.raw`$n(A) = n(B)$`],
+                sB: String.raw`সেট সমতার সংজ্ঞানুসারে $A = B \iff A \subseteq B \text{ এবং } B \subseteq A$।`,
+                sE: String.raw`By definition, sets are equal if and only if $A \subseteq B$ and $B \subseteq A$.`
+            },
+            {
+                ans: 2,
+                qB: String.raw`$A = \{x \in \mathbb{N} : 5 \le x < 10\}$ হলে $P(A)$ এর উপাদান সংখ্যা কত?`,
+                qE: String.raw`If $A = \{x \in \mathbb{N} : 5 \le x < 10\}$, what is the number of elements in $P(A)$?`,
+                oB: ["16", "31", "32", "64"],
+                oE: ["16", "31", "32", "64"],
+                sB: String.raw`$A = \{5, 6, 7, 8, 9\}$। উপাদান সংখ্যা ৫। শক্তি সেটের উপাদান $2^5 = 32$।`,
+                sE: String.raw`$A = \{5, 6, 7, 8, 9\}$. Elements = 5. Power set elements $= 2^5 = 32$.`
+            },
+            {
+                ans: 3,
+                qB: String.raw`কোন সেটের উপাদান সংখ্যা $2n$ হলে, তার শক্তি সেটের উপাদান সংখ্যা কত?`,
+                qE: String.raw`If a set has $2n$ elements, what is the number of elements in its power set?`,
+                oB: [String.raw`$2n$`, String.raw`$2^n$`, String.raw`$4n$`, String.raw`$4^n$`],
+                oE: [String.raw`$2n$`, String.raw`$2^n$`, String.raw`$4n$`, String.raw`$4^n$`],
+                sB: String.raw`উপাদান $m = 2n$ হলে শক্তি সেটের উপাদান $= 2^{2n} = (2^2)^n = 4^n$।`,
+                sE: String.raw`Power set has $2^{(2n)} = (2^2)^n = 4^n$ elements.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$P(X)$ এর উপাদান সংখ্যা $64$ হলে $X$ এর উপাদান সংখ্যা কত?`,
+                qE: String.raw`If the number of elements in $P(X)$ is $64$, what is the number of elements in $X$?`,
+                oB: ["2", "6", "8", "16"],
+                oE: ["2", "6", "8", "16"],
+                sB: String.raw`$2^n = 64 \implies 2^n = 2^6 \implies n = 6$।`,
+                sE: String.raw`$2^n = 64 \implies 2^n = 2^6 \implies n = 6$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$A = \{x : x^2 - 4 = 0\}$ এবং $B = \{x : x^2 - x - 6 = 0\}$ হলে $A \cap B = ?$`,
+                qE: String.raw`If $A = \{x : x^2 - 4 = 0\}$ and $B = \{x : x^2 - x - 6 = 0\}$, then $A \cap B = ?$`,
+                oB: [String.raw`$\{-2, 2, 3\}$`, String.raw`$\{-2\}$`, String.raw`$\{2\}$`, String.raw`$\{-3\}$`],
+                oE: [String.raw`$\{-2, 2, 3\}$`, String.raw`$\{-2\}$`, String.raw`$\{2\}$`, String.raw`$\{-3\}$`],
+                sB: String.raw`$A = \{-2, 2\}$ এবং $B = \{-2, 3\}$। অতএব $A \cap B = \{-2\}$।`,
+                sE: String.raw`$A = \{-2, 2\}$ and $B = \{-2, 3\}$. Hence $A \cap B = \{-2\}$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$x \notin (A \cap B)$ হবে যদি এবং কেবল যদি—`,
+                qE: String.raw`$x \notin (A \cap B)$ if and only if—`,
+                oB: [String.raw`$x \notin A \text{ এবং } x \notin B$`, String.raw`$x \notin A \text{ অথবা } x \notin B$`, String.raw`$x \in A \text{ এবং } x \notin B$`, String.raw`$x \notin A \text{ এবং } x \in B$`],
+                oE: [String.raw`$x \notin A \text{ and } x \notin B$`, String.raw`$x \notin A \text{ or } x \notin B$`, String.raw`$x \in A \text{ and } x \notin B$`, String.raw`$x \notin A \text{ and } x \in B$`],
+                sB: String.raw`লজিক্যাল নেগেশন অনুযায়ী, $x \notin (A \cap B) \iff x \notin A \text{ অথবা } x \notin B$।`,
+                sE: String.raw`By logical De Morgan's negation, $x \notin (A \cap B) \iff x \notin A \text{ or } x \notin B$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$A = [-2, 1)$ এবং $B = [1, 3)$ হলে $P(A \cap B) = ?$`,
+                qE: String.raw`If $A = [-2, 1)$ and $B = [1, 3)$, then $P(A \cap B) = ?$`,
+                oB: [String.raw`$\emptyset$`, String.raw`$\{\emptyset\}$`, String.raw`$\{0\}$`, String.raw`$\{1\}$`],
+                oE: [String.raw`$\emptyset$`, String.raw`$\{\emptyset\}$`, String.raw`$\{0\}$`, String.raw`$\{1\}$`],
+                sB: String.raw`$A \cap B = \emptyset$। ফাঁকা সেটের শক্তি সেট $P(\emptyset) = \{\emptyset\}$।`,
+                sE: String.raw`$A \cap B = \emptyset$. The power set of an empty set is $P(\emptyset) = \{\emptyset\}$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$A = \{1 \text{ থেকে } 6 \text{ মৌলিক}\}$ এবং $B = \{1, 3, 5, 7\}$ হলে $P(A \cap B)$ এর উপাদান সংখ্যা?`,
+                qE: String.raw`If $A = \{\text{primes } \le 6\}$ and $B = \{1, 3, 5, 7\}$, elements in $P(A \cap B)$?`,
+                oB: ["2", "4", "8", "16"],
+                oE: ["2", "4", "8", "16"],
+                sB: String.raw`$A = \{2, 3, 5\}$। $A \cap B = \{3, 5\}$। উপাদান $n=2$, শক্তি সেট উপাদান $2^2 = 4$।`,
+                sE: String.raw`$A = \{2, 3, 5\}$. $A \cap B = \{3, 5\}$. Elements $n=2$, Power set elements $2^2 = 4$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$x \in (A \setminus B)$ এর সমতুল্য প্রকাশ কোনটি?`,
+                qE: String.raw`Which of the following is equivalent to $x \in (A \setminus B)$?`,
+                oB: [String.raw`$x \in A \text{ অথবা } x \notin B$`, String.raw`$x \in A \text{ এবং } x \notin B$`, String.raw`$x \notin A \text{ এবং } x \in B$`, String.raw`$x \in A \text{ এবং } x \in B$`],
+                oE: [String.raw`$x \in A \text{ or } x \notin B$`, String.raw`$x \in A \text{ and } x \notin B$`, String.raw`$x \notin A \text{ and } x \in B$`, String.raw`$x \in A \text{ and } x \in B$`],
+                sB: String.raw`অন্তর সেটের সংজ্ঞানুসারে $A \setminus B = \{x : x \in A \text{ এবং } x \notin B\}$।`,
+                sE: String.raw`By definition of set difference, $A \setminus B = \{x : x \in A \text{ and } x \notin B\}$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`যেকোনো উপসেট $A$ ও $B$ এর জন্য $A \setminus B = ?$`,
+                qE: String.raw`For any subsets $A$ and $B$, $A \setminus B = ?$`,
+                oB: [String.raw`$A \cup B'$`, String.raw`$A \cap B'$`, String.raw`$A' \cup B$`, String.raw`$A' \cap B$`],
+                oE: [String.raw`$A \cup B'$`, String.raw`$A \cap B'$`, String.raw`$A' \cup B$`, String.raw`$A' \cap B$`],
+                sB: String.raw`সেটের নিয়ম অনুযায়ী $A \setminus B = A \cap B'$।`,
+                sE: String.raw`According to set theory identity, $A \setminus B = A \cap B'$.`
+            },
+            {
+                ans: 0,
+                qB: String.raw`$A'$ হলো $A$ সেটের পূরক সেট হলে, $A \setminus A' = ?$`,
+                qE: String.raw`If $A'$ is the complement of set $A$, then $A \setminus A' = ?$`,
+                oB: [String.raw`$A$`, String.raw`$A'$`, String.raw`$\emptyset$`, String.raw`$U$`],
+                oE: [String.raw`$A$`, String.raw`$A'$`, String.raw`$\emptyset$`, String.raw`$U$`],
+                sB: String.raw`$A$ এবং $A'$ নিশ্ছেদ। তাই $A$ থেকে $A'$ বাদ দিলে $A$ ই থাকে।`,
+                sE: String.raw`$A$ and $A'$ are mutually disjoint. Thus removing $A'$ from $A$ leaves $A$.`
+            },
+            {
+                ans: 0,
+                qB: String.raw`$U = \{2, 4, 6, 8, 10, 12\}$ এবং $A \cap B = \{4, 6, 8, 10\}$ হলে $A' \cup B' = ?$`,
+                qE: String.raw`If $U = \{2, 4, 6, 8, 10, 12\}$ and $A \cap B = \{4, 6, 8, 10\}$, then $A' \cup B' = ?$`,
+                oB: [String.raw`$\{2, 12\}$`, String.raw`$\{2, 4, 6\}$`, String.raw`$\{4, 6, 8\}$`, String.raw`$\{2, 4, 6, 8, 10\}$`],
+                oE: [String.raw`$\{2, 12\}$`, String.raw`$\{2, 4, 6\}$`, String.raw`$\{4, 6, 8\}$`, String.raw`$\{2, 4, 6, 8, 10\}$`],
+                sB: String.raw`ডি মরগানের সূত্র: $A' \cup B' = (A \cap B)' = U \setminus \{4, 6, 8, 10\} = \{2, 12\}$।`,
+                sE: String.raw`De Morgan's Law: $A' \cup B' = (A \cap B)' = U \setminus \{4, 6, 8, 10\} = \{2, 12\}$.`
+            },
+            {
+                ans: 0,
+                qB: String.raw`$A$ ও $B$ পরস্পর নিশ্ছেদ সেট হলে, কোনটি সঠিক?`,
+                qE: String.raw`If $A$ and $B$ are disjoint sets, which of the following is correct?`,
+                oB: [String.raw`$n(A \cup B) = n(A) + n(B)$`, String.raw`$n(A \cup B) = n(A) + n(B) - 1$`, String.raw`$n(A \cap B) = 1$`, String.raw`$n(A \cup B) = n(A) \cdot n(B)$`],
+                oE: [String.raw`$n(A \cup B) = n(A) + n(B)$`, String.raw`$n(A \cup B) = n(A) + n(B) - 1$`, String.raw`$n(A \cap B) = 1$`, String.raw`$n(A \cup B) = n(A) \cdot n(B)$`],
+                sB: String.raw`নিশ্ছেদ সেটে $n(A \cap B) = 0$। সূত্র: $n(A \cup B) = n(A) + n(B)$।`,
+                sE: String.raw`For disjoint sets $n(A \cap B) = 0$. Formula: $n(A \cup B) = n(A) + n(B)$.`
+            },
+            {
+                ans: 0,
+                qB: String.raw`$U = \mathbb{Z}^+$ এবং $A = \{x : 3x \ge 5\}$ হলে $n(A') = ?$`,
+                qE: String.raw`If $U = \mathbb{Z}^+$ and $A = \{x : 3x \ge 5\}$, then $n(A') = ?$`,
+                oB: ["1", "2", "3", "4"],
+                oE: ["1", "2", "3", "4"],
+                sB: String.raw`$3x \ge 5 \implies x \ge 1.67 \implies A = \{2, 3, 4, \dots\}$। $A' = \{1\}$, $n(A') = 1$।`,
+                sE: String.raw`$3x \ge 5 \implies x \ge 1.67 \implies A = \{2, 3, 4, \dots\}$. $A' = \{1\}$, $n(A') = 1$.`
+            },
+            {
+                ans: 3,
+                qB: String.raw`$U = \{1 \text{ থেকে } 9 \text{ পর্যন্ত বিজোড়}\}$ এবং $A = \{9 \text{ এর গুণনীয়ক}\}$ হলে $n(A') = ?$`,
+                qE: String.raw`If $U = \{\text{odd } 1 \le x < 10\}$ and $A = \{\text{factors of } 9\}$, then $n(A') = ?$`,
+                oB: ["8", "5", "3", "2"],
+                oE: ["8", "5", "3", "2"],
+                sB: String.raw`$U = \{1, 3, 5, 7, 9\}$। $A = \{1, 3, 9\}$। $A' = \{5, 7\}$। $n(A') = 2$।`,
+                sE: String.raw`$U = \{1, 3, 5, 7, 9\}$. $A = \{1, 3, 9\}$. $A' = \{5, 7\}$. $n(A') = 2$.`
+            },
+            {
+                ans: 2,
+                qB: String.raw`$n(A) = 3, n(B) = 4$ এবং $A \cap B = \emptyset$ হলে $n(A \cup B) = ?$`,
+                qE: String.raw`If $n(A) = 3, n(B) = 4$, and $A \cap B = \emptyset$, then $n(A \cup B) = ?$`,
+                oB: ["3", "4", "7", "12"],
+                oE: ["3", "4", "7", "12"],
+                sB: String.raw`যেহেতু $A \cap B = \emptyset$, সেহেতু $n(A \cup B) = n(A) + n(B) = 3 + 4 = 7$।`,
+                sE: String.raw`Since $A \cap B = \emptyset$, $n(A \cup B) = n(A) + n(B) = 3 + 4 = 7$.`
+            },
+            {
+                ans: 2,
+                qB: String.raw`$S = \{(x, y) : x, y \in \{-1, 0, 1\} \text{ এবং } y = x^2\}$ হলে ডোমেন কোনটি?`,
+                qE: String.raw`If $S = \{(x, y) : x, y \in \{-1, 0, 1\} \text{ and } y = x^2\}$, what is the domain?`,
+                oB: [String.raw`$\{0, 1\}$`, String.raw`$\{-1, 0\}$`, String.raw`$\{-1, 0, 1\}$`, String.raw`$\{0, 1, -2\}$`],
+                oE: [String.raw`$\{0, 1\}$`, String.raw`$\{-1, 0\}$`, String.raw`$\{-1, 0, 1\}$`, String.raw`$\{0, 1, -2\}$`],
+                sB: String.raw`$x = -1, 0, 1$ সবগুলোর জন্যই $y = x^2$ সেটে আছে। ডোমেন $= \{-1, 0, 1\}$।`,
+                sE: String.raw`For $x = -1, 0, 1$, $y = x^2$ exists in set. Domain $= \{-1, 0, 1\}$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$f(x) = \frac{x}{2-x}$ ফাংশনটির ডোমেন কোনটি?`,
+                qE: String.raw`What is the domain of the function $f(x) = \frac{x}{2-x}$?`,
+                oB: [String.raw`$\{x \in \mathbb{R} : x > 2\}$`, String.raw`$\{x \in \mathbb{R} : x \neq 2\}$`, String.raw`$\{x \in \mathbb{R} : x \ge 0\}$`, String.raw`$\{x \in \mathbb{R} : x \neq 0\}$`],
+                oE: [String.raw`$\{x \in \mathbb{R} : x > 2\}$`, String.raw`$\{x \in \mathbb{R} : x \neq 2\}$`, String.raw`$\{x \in \mathbb{R} : x \ge 0\}$`, String.raw`$\{x \in \mathbb{R} : x \neq 0\}$`],
+                sB: String.raw`হর $2 - x \neq 0 \implies x \neq 2$।`,
+                sE: String.raw`Denominator $2 - x \neq 0 \implies x \neq 2$.`
+            },
+            {
+                ans: 1,
+                qB: String.raw`$F(x) = \sqrt{3x - 2}$ এর ডোমেন কোনটি?`,
+                qE: String.raw`What is the domain of $F(x) = \sqrt{3x - 2}$?`,
+                oB: [String.raw`$\{x \in \mathbb{R} : x > \frac{2}{3}\}$`, String.raw`$\{x \in \mathbb{R} : x \ge \frac{2}{3}\}$`, String.raw`$\{x \in \mathbb{R} : x \le \frac{2}{3}\}$`, String.raw`$\{x \in \mathbb{R} : x < \frac{2}{3}\}$`],
+                oE: [String.raw`$\{x \in \mathbb{R} : x > \frac{2}{3}\}$`, String.raw`$\{x \in \mathbb{R} : x \ge \frac{2}{3}\}$`, String.raw`$\{x \in \mathbb{R} : x \le \frac{2}{3}\}$`, String.raw`$\{x \in \mathbb{R} : x < \frac{2}{3}\}$`],
+                sB: String.raw`বর্গমূলের ভেতর অঋণাত্মক হতে হবে: $3x - 2 \ge 0 \implies x \ge \frac{2}{3}$।`,
+                sE: String.raw`Square root internal value must be non-negative: $3x - 2 \ge 0 \implies x \ge \frac{2}{3}$.`
+            },
+            {
+                ans: 3,
+                qB: String.raw`$f(y) = \frac{1}{\sqrt{9-y}}$ ফাংশনটির ডোমেন কোনটি?`,
+                qE: String.raw`What is the domain of the function $f(y) = \frac{1}{\sqrt{9-y}}$?`,
+                oB: [String.raw`$\{y \in \mathbb{R} : y \ge 9\}$`, String.raw`$\{y \in \mathbb{R} : y \le 9\}$`, String.raw`$\{y \in \mathbb{R} : y > 9\}$`, String.raw`$\{y \in \mathbb{R} : y < 9\}$`],
+                oE: [String.raw`$\{y \in \mathbb{R} : y \ge 9\}$`, String.raw`$\{y \in \mathbb{R} : y \le 9\}$`, String.raw`$\{y \in \mathbb{R} : y > 9\}$`, String.raw`$\{y \in \mathbb{R} : y < 9\}$`],
+                sB: String.raw`হরে বর্গমূল থাকায় মান শূন্যের চেয়ে বড় হতে হবে: $9 - y > 0 \implies y < 9$।`,
+                sE: String.raw`Square root in denominator must be strictly positive: $9 - y > 0 \implies y < 9$.`
+            },
+            {
+                ans: 3,
+                qB: String.raw`$f(x) = 4x - 1$ এবং $0 \le x \le 3$ হলে ফাংশনটির রেঞ্জ কত?`,
+                qE: String.raw`If $f(x) = 4x - 1$ and $0 \le x \le 3$, what is the range of the function?`,
+                oB: [String.raw`$\{y \in \mathbb{R} : 0 \le y \le 3\}$`, String.raw`$\{y \in \mathbb{R} : 1 \le y \le 11\}$`, String.raw`$\{y \in \mathbb{R} : -1 \le y \le 13\}$`, String.raw`$\{y \in \mathbb{R} : -1 \le y \le 11\}$`],
+                oE: [String.raw`$\{y \in \mathbb{R} : 0 \le y \le 3\}$`, String.raw`$\{y \in \mathbb{R} : 1 \le y \le 11\}$`, String.raw`$\{y \in \mathbb{R} : -1 \le y \le 13\}$`, String.raw`$\{y \in \mathbb{R} : -1 \le y \le 11\}$`],
+                sB: String.raw`সর্বনিম্ন $f(0) = -1$ এবং সর্বোচ্চ $f(3) = 11$। রেঞ্জ: $-1 \le y \le 11$।`,
+                sE: String.raw`Minimum $f(0) = -1$ and maximum $f(3) = 11$. Range: $-1 \le y \le 11$.`
+            }
+        ];
+
+        // Renders the quiz layout dynamically
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('quiz-container');
+            const prefixBn = ['(ক)', '(খ)', '(গ)', '(ঘ)'];
+            const prefixEn = ['(a)', '(b)', '(c)', '(d)'];
+
+            quizData.forEach((q, index) => {
+                const qNum = index + 1;
+                
+                let optsBnHtml = '';
+                let optsEnHtml = '';
+
+                // Generate Options mapping identical "names" so checking English/Bangla syncs selection logically
+                for (let i = 0; i < 4; i++) {
+                    optsBnHtml += `
+                        <label class="option-label">
+                            <input type="radio" name="q${qNum}" value="${i}">
+                            <span>${prefixBn[i]} ${q.oB[i]}</span>
+                        </label>`;
+                    optsEnHtml += `
+                        <label class="option-label">
+                            <input type="radio" name="q${qNum}" value="${i}">
+                            <span>${prefixEn[i]} ${q.oE[i]}</span>
+                        </label>`;
+                }
+
+                // Construct full card block
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `card-${qNum}`;
+                card.innerHTML = `
+                    <div class="q-grid">
+                        <div class="lang-col">
+                            <div class="col-header">Bangla Version</div>
+                            <div class="q-text"><strong>প্রশ্ন ${qNum}:</strong> ${q.qB}</div>
+                            <div class="options-group">${optsBnHtml}</div>
+                        </div>
+                        
+                        <div class="lang-col">
+                            <div class="col-header">English Version</div>
+                            <div class="q-text"><strong>Q${qNum}:</strong> ${q.qE}</div>
+                            <div class="options-group">${optsEnHtml}</div>
+                        </div>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="check-btn" onclick="checkAnswer(${qNum}, ${q.ans})">
+                            Check Answer / উত্তর দেখুন
+                        </button>
+                    </div>
+
+                    <div class="solution-box" id="sol-${qNum}" style="display: none;">
+                        <div class="feedback-badge" id="badge-${qNum}"></div>
+                        <div class="q-grid">
+                            <div class="lang-col">
+                                <div class="col-header" style="color: inherit;">সমাধান</div>
+                                <div>${q.sB}</div>
+                            </div>
+                            <div class="lang-col">
+                                <div class="col-header" style="color: inherit;">Solution</div>
+                                <div>${q.sE}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Trigger MathJax parsing on dynamically injected content
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        });
+
+        /**
+         * Validates the selected input by retrieving the radio value.
+         */
+        function checkAnswer(questionNum, correctValue) {
+            const card = document.getElementById(`card-${questionNum}`);
+            const solBox = document.getElementById(`sol-${questionNum}`);
+            const badge = document.getElementById(`badge-${questionNum}`);
+            
+            const selectedOpt = card.querySelector(`input[name="q${questionNum}"]:checked`);
+            
+            if (!selectedOpt) {
+                alert("Please select an option first! / প্রথমে একটি অপশন নির্বাচন করুন!");
+                return;
+            }
+
+            // Remove previous styling
+            solBox.classList.remove('status-correct', 'status-wrong');
+            solBox.style.display = "block"; // Reveal Solution
+
+            if (parseInt(selectedOpt.value) === correctValue) {
+                solBox.classList.add('status-correct');
+                badge.textContent = "✓ Correct Answer! / সঠিক উত্তর!";
+            } else {
+                solBox.classList.add('status-wrong');
+                badge.textContent = "✗ Incorrect! / ভুল উত্তর!";
+            }
+        }
+    </script>
+</body>
+</html>

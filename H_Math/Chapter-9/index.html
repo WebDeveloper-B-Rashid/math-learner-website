@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC 2027 - Higher Mathematics CQ (Bilingual)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --text-color: #000000;
+            --bg-color: #ffffff;
+            --ui-bg: #f5f7fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Serif', 'Noto Serif Bengali', serif;
+            color: var(--text-color);
+            background-color: var(--ui-bg);
+            line-height: 1.5;
+            font-size: 11pt;
+        }
+
+        /* Language Toggle Logic */
+        body.lang-bn .en { display: none !important; }
+        body.lang-en .bn { display: none !important; }
+
+        /* UI Controls */
+        .ui-controls {
+            background: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .ui-controls button, .ui-controls select {
+            padding: 8px 16px;
+            font-size: 14pt;
+            cursor: pointer;
+            border: 2px solid #000;
+            background: #fff;
+            border-radius: 4px;
+            font-family: inherit;
+            font-weight: 600;
+        }
+
+        .ui-controls button:hover, .ui-controls select:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* A4 Print Layout */
+        .a4-page {
+            width: 210mm;
+            margin: 10mm auto;
+            background: var(--bg-color);
+            padding: 15mm;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        header .contact {
+            font-size: 11pt;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        header h2 {
+            font-size: 16pt;
+            font-weight: 600;
+        }
+
+        header h3 {
+            font-size: 12pt;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+
+       
+        .exam-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        /* Questions Grid (2 columns for better space usage) */
+        .questions-container {
+            display: column;
+            column-count: 2;
+            column-gap: 10mm;
+        }
+
+        .question-block {
+            margin-bottom: 15px;
+            page-break-inside: avoid;
+            break-inside: avoid;
+            width: 100%;
+        }
+
+        .q-number {
+            font-weight: 700;
+            margin-bottom: 5px;
+            background-color: #1b03f8;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .stem {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .sub-questions {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sub-questions li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .sub-q-text {
+            flex: 1;
+            padding-right: 10px;
+        }
+
+        .marks {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .svg-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 8px 0;
+        }
+
+        /* Print Media Queries */
+        @media print {
+            body {
+                background-color: var(--bg-color);
+            }
+            .ui-controls {
+                display: none !important;
+            }
+            .a4-page {
+                margin: 0;
+                padding: 15mm;
+                box-shadow: none;
+                width: 100%;
+                /* Reset min-height to allow natural page breaks */
+            }
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body class="lang-bn"> <div class="ui-controls">
+        <select id="langSwitch" onchange="toggleLanguage(this.value)">
+            <option value="bn">বাংলা সংস্করণ (Bangla Version)</option>
+            <option value="en">English Version</option>
+        </select>
+        <button onclick="window.print()">🖨️ Print Question Paper</button>
+    </div>
+
+    <div class="a4-page" id="printableArea">
+        <header>
+            <h1 style="font-size: 30px; color:darkblue">Md. Rashid [Assistant Professor]</h1>
+            <p class="contact" style="font-size: 25px; color:darkblue">
+                <span class="bn">যোগাযোগ: 01711008786</span>
+                <span class="en">Contact: 01711008786</span>
+            </p>
+            <h2>
+                <span class="bn">এসএসসি ২০২৭ মডেল টেস্ট</span>
+                <span class="en">SSC 2027 Model Test</span>
+            </h2>
+            <h3>
+                <span class="bn">বিষয়: উচ্চতর গণিত (অধ্যায় ১) | সৃজনশীল প্রশ্ন (CQ)</span>
+                <span class="en">Subject: Higher Mathematics (Chapter 1) | Creative Questions (CQ)</span>
+            </h3>
+        </header>
+
+        <div class="exam-info">
+            <span>
+                <span class="bn">বিষয় কোড: ১২৬</span>
+                <span class="en">Subject Code: 126</span>
+            </span>
+            <span>
+                <span class="bn">পূর্ণমান: ১০০</span>
+                <span class="en">Full Marks: 100</span>
+            </span>
+        </div>
+
+        <div class="questions-container">
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১</div>
+                <div class="q-number en">Question 1</div>
+                <div class="stem">
+                    <span class="bn">A ও B যে কোনো সসীম সেট এবং C ও D দুটি সেট যেখানে \(C = \{x : 1 < x \le 6 \text{ এবং } x \in \mathbb{R}\}\) এবং \(D = \{x : 3 \le x < 9 \text{ এবং } x \in \mathbb{R}\}\), সার্বিক সেট \(U = \{x : x \le 13 \text{ এবং } x \in \mathbb{R}\}\)</span>
+                    <span class="en">A and B are any finite sets and C, D are two sets where \(C = \{x : 1 < x \le 6 \text{ and } x \in \mathbb{R}\}\) and \(D = \{x : 3 \le x < 9 \text{ and } x \in \mathbb{R}\}\), Universal set \(U = \{x : x \le 13 \text{ and } x \in \mathbb{R}\}\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. C ও D কে ব্যবধি আকারে প্রকাশ কর।</span>
+                        <span class="sub-q-text en">a. Express C and D in interval notation.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. প্রমাণ কর যে, \(n(A \cup B) = n(A) + n(B) - n(A \cap B)\)</span>
+                        <span class="sub-q-text en">b. Prove that, \(n(A \cup B) = n(A) + n(B) - n(A \cap B)\)</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \((C \cap D)'\) কে সংখ্যারেখায় প্রকাশ কর।</span>
+                        <span class="sub-q-text en">c. Show \((C \cap D)'\) on a number line.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ২</div>
+                <div class="q-number en">Question 2</div>
+                <div class="stem">
+                    <span class="bn">সার্বিক সেট U এবং A, B ও C তিনটি উপসেট।</span>
+                    <span class="en">U is a universal set and A, B, and C are three subsets.</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. দ্যা মরগানের সূত্র লিখ।</span>
+                        <span class="sub-q-text en">a. State De Morgan's Laws.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. দেখাও যে, \((A \cup B \cup C)' = A' \cap B' \cap C'\)</span>
+                        <span class="sub-q-text en">b. Show that, \((A \cup B \cup C)' = A' \cap B' \cap C'\)</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. প্রমাণ কর যে, \(A \setminus (B \cup C) = (A \setminus B) \cap (A \setminus C)\)।</span>
+                        <span class="sub-q-text en">c. Prove that, \(A \setminus (B \cup C) = (A \setminus B) \cap (A \setminus C)\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ৩</div>
+                <div class="q-number en">Question 3</div>
+                <div class="svg-wrapper">
+                    <svg width="180" height="80" viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#000" />
+                            </marker>
+                        </defs>
+                        <ellipse cx="50" cy="50" rx="35" ry="45" fill="none" stroke="#000" stroke-width="1.5" />
+                        <text x="50" y="35" font-family="Arial" font-size="14" text-anchor="middle">4</text>
+                        <text x="50" y="70" font-family="Arial" font-size="14" text-anchor="middle">-3</text>
+                        <ellipse cx="170" cy="50" rx="35" ry="45" fill="none" stroke="#000" stroke-width="1.5" />
+                        <text x="170" y="35" font-family="Arial" font-size="14" text-anchor="middle">3</text>
+                        <text x="170" y="70" font-family="Arial" font-size="14" text-anchor="middle">0</text>
+                        <line x1="85" y1="35" x2="135" y2="70" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)" />
+                        <line x1="85" y1="70" x2="135" y2="35" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)" />
+                    </svg>
+                </div>
+                <div class="stem">
+                    <span class="bn">চিত্রে বর্ণিত ফাংশনে \(f : x \to mx + c\)</span>
+                    <span class="en">For the function described in the figure, \(f : x \to mx + c\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. অন্বয় ও এক-এক ফাংশনের সংজ্ঞা দাও।</span>
+                        <span class="sub-q-text en">a. Define Relation and One-one function.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. \(f\) ফাংশনটি নির্ণয় কর এবং ইমেজ 3 এর প্রাক প্রতিবিম্ব নির্ণয় করো।</span>
+                        <span class="sub-q-text en">b. Determine the function \(f\) and find the pre-image of image 3.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. x এর কোন মানের জন্য \(5f^{-1}(x) = -1\) হবে।</span>
+                        <span class="sub-q-text en">c. For what value of x will \(5f^{-1}(x) = -1\)?</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ৪</div>
+                <div class="q-number en">Question 4</div>
+                <div class="stem">
+                    <span>\(f(x) = x^2 - x - 2\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. \(f(2)\) এবং \(f(-2)\) এর মান কত।</span>
+                        <span class="sub-q-text en">a. What is the value of \(f(2)\) and \(f(-2)\)?</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. প্রদত্ত ফাংশনটির বিপরীত ফাংশন নির্ণয় কর যখন \(x \le \frac{1}{2}\)।</span>
+                        <span class="sub-q-text en">b. Determine the inverse function of the given function when \(x \le \frac{1}{2}\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. যদি \(A = \{x : x \in \mathbb{R}, f(x) = 0\}\) এবং \(B = \{x : x \in \mathbb{N}, 2 \le x \le 4\}\) হয়, তবে \(P(A \cap B)\) নির্ণয় কর।</span>
+                        <span class="sub-q-text en">c. If \(A = \{x : x \in \mathbb{R}, f(x) = 0\}\) and \(B = \{x : x \in \mathbb{N}, 2 \le x \le 4\}\), find \(P(A \cap B)\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ৫</div>
+                <div class="q-number en">Question 5</div>
+                <div class="stem">
+                    <span class="bn">একটি বিদ্যালয়ের দশম শ্রেণির 100 জন শিক্ষার্থীর উপর পরিচালিত এক জরিপে জানা যায় 40 জন দৈনিক প্রথম আলো, 32 জন ডেইলি স্টার, 28 জন দৈনিক ইত্তেফাক, 10 জন প্রথম আলো ও ডেইলি স্টার, 4 জন ডেইলি স্টার ও ইত্তেফাক, 5 জন প্রথম আলো ও ইত্তেফাক এবং 3 জন তিনটি পত্রিকাই পড়ে।</span>
+                    <span class="en">A survey among 100 10th-grade students revealed that 40 read Prothom Alo, 32 read Daily Star, 28 read Ittefaq, 10 read Prothom Alo & Daily Star, 4 read Daily Star & Ittefaq, 5 read Prothom Alo & Ittefaq, and 3 read all three newspapers.</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. \(A=\{x:2<x\le5, x\in\mathbb{R}\}\) এবং \(B=\{x:1\le x<3, x\in\mathbb{R}\}\) হলে \(A\cap B\) কে সেট গঠন পদ্ধতিতে দেখাও।</span>
+                        <span class="sub-q-text en">a. If \(A=\{x:2<x\le5, x\in\mathbb{R}\}\) and \(B=\{x:1\le x<3, x\in\mathbb{R}\}\), show \(A\cap B\) in set builder form.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. উদ্দীপকের গাণিতিক সমস্যাটি যে প্রতিজ্ঞার সাহায্যে সমাধান করা যায় তা প্রমাণ কর।</span>
+                        <span class="sub-q-text en">b. Prove the proposition which can be used to solve the mathematical problem in the stem.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. কতজন শিক্ষার্থী ঐ তিনটি পত্রিকার কেবল একটি পড়ে?</span>
+                        <span class="sub-q-text en">c. How many students read exactly one of the three newspapers?</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ৬</div>
+                <div class="q-number en">Question 6</div>
+                <div class="stem">
+                    <span class="bn">দৃশ্যকল্প-I: \(f(x) = 5x + 3; 0 \le x \le 3\) একটি ফাংশন।<br>দৃশ্যকল্প-II: দশম শ্রেণির 48 জন ক্যাডেটের মধ্যে 36 জন ফুটবল ও 24 জন ক্রিকেট খেলা পছন্দ করে। মনে কর U দশম শ্রেণির ক্যাডেটদের সেট। যারা ফুটবল পছন্দ করে তাদের সেট F, ক্রিকেট পছন্দ করে তাদের সেট C এবং \(n(F \cap C) = x\)।</span>
+                    <span class="en">Scenario-I: \(f(x) = 5x + 3; 0 \le x \le 3\) is a function.<br>Scenario-II: Among 48 cadets of class 10, 36 like football and 24 like cricket. Let U be the set of cadets. F is the set of football lovers, C is cricket lovers, and \(n(F \cap C) = x\).</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. \(n(F \cup C)\) কে x এর মাধ্যমে প্রকাশ করো।</span>
+                        <span class="sub-q-text en">a. Express \(n(F \cup C)\) in terms of x.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. x এর সম্ভাব্য ন্যূনতম ও বৃহত্তম মান নির্ণয় করো।</span>
+                        <span class="sub-q-text en">b. Find the possible minimum and maximum values of x.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \(f^{-1}\) নির্ণয় করো এবং \(f\) ও \(f^{-1}\) এর লেখচিত্র আঁক।</span>
+                        <span class="sub-q-text en">c. Find \(f^{-1}\) and draw the graphs of \(f\) and \(f^{-1}\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block" style="padding-top: 25px;">
+                <div class="q-number bn">প্রশ্ন ৭</div>
+                <div class="q-number en">Question 7</div>
+                <div class="stem">
+                    <span>\(F(x) = \frac{7x + 6}{3x - 2}\) 
+                    <span class="bn">এবং</span><span class="en">and</span> 
+                    \(G(x) = |x - 3|\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. ডোম F নির্ণয় কর।</span>
+                        <span class="sub-q-text en">a. Find Dom F.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. \(F\left(\frac{4}{3}\right) + F^{-1}\left(\frac{7}{3}\right)\) এর মান নির্ণয় কর।</span>
+                        <span class="sub-q-text en">b. Determine the value of \(F\left(\frac{4}{3}\right) + F^{-1}\left(\frac{7}{3}\right)\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. দেখাও যে, \(P(x) = x + 3\) এক-এক ফাংশন কিন্তু G এক-এক ফাংশন নয়।</span>
+                        <span class="sub-q-text en">c. Show that \(P(x) = x + 3\) is a one-one function but G is not a one-one function.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ৮</div>
+                <div class="q-number en">Question 8</div>
+                <div class="stem">
+                    <span class="bn">দশম শ্রেণির 100 জন ছাত্রের মধ্যে 46 জন ক্রিকেট, 42 জন ফুটবল এবং 39 জন ভলিবল খেলে। এদের মধ্যে 13 জন ফুটবল ও ক্রিকেট, 14 জন ক্রিকেট ও ভলিবল এবং 12 জন ফুটবল ও ভলিবল খেলতে পারে। এছাড়া 7 জন কোনো খেলায় পারদর্শী নয়।</span>
+                    <span class="en">Among 100 students of class ten, 46 play cricket, 42 play football and 39 play volleyball. 13 of them play football and cricket, 14 play cricket and volleyball, 12 play football and volleyball. Besides, 7 students are not skilled in any game.</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. তিনটি খেলায় পারদর্শী এবং কোনো খেলায় পারদর্শী নয় এমন ছাত্রদের সেট ভেনচিত্রে দেখাও।</span>
+                        <span class="sub-q-text en">a. Show the sets of students skilled in all three games and skilled in none using a Venn diagram.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. কতজন ছাত্র উল্লিখিত তিনটি খেলায় পারদর্শী তা নির্ণয় কর।</span>
+                        <span class="sub-q-text en">b. Find how many students are skilled in all the three mentioned games.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. কতজন ছাত্র কেবলমাত্র একটি খেলায় পারদর্শী এবং কতজন অন্তত দুটি খেলায় পারদর্শী?</span>
+                        <span class="sub-q-text en">c. How many students are skilled in exactly one game and how many in at least two games?</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ৯</div>
+                <div class="q-number en">Question 9</div>
+                <div class="stem">
+                    <span>\(f: \mathbb{R} \setminus \{1\} \to \mathbb{R} \setminus \{2\}\) 
+                    <span class="bn">এবং</span><span class="en">and</span> 
+                    \(g: \mathbb{R} \setminus \{-\frac{1}{2}\} \to \mathbb{R}\) <br>
+                    \(f(x) = \frac{2x + 2}{x - 1}\) 
+                    <span class="bn">এবং</span><span class="en">and</span> 
+                    \(g(x) = \frac{x - 3}{2x + 1}\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. ডোম \(f\) এবং ডোম \(g\) নির্ণয় কর।</span>
+                        <span class="sub-q-text en">a. Find Dom \(f\) and Dom \(g\).</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. দেখাও যে, \(g\) ফাংশনটি এক-এক কিন্তু অনটু নয়।</span>
+                        <span class="sub-q-text en">b. Show that the function \(g\) is one-one but not onto.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \(f^{-1}(x)\) নির্ণয় কর এবং \(3f^{-1}(x) = x\) হলে x এর মান নির্ণয় কর।</span>
+                        <span class="sub-q-text en">c. Find \(f^{-1}(x)\) and if \(3f^{-1}(x) = x\), find the value of x.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১০</div>
+                <div class="q-number en">Question 10</div>
+                <div class="stem">
+                    <span>\(f(x) = \frac{4x + 3}{2x + 5}\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. \(f(x)\) এর ডোমেন নির্ণয় কর।</span>
+                        <span class="sub-q-text en">a. Determine the domain of \(f(x)\).</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. দেখাও যে, \(f(x)\) এক-এক ফাংশন।</span>
+                        <span class="sub-q-text en">b. Show that \(f(x)\) is a one-one function.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \(f^{-1}(-2) = p \cdot f^{-1}(-3)\) হলে, p এর মান নির্ণয় কর।</span>
+                        <span class="sub-q-text en">c. If \(f^{-1}(-2) = p \cdot f^{-1}(-3)\), determine the value of p.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১১</div>
+                <div class="q-number en">Question 11</div>
+                <div class="stem">
+                    <span>\(h(x) = \sqrt{x - 5}\) 
+                    <span class="bn">একটি বাস্তব ফাংশন।</span>
+                    <span class="en">is a real-valued function.</span></span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. ফাংশনটির ডোমেন নির্ণয় কর।</span>
+                        <span class="sub-q-text en">a. Determine the domain of the function.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. ফাংশনটি এক-এক কি না তা যাচাই কর।</span>
+                        <span class="sub-q-text en">b. Verify whether the function is one-one or not.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \(h^{-1}(x)\) নির্ণয় কর এবং এর রেঞ্জ বের কর।</span>
+                        <span class="sub-q-text en">c. Determine \(h^{-1}(x)\) and find its range.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block" style="padding-top: 25px;">
+                <div class="q-number bn">প্রশ্ন ১২</div>
+                <div class="q-number en">Question 12</div>
+                <div class="stem">
+                    <span>\(S = \{(x, y) : x^2 + y^2 = 16\}\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. S অন্বয়টি ফাংশন কি না কারণসহ লেখ।</span>
+                        <span class="sub-q-text en">a. State with reason whether relation S is a function.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. S অন্বয়টির ডোমেন ও রেঞ্জ নির্ণয় কর।</span>
+                        <span class="sub-q-text en">b. Find the domain and range of the relation S.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. অন্বয়টির লেখচিত্র অঙ্কন কর।</span>
+                        <span class="sub-q-text en">c. Draw the graph of the relation.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১৩</div>
+                <div class="q-number en">Question 13</div>
+                <div class="stem">
+                    <span class="bn">সার্বিক সেট \(U = \{x \in \mathbb{N} : x \le 8\}\), \(A = \{2, 3, 5, 7\}\) এবং \(B = \{1, 3, 5, 6\}\)।</span>
+                    <span class="en">Universal set \(U = \{x \in \mathbb{N} : x \le 8\}\), \(A = \{2, 3, 5, 7\}\) and \(B = \{1, 3, 5, 6\}\).</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. A ও B সেটকে সেট গঠন পদ্ধতিতে প্রকাশ কর।</span>
+                        <span class="sub-q-text en">a. Express sets A and B in set-builder form.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. প্রমাণ কর যে, \((A \cap B)' = A' \cup B'\)।</span>
+                        <span class="sub-q-text en">b. Prove that \((A \cap B)' = A' \cup B'\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \(P(A \setminus B)\) নির্ণয় কর এবং দেখাও যে এর উপাদান সংখ্যা \(2^n\) কে সমর্থন করে।</span>
+                        <span class="sub-q-text en">c. Determine \(P(A \setminus B)\) and show that its number of elements supports \(2^n\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১৪</div>
+                <div class="q-number en">Question 14</div>
+                <div class="stem">
+                    <span>\(f(x) = \frac{x-3}{2x+1}\) 
+                    <span class="bn">এবং</span><span class="en">and</span> 
+                    \(g(x) = 3x - 2\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. \(f(2)\) এর মান নির্ণয় কর।</span>
+                        <span class="sub-q-text en">a. Find the value of \(f(2)\).</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. প্রমাণ কর যে, \(f\) একটি এক-এক ফাংশন।</span>
+                        <span class="sub-q-text en">b. Prove that \(f\) is a one-one function.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \(x\) এর কোন মানের জন্য \(f^{-1}(x) = g(x)\) হবে?</span>
+                        <span class="sub-q-text en">c. For what value of \(x\) is \(f^{-1}(x) = g(x)\)?</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১৫</div>
+                <div class="q-number en">Question 15</div>
+                <div class="stem">
+                    <span class="bn">কোনো শ্রেণির 60 জন শিক্ষার্থীর মধ্যে 35 জন গণিতে এবং 30 জন ইংরেজিতে পাস করেছে। 15 জন উভয় বিষয়ে ফেল করেছে।</span>
+                    <span class="en">Out of 60 students in a class, 35 passed in Mathematics and 30 passed in English. 15 students failed in both subjects.</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. তথ্যগুলোকে ভেনচিত্রে উপস্থাপন কর।</span>
+                        <span class="sub-q-text en">a. Represent the given information in a Venn diagram.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. কতজন শিক্ষার্থী উভয় বিষয়ে পাস করেছে?</span>
+                        <span class="sub-q-text en">b. How many students passed in both subjects?</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. শুধুমাত্র এক বিষয়ে পাস করা শিক্ষার্থীর সংখ্যা নির্ণয় কর।</span>
+                        <span class="sub-q-text en">c. Find the number of students who passed in exactly one subject.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১৬</div>
+                <div class="q-number en">Question 16</div>
+                <div class="stem">
+                    <span>\(F(x) = x^3 - 3x^2 + 5x - 2\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. \(F(0)\) এবং \(F(-1)\) এর মান নির্ণয় কর।</span>
+                        <span class="sub-q-text en">a. Find the values of \(F(0)\) and \(F(-1)\).</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. দেখাও যে, \(F(x) = 0\) সমীকরণের একটি মূল \(x=1\)।</span>
+                        <span class="sub-q-text en">b. Show that \(x=1\) is a root of the equation \(F(x) = 0\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. যদি \(F(a) = 4\) হয়, তবে a এর মান নির্ণয় কর।</span>
+                        <span class="sub-q-text en">c. If \(F(a) = 4\), then find the value of a.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১৭</div>
+                <div class="q-number en">Question 17</div>
+                <div class="stem">
+                    <span>\(R = \{(x, y) \in A \times A : x - y = 1\}\), 
+                    <span class="bn">যেখানে</span><span class="en">where</span> 
+                    \(A = \{0, 1, 2, 3\}\)</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. \(A \times A\) এর উপাদান সংখ্যা কত?</span>
+                        <span class="sub-q-text en">a. What is the number of elements in \(A \times A\)?</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. R কে তালিকা পদ্ধতিতে প্রকাশ কর এবং এর ডোমেন নির্ণয় কর।</span>
+                        <span class="sub-q-text en">b. Express R in tabular method and find its domain.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \(R^{-1}\) নির্ণয় কর এবং এটি ফাংশন কি না তা ব্যাখ্যা কর।</span>
+                        <span class="sub-q-text en">c. Determine \(R^{-1}\) and explain whether it is a function.</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-block">
+                <div class="q-number bn">প্রশ্ন ১৮</div>
+                <div class="q-number en">Question 18</div>
+                <div class="stem">
+                    <span class="bn">একটি ফাংশন \(f: \mathbb{R} \to \mathbb{R}\), \(f(x) = 2x + 5\) দ্বারা সংজ্ঞায়িত।</span>
+                    <span class="en">A function \(f: \mathbb{R} \to \mathbb{R}\) is defined by \(f(x) = 2x + 5\).</span>
+                </div>
+                <ul class="sub-questions">
+                    <li>
+                        <span class="sub-q-text bn">ক. ফাংশনটির রেঞ্জ নির্ণয় কর।</span>
+                        <span class="sub-q-text en">a. Find the range of the function.</span>
+                        <span class="marks bn">২</span><span class="marks en">2</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">খ. প্রমাণ কর যে ফাংশনটি অনটু (সার্বিক)।</span>
+                        <span class="sub-q-text en">b. Prove that the function is onto (surjective).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                    <li>
+                        <span class="sub-q-text bn">গ. \(f(f^{-1}(x)) = x\) সম্পর্কটি যাচাই কর।</span>
+                        <span class="sub-q-text en">c. Verify the relation \(f(f^{-1}(x)) = x\).</span>
+                        <span class="marks bn">৪</span><span class="marks en">4</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div> </div> <script>
+        function toggleLanguage(lang) {
+            document.body.className = 'lang-' + lang;
+        }
+    </script>
+</body>
+</html>

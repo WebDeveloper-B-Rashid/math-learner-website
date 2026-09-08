@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC Preparation Test 2026 - Higher Mathematics</title>
+    <style>
+        /* Web Display Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #2c3e50;
+            margin: 5px 0;
+        }
+        .header-info {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+        }
+        .tab-button {
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .tab-button:hover {
+            background-color: #bdc3c7;
+        }
+        .tab-button.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .print-btn {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .print-btn:hover {
+            background-color: #c0392b;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .group-title {
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-top: 25px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        .question-block {
+            margin-top: 15px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #fcfcfc;
+            border: 1px solid #ddd;
+            border-left: 4px solid #2ecc71;
+            border-radius: 4px;
+        }
+        .question-stem {
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .sub-question {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            line-height: 1.4;
+        }
+        .marks {
+            font-weight: bold;
+            color: #333;
+            margin-left: 15px;
+        }
+        .instructions {
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+            font-weight: bold;
+        }
+        .citation {
+            font-size: 0.7em;
+            color: #95a5a6;
+        }
+
+        /* Print Styles for A4 Paper */
+        @media print {
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            /* Hide elements not needed in print */
+            .controls {
+                display: none;
+            }
+            .tab-content {
+                display: none; /* Hide all by default in print */
+            }
+            .tab-content.active {
+                display: block; /* Only print the active tab */
+            }
+            /* Adjust colors and borders for printing */
+            .question-block {
+                border: none;
+                background-color: transparent;
+                padding: 5px 0;
+                margin-bottom: 15px;
+            }
+            h1, h2, h3, .group-title {
+                color: #000;
+            }
+            .citation {
+                display: none; /* Optionally hide citations on printed test paper */
+            }
+            .header-info {
+                border-bottom: 2px solid #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="controls">
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'BanglaCQ')">Bangla Version CQ</button>
+            <button class="tab-button" onclick="openTab(event, 'EnglishCQ')">English Version CQ</button>
+            <button class="tab-button" onclick="openTab(event, 'ShortQs')">Short Questions</button>
+        </div>
+        <button class="print-btn" onclick="window.print()">🖨️ Print Current Tab (A4)</button>
+    </div>
+
+    <!-- Bangla Version CQ -->
+    <div id="BanglaCQ" class="tab-content active">
+        <h1>SSC Preparation Test 2026</h1>
+        <h2>Subject: Higher Mathematics</h2>
+        <div class="header-info">
+            Subject Code: 126 | CQ Full Marks: 20 | Time: 40 Minutes
+        </div>
+        <div class="instructions">
+            যে কোনো বিভাগ থেকে ১টি করে মোট ২টি প্রশ্নের উত্তর দাও। (১০ x ২ = ২০)
+        </div>
+        
+        <div class="group-title">ক-বিভাগ: সেট ও ফাংশন</div>
+        
+        <div class="question-block">
+            <div class="question-stem">
+                ১. f(x) = (2x + 3) / (x - 2) একটি ফাংশন; যেখানে x ≠ 2.
+            </div>
+            <div class="sub-question">
+                <span>ক. f(-2) এর মান নির্ণয় কর।</span>
+                <span class="marks">২</span>
+            </div>
+            <div class="sub-question">
+                <span>খ. f(x) দ্বারা বর্ণিত ফাংশনটি এক-এক কিনা তা নির্ণয় কর।</span>
+                <span class="marks">৪</span>
+            </div>
+            <div class="sub-question">
+                <span>গ. f⁻¹(x) = 3x হলে, x এর সম্ভাব্য মান নির্ণয় কর।</span>
+                <span class="marks">৪</span>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-stem">
+                ২. দশম শ্রেণির 100 জন ছাত্রের মধ্যে 46 জন ক্রিকেট, 42 জন ফুটবল এবং 39 জন ভলিবল খেলে। এদের মধ্যে 13 জন ফুটবল ও ক্রিকেট, 14 জন ক্রিকেট ও ভলিবল এবং 12 জন ফুটবল ও ভলিবল খেলতে পারে। এছাড়া 7 জন কোনো খেলায় পারদর্শী নয়।
+            </div>
+            <div class="sub-question">
+                <span>ক. উল্লিখিত তিনটি খেলায় পারদর্শী এমন ছাত্রদের সেট এবং কোনো খেলায় পারদর্শী নয় এমন ছাত্রদের সেট ভেনচিত্রে দেখাও।</span>
+                <span class="marks">২</span>
+            </div>
+            <div class="sub-question">
+                <span>খ. কতজন ছাত্র উল্লিখিত তিনটি খেলায় পারদর্শী তা নির্ণয় কর।</span>
+                <span class="marks">৪</span>
+            </div>
+            <div class="sub-question">
+                <span>গ. কতজন ছাত্র কেবলমাত্র একটি খেলায় পারদর্শী এবং কতজন অন্তত দুটি খেলায় পারদর্শী?</span>
+                <span class="marks">৪</span>
+            </div>
+        </div>
+
+        <div class="group-title">খ-বিভাগ: বীজগাণিতিক রাশি</div>
+        
+        <div class="question-block">
+            <div class="question-stem">
+                ৩. F(x, y, z) = x⁻³ + y⁻³ + z⁻³ - 3x⁻¹y⁻¹z⁻¹ এবং a = y + z - x, b = z + x - y, c = x + y - z.
+            </div>
+            <div class="sub-question">
+                <span>ক. দেখাও যে, (a/b) + (b/c) + (c/a) রাশিটি a, b, c চলকের চক্রক্রমিক রাশি।</span>
+                <span class="marks">২</span>
+            </div>
+            <div class="sub-question">
+                <span>খ. F(x, y, z) = 0 হলে, প্রমাণ কর যে, xy + yz + zx = 0 এবং x = y = z.</span>
+                <span class="marks">৪</span>
+            </div>
+            <div class="sub-question">
+                <span>গ. প্রমাণ কর যে, a³ + b³ + c³ - 3abc = 4(x³ + y³ + z³ - 3xyz).</span>
+                <span class="marks">৪</span>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-stem">
+                ৪. f(x) = x³ + 2x² - 15x একটি বহুপদী।
+            </div>
+            <div class="sub-question">
+                <span>ক. x³ + ax² + 2x + 1 বহুপদীর একটি উৎপাদক (x + 1) হলে a এর মান নির্ণয় কর।</span>
+                <span class="marks">২</span>
+            </div>
+            <div class="sub-question">
+                <span>খ. f(x) কে (x - m) এবং (x - n) দ্বারা ভাগ করলে যদি একই ভাগশেষ থাকে যেখানে m ≠ n, তবে দেখাও যে, m² + mn + n² + 2m + 2n - 15 = 0</span>
+                <span class="marks">৪</span>
+            </div>
+            <div class="sub-question">
+                <span>গ. (x + 2) / f(x) কে আংশিক ভগ্নাংশে প্রকাশ কর।</span>
+                <span class="marks">৪</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Short question  start -->
+<!-- Short Questions (Bangla) -->
+    <div id="ShortQs" class="tab-content">
+        <h1>SSC Preparation Test 2026</h1>
+        <h2>Subject: Higher Mathematics (সংক্ষিপ্ত প্রশ্ন)</h2>
+        <div class="header-info">
+            Short Qs Full Marks: 10 | Time: 20 Minutes
+        </div>
+        <div class="instructions">
+            সবগুলো প্রশ্নের উত্তর দাও (প্রতিটি প্রশ্নের মান ২)।
+        </div>
+        <div class="question-block">
+            <div class="sub-question">
+                <span>১. A = {1, 2, 3, 4} হলে, এর শক্তি সেট P(A) এর উপাদান সংখ্যা কত?</span>
+                <span class="marks">২</span>
+            </div>
+            <div class="sub-question">
+                <span>২. উপযুক্ত উদাহরণসহ প্রকৃত উপসেটের সংজ্ঞা দাও।</span>
+                <span class="marks">২</span>
+            </div>
+            <div class="sub-question">
+                <span>৩. উৎপাদকে বিশ্লেষণ কর: x³ - 8y³</span>
+                <span class="marks">২</span>
+            </div>
+            <div class="sub-question">
+                <span>৪. প্রতিসম রাশি কাকে বলে? একটি উদাহরণ দাও।</span>
+                <span class="marks">২</span>
+            </div>
+            <div class="sub-question">
+                <span>৫. f(x) = x² - 5x + 6 হলে, f(0) এর মান নির্ণয় কর।</span>
+                <span class="marks">২</span>
+            </div>
+        </div>
+    </div>
+    <!-- Short question end -->
+
+    <!-- English Version CQ -->
+    <div id="EnglishCQ" class="tab-content">
+        <h1>SSC Preparation Test 2026</h1>
+        <h2>Subject: Higher Mathematics</h2>
+        <div class="header-info">
+            Subject Code: 126 | CQ Full Marks: 20 | Time: 40 Minutes
+        </div>
+        <div class="instructions">
+            Answer 2 questions in total, selecting one from each group. (10 x 2 = 20)
+        </div>
+        
+        <div class="group-title">Group A: Set and Function</div>
+        
+        <div class="question-block">
+            <div class="question-stem">
+                1. f(x) = (2x + 3) / (x - 2) is a function; where x ≠ 2.
+            </div>
+            <div class="sub-question">
+                <span>a. Find the value of f(-2).</span>
+                <span class="marks">2</span>
+            </div>
+            <div class="sub-question">
+                <span>b. Determine whether the function described by f(x) is a one-one function.</span>
+                <span class="marks">4</span>
+            </div>
+            <div class="sub-question">
+                <span>c. If f⁻¹(x) = 3x, find the possible values of x.</span>
+                <span class="marks">4</span>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-stem">
+                2. Out of 100 students in class 10, 46 play cricket, 42 play football, and 39 play volleyball. Among them, 13 play football and cricket, 14 play cricket and volleyball, and 12 play football and volleyball. Besides, 7 students are not skilled in any game.
+            </div>
+            <div class="sub-question">
+                <span>a. Express the set of students skilled in all three games and the set of students not skilled in any game in a Venn diagram.</span>
+                <span class="marks">2</span>
+            </div>
+            <div class="sub-question">
+                <span>b. Find how many students are skilled in all three games.</span>
+                <span class="marks">4</span>
+            </div>
+            <div class="sub-question">
+                <span>c. How many students are skilled in exactly one game and how many are skilled in at least two games?</span>
+                <span class="marks">4</span>
+            </div>
+        </div>
+
+        <div class="group-title">Group B: Algebraic Expression</div>
+        
+        <div class="question-block">
+            <div class="question-stem">
+                3. F(x, y, z) = x⁻³ + y⁻³ + z⁻³ - 3x⁻¹y⁻¹z⁻¹ and a = y + z - x, b = z + x - y, c = x + y - z.
+            </div>
+            <div class="sub-question">
+                <span>a. Show that the expression (a/b) + (b/c) + (c/a) is a cyclic expression of the variables a, b, c.</span>
+                <span class="marks">2</span>
+            </div>
+            <div class="sub-question">
+                <span>b. If F(x, y, z) = 0, prove that xy + yz + zx = 0 and x = y = z.</span>
+                <span class="marks">4</span>
+            </div>
+            <div class="sub-question">
+                <span>c. Prove that a³ + b³ + c³ - 3abc = 4(x³ + y³ + z³ - 3xyz).</span>
+                <span class="marks">4</span>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-stem">
+                4. f(x) = x³ + 2x² - 15x is a polynomial.
+            </div>
+            <div class="sub-question">
+                <span>a. If (x + 1) is a factor of the polynomial x³ + ax² + 2x + 1, find the value of a.</span>
+                <span class="marks">2</span>
+            </div>
+            <div class="sub-question">
+                <span>b. If f(x) leaves the same remainder when divided by (x - m) and (x - n) where m ≠ n, then show that m² + mn + n² + 2m + 2n - 15 = 0</span>
+                <span class="marks">4</span>
+            </div>
+            <div class="sub-question">
+                <span>c. Express (x + 2) / f(x) into partial fractions.</span>
+                <span class="marks">4</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Short Questions -->
+    <div id="ShortQs" class="tab-content">
+        <h1>SSC Preparation Test 2026</h1>
+        <h2>Subject: Higher Mathematics (Short Questions)</h2>
+        <div class="header-info">
+            Short Qs Full Marks: 10 | Time: 20 Minutes
+        </div>
+        <div class="instructions">
+            Answer all the questions (Each question carries 2 marks).
+        </div>
+        <div class="question-block">
+            <div class="sub-question">
+                <span>1. If A = {1, 2, 3, 4}, how many elements are there in the power set P(A)?</span>
+                <span class="marks">2</span>
+            </div>
+            <div class="sub-question">
+                <span>2. Define a proper subset with a suitable example.</span>
+                <span class="marks">2</span>
+            </div>
+            <div class="sub-question">
+                <span>3. Resolve into factors: x³ - 8y³</span>
+                <span class="marks">2</span>
+            </div>
+            <div class="sub-question">
+                <span>4. What is a symmetric expression? Give an example.</span>
+                <span class="marks">2</span>
+            </div>
+            <div class="sub-question">
+                <span>5. If f(x) = x² - 5x + 6, find the value of f(0).</span>
+                <span class="marks">2</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+
+        // Hide all tab contents
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+
+        // Remove active class from all buttons
+        tablinks = document.getElementsByClassName("tab-button");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the selected tab and set button as active
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+</body>
+</html>

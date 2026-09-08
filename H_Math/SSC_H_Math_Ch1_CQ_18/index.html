@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC 2027 - Higher Mathematics CQ</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --text-color: #000000;
+            --bg-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Serif Bengali', serif;
+            color: var(--text-color);
+            background-color: #f0f0f0;
+            line-height: 1.5;
+            font-size: 11pt; /* Optimized for A4 Print */
+        }
+
+        /* A4 Print Layout container */
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            background: var(--bg-color);
+            padding: 15mm;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        header .contact {
+            font-size: 11pt;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        header h2 {
+            font-size: 16pt;
+            font-weight: 600;
+        }
+
+        header h3 {
+            font-size: 12pt;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+        
+        .exam-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Question Blocks */
+        .question-block {
+            margin-bottom: 15px;
+            page-break-inside: avoid; /* Keeps question together during printing */
+        }
+
+        .school-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dotted #ccc;
+        }
+        
+        .school-name span:first-child {
+            background-color: #000;
+            color: #fff;
+            padding: 0 8px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+
+        .stem {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .sub-questions {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .sub-questions li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .marks {
+            font-weight: bold;
+            padding-left: 15px;
+            white-space: nowrap;
+        }
+
+        /* Image mapping wrapper */
+        .svg-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        /* Print Button / UI */
+        .ui-controls {
+            text-align: center;
+            margin: 20px;
+        }
+        
+        button.print-btn {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        button.print-btn:hover {
+            background-color: #333;
+        }
+
+        /* Print Media Queries */
+        @media print {
+            body {
+                background-color: var(--bg-color);
+            }
+            .a4-page {
+                margin: 0;
+                padding: 15mm;
+                box-shadow: none;
+                width: 100%;
+                min-height: 100%;
+            }
+            .ui-controls {
+                display: none; /* Hide button on print */
+            }
+            @page {
+                size: A4;
+                margin: 0; /* Managed by .a4-page padding */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ui-controls">
+        <button class="print-btn" onclick="window.print()">🖨️ Print Question Paper (A4)</button>
+    </div>
+
+    <div class="a4-page" id="printableArea">
+        <header>
+            <h1>Md. Rashid</h1>
+            <h2>Assistant Professor</h2>
+            <p class="contact">Contact: 01711008786</p>
+            <h2>SSC 2027 Model Test</h2>
+            <h3>Subject: Higher Mathematics (Chapter 1) | Set: Creative Questions (CQ)</h3>
+        </header>
+
+        <div class="exam-info">
+            <span>Subject Code: 126</span>
+            <span>Full Marks: 100</span>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ১</span> ঝিনাইদহ ক্যাডেট কলেজ, ঝিনাইদহ; নির্বাচনি পরীক্ষা-২০১৯</div>
+            <div class="stem">
+                A ও B যে কোনো সসীম সেট এবং C ও D দুটি সেট যেখানে \(C = \{x : 1 < x \le 6 \text{ এবং } x \in \mathbb{R}\}\) এবং \(D = \{x : 3 \le x < 9 \text{ এবং } x \in \mathbb{R}\}\), সার্বিক সেট \(U = \{x : x \le 13 \text{ এবং } x \in \mathbb{R}\}\)
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. C ও D কে ব্যবধি আকারে প্রকাশ কর।</span> <span class="marks">২</span></li>
+                <li><span>খ. প্রমাণ কর যে, \(n(A \cup B) = n(A) + n(B) - n(A \cap B)\)</span> <span class="marks">৪</span></li>
+                <li><span>গ. \((C \cap D)'\) কে সংখ্যারেখায় প্রকাশ কর।</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ২</span> কক্সবাজার সরকারি উচ্চ বিদ্যালয়, কক্সবাজার; নির্বাচনি পরীক্ষা-২০১৭</div>
+            <div class="stem">
+                সার্বিক সেট U এবং A, B ও C তিনটি উপসেট।
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. দ্যা মরগানের সূত্র লিখ।</span> <span class="marks">২</span></li>
+                <li><span>খ. দেখাও যে, \((A \cup B \cup C)' = A' \cap B' \cap C'\)</span> <span class="marks">৪</span></li>
+                <li><span>গ. প্রমাণ কর যে, \(A \setminus (B \cup C) = (A \setminus B) \cap (A \setminus C)\)।</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ৩</span> বান্দরবান ক্যান্টনমেন্ট পাবলিক স্কুল ও কলেজ; নির্বাচনি পরীক্ষা-২০১৬</div>
+            <div class="svg-wrapper">
+                <svg width="220" height="100" viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#000" />
+                        </marker>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="35" ry="45" fill="none" stroke="#000" stroke-width="1.5" />
+                    <text x="50" y="35" font-family="Arial" font-size="14" text-anchor="middle">4</text>
+                    <text x="50" y="70" font-family="Arial" font-size="14" text-anchor="middle">-3</text>
+                    
+                    <ellipse cx="170" cy="50" rx="35" ry="45" fill="none" stroke="#000" stroke-width="1.5" />
+                    <text x="170" y="35" font-family="Arial" font-size="14" text-anchor="middle">3</text>
+                    <text x="170" y="70" font-family="Arial" font-size="14" text-anchor="middle">0</text>
+                    
+                    <line x1="85" y1="35" x2="135" y2="70" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <line x1="85" y1="70" x2="135" y2="35" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)" />
+                </svg>
+            </div>
+            <div class="stem">
+                চিত্রে বর্ণিত ফাংশনে \(f : x \to mx + c\)
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. অন্বয় ও এক-এক ফাংশনের সংজ্ঞা দাও।</span> <span class="marks">২</span></li>
+                <li><span>খ. \(f\) ফাংশনটি নির্ণয় কর এবং ইমেজ 3 এর প্রাক প্রতিবিম্ব নির্ণয় করো।</span> <span class="marks">৪</span></li>
+                <li><span>গ. x এর কোন মানের জন্য \(5f^{-1}(x) = -1\) হবে।</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ৪</span> চট্টগ্রাম প্রকৌশল বিশ্ববিদ্যালয় স্কুল এন্ড কলেজ, চট্টগ্রাম; নির্বাচনি পরীক্ষা-২০১৭</div>
+            <div class="stem">
+                \(f(x) = x^2 - x - 2\)
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. \(f(2)\) এবং \(f(-2)\) এর মান কত।</span> <span class="marks">২</span></li>
+                <li><span>খ. প্রদত্ত ফাংশনটির বিপরীত ফাংশন নির্ণয় কর যখন \(x \le \frac{1}{2}\)।</span> <span class="marks">৪</span></li>
+                <li><span>গ. যদি \(A = \{x : x \in \mathbb{R}, f(x) = 0\}\) এবং \(B = \{x : x \in \mathbb{N}, 2 \le x \le 4\}\) হয়, তবে \(P(A \cap B)\) নির্ণয় কর।</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ৫</span> লক্ষ্মীপুর সরকারি বালিকা উচ্চ বিদ্যালয়, লক্ষ্মীপুর; নির্বাচনি পরীক্ষা-২০১৭</div>
+            <div class="stem">
+                লক্ষ্মীপুর সরকারি বালিকা উচ্চ বিদ্যালয়ের দশম শ্রেণির 100 জন শিক্ষার্থীর উপর পরিচালিত এক জরিপে জানা যায় 40 জন দৈনিক প্রথম আলো, 32 জন ডেইলি স্টার, 28 জন দৈনিক ইত্তেফাক, 10 জন প্রথম আলো ও ডেইলি স্টার, 4 জন ডেইলি স্টার ও ইত্তেফাক, 5 জন প্রথম আলো ও ইত্তেফাক এবং 3 জন তিনটি পত্রিকাই পড়ে।
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. \(A=\{x:2<x\le5, x\in\mathbb{R}\}\) এবং \(B=\{x:1\le x<3, x\in\mathbb{R}\}\) হলে \(A\cap B\) কে সেট গঠন পদ্ধতিতে দেখাও।</span> <span class="marks">২</span></li>
+                <li><span>খ. উদ্দীপকের গাণিতিক সমস্যাটি যে প্রতিজ্ঞার সাহায্যে সমাধান করা যায় তা প্রমাণ কর।</span> <span class="marks">৪</span></li>
+                <li><span>গ. কতজন শিক্ষার্থী ঐ তিনটি পত্রিকার কেবল একটি পড়ে?</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ৬</span> রাজশাহী ক্যাডেট কলেজ, রাজশাহী; নির্বাচনি পরীক্ষা-২০১৯</div>
+            <div class="stem">
+                দৃশ্যকল্প-I: \(f(x) = 5x + 3; 0 \le x \le 3\) একটি ফাংশন।<br>
+                দৃশ্যকল্প-II: দশম শ্রেণির 48 জন ক্যাডেটের মধ্যে 36 জন ফুটবল ও 24 জন ক্রিকেট খেলা পছন্দ করে। মনে কর U দশম শ্রেণির ক্যাডেটদের সেট। যারা ফুটবল খেলা পছন্দ করে তাদের সেট F, যারা ক্রিকেট খেলা পছন্দ করে তাদের সেট C এবং \(n(F \cap C) = x\)।
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. \(n(F \cup C)\) কে x এর মাধ্যমে প্রকাশ করো।</span> <span class="marks">২</span></li>
+                <li><span>খ. x এর সম্ভাব্য ন্যূনতম ও বৃহত্তম মান নির্ণয় করো।</span> <span class="marks">৪</span></li>
+                <li><span>গ. \(f^{-1}\) নির্ণয় করো এবং \(f\) ও \(f^{-1}\) এর লেখচিত্র আঁক।</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ৭</span> ফরিদপুর সরকারি বালিকা উচ্চ বিদ্যালয়; নির্বাচনি পরীক্ষা-২০১৯</div>
+            <div class="stem">
+                \(F(x) = \frac{7x + 6}{3x - 2}\) এবং \(G(x) = |x - 3|\)
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. ডোম F নির্ণয় কর।</span> <span class="marks">২</span></li>
+                <li><span>খ. \(F\left(\frac{4}{3}\right) + F^{-1}\left(\frac{7}{3}\right)\) এর মান নির্ণয় কর।</span> <span class="marks">৪</span></li>
+                <li><span>গ. দেখাও যে, \(P(x) = x + 3\) এক-এক ফাংশন কিন্তু G এক-এক ফাংশন নয়।</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ৮</span> মাইলস্টোন কলেজ, ঢাকা; নির্বাচনি পরীক্ষা-২০১৭</div>
+            <div class="stem">
+                দশম শ্রেণির 100 জন ছাত্রের মধ্যে 46 জন ক্রিকেট, 42 জন ফুটবল এবং 39 জন ভলিবল খেলে। এদের মধ্যে 13 জন ফুটবল ও ক্রিকেট, 14 জন ক্রিকেট ও ভলিবল এবং 12 জন ফুটবল ও ভলিবল খেলতে পারে। এছাড়া 7 জন কোনো খেলায় পারদর্শী নয়।
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. উল্লিখিত তিনটি খেলায় পারদর্শী এমন ছাত্রদের সেট এবং কোনো খেলায় পারদর্শী নয় এমন ছাত্রদের সেট ভেনচিত্রে দেখাও।</span> <span class="marks">২</span></li>
+                <li><span>খ. কতজন ছাত্র উল্লিখিত তিনটি খেলায় পারদর্শী তা নির্ণয় কর।</span> <span class="marks">৪</span></li>
+                <li><span>গ. কতজন ছাত্র কেবলমাত্র একটি খেলায় পারদর্শী এবং কতজন অন্তত দুটি খেলায় পারদর্শী?</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ৯</span> মতিঝিল সরকারি বালক উচ্চ বিদ্যালয়, ঢাকা; নির্বাচনি পরীক্ষা-২০১৮</div>
+            <div class="stem">
+                \(f: \mathbb{R} \setminus \{1\} \to \mathbb{R} \setminus \{2\}\) এবং \(g: \mathbb{R} \setminus \{-\frac{1}{2}\} \to \mathbb{R}\) ফাংশনদ্বয়<br>
+                \(f(x) = \frac{2x + 2}{x - 1}\) এবং \(g(x) = \frac{x - 3}{2x + 1}\)
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. ডোম \(f\) এবং ডোম \(g\) নির্ণয় কর।</span> <span class="marks">২</span></li>
+                <li><span>খ. দেখাও যে, \(g\) ফাংশনটি এক-এক কিন্তু অনটু নয়।</span> <span class="marks">৪</span></li>
+                <li><span>গ. \(f^{-1}(x)\) নির্ণয় কর এবং \(3f^{-1}(x) = x\) হলে x এর মান নির্ণয় কর।</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <div class="school-name"><span>প্রশ্ন ১০</span> যশোর বোর্ড-২০১৭ | প্রশ্ন নং ১</div>
+            <div class="stem">
+                \(f(x) = \frac{4x + 3}{2x + 5}\)
+            </div>
+            <ul class="sub-questions">
+                <li><span>ক. \(f(x)\) এর ডোমেন নির্ণয় কর।</span> <span class="marks">২</span></li>
+                <li><span>খ. দেখাও যে, \(f(x)\) এক-এক ফাংশন।</span> <span class="marks">৪</span></li>
+                <li><span>গ. \(f^{-1}(-2) = p \cdot f^{-1}(-3)\) হলে, p এর মান নির্ণয় কর।</span> <span class="marks">৪</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Optional scripts for layout logic can go here. 
+        // The MathJax integration handles all the formulas dynamically on load.
+    </script>
+</body>
+</html>
