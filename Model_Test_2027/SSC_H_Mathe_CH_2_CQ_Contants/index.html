@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC 2027 Higher Math CQ - Chapter 2</title>
+
+    <!-- MathJax for rendering LaTeX accurately -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            chtml: { scale: 0.95 }
+        };
+    </script>
+
+    <style>
+        /* CSS Variables & Reset */
+        :root {
+            --text-color: #000;
+            --font-family: 'Kalpurush', 'Siyam Rupali', 'Noto Sans Bengali', Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #525659; /* Dark background for screen viewing */
+            color: var(--text-color);
+            font-family: var(--font-family);
+            font-size: 11.5pt;
+            line-height: 1.45;
+        }
+
+        /* A4 Page Formatting */
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: #fff;
+            padding: 15mm 15mm;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Print Media Query */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                background-color: #fff;
+            }
+            .a4-page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                padding: 15mm;
+            }
+            .header-section {
+                border-bottom: 2px solid #000;
+            }
+        }
+
+        /* Header Styles */
+        .header-section {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .header-section h2 {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .header-section h3 {
+            font-size: 14pt;
+            margin-bottom: 5px;
+        }
+
+        .exam-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 11pt;
+            margin-top: 5px;
+        }
+
+        /* 2-Column Layout for Questions */
+        .cq-container {
+            column-count: 2;
+            column-gap: 30px;
+        }
+
+        /* Individual Question Block */
+        .q-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            margin-bottom: 25px;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .q-stem {
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+
+        /* Sub-questions Layout */
+        .sub-q-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .sub-q-text {
+            display: flex;
+            width: 90%;
+        }
+
+        .sub-q-label {
+            margin-right: 6px;
+            font-weight: bold;
+        }
+
+        .sub-q-marks {
+            width: 10%;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="a4-page">
+        <!-- Exam Header -->
+        <div class="header-section">
+            <h2>এস এস সি মডেল টেস্ট পরীক্ষা - ২০২৭</h2>
+            <h3>বিষয়: উচ্চতর গণিত (সৃজনশীল)</h3>
+            <p><strong>অধ্যায় ২: বীজগাণিতিক রাশি</strong></p>
+            <div class="exam-info">
+                <span>বিষয় কোড: ১২৬</span>
+                <span>সময়: ২ ঘণ্টা ৩০ মিনিট</span>
+                <span>পূর্ণমান: ৫০</span>
+            </div>
+            <p style="font-size: 10pt; margin-top: 5px;"><em>[বি.দ্র: ডান পাশের সংখ্যা প্রশ্নের পূর্ণমান জ্ঞাপক। যেকোনো ৫টি প্রশ্নের উত্তর দাও।]</em></p>
+        </div>
+
+        <!-- Dynamic Questions Container -->
+        <div class="cq-container" id="cq-questions-wrapper">
+            <!-- Questions will be injected here via JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Data derived verbatim from the attached images
+        const questionsData = [
+            {
+                qNo: 1,
+                source: "চট্টগ্রাম বোর্ড-২০২৩",
+                stem: String.raw`$P(x, y, z) = \frac{1}{x^3} + \frac{1}{8y^3} + \frac{1}{64z^3}$ এবং $g(x) = (x + 1)(x^2 + 2)$`,
+                k: String.raw`$g(x)$ এর মাত্রা ও মুখ্য সহগের সমষ্টি নির্ণয় কর।`,
+                kh: String.raw`$P(x, y, z) = \frac{3}{8xyz}$ হলে প্রমাণ কর যে, $4yz + 2zx + xy = 0$ অথবা $x = 2y = 4z$।`,
+                g: String.raw`$\frac{x^2}{g(x)}$ কে আংশিক ভগ্নাংশে প্রকাশ কর।`
+            },
+            {
+                qNo: 2,
+                source: "দিনাজপুর বোর্ড-২০২২",
+                stem: String.raw`$P(x) = x^3 + 4x^2 + x - 6$`,
+                k: String.raw`দেখাও যে, $(x + 2)$, $P(x)$ বহুপদীর একটি উৎপাদক।`,
+                kh: String.raw`$(x - m)$ ও $(x - n)$ উভয়ই $P(x)$ এর উৎপাদক হলে প্রমাণ করো যে, $m^2 + mn + n^2 + 4m + 4n + 1 = 0$, যেখানে $m \neq n$।`,
+                g: String.raw`$\frac{x^3}{P(x)}$ কে আংশিক ভগ্নাংশে প্রকাশ করো।`
+            },
+            {
+                qNo: 3,
+                source: "যশোর বোর্ড-২০২৩",
+                stem: String.raw`$P(x) = 48x^4 - 4x^3 - 16x^2 + x + 1$ <br> $Q(x) = 2x^3 - x^2 + 2x - 1$`,
+                k: String.raw`$Q(x)$ কে $x + 1$ দ্বারা ভাগ করলে ভাগশেষ কত হবে, তা ভাগশেষ উপপাদ্যের সাহায্যে নির্ণয় কর।`,
+                kh: String.raw`$P(x)$ কে উৎপাদকে বিশ্লেষণ কর।`,
+                g: String.raw`$\frac{2x^2 - 3x + 1}{Q(x)}$ কে আংশিক ভগ্নাংশে প্রকাশ কর।`
+            },
+            {
+                qNo: 4,
+                source: "কুমিল্লা বোর্ড-২০২২",
+                stem: String.raw`$P(y) = y^3 - y^2 - 10y - 8$ এবং $Q(a) = a^3 + a^2 - 6a$ দুইটি বীজগাণিতীয় রাশি।`,
+                k: String.raw`$P(y)$ কে $y + 5$ দ্বারা ভাগ করলে ভাগশেষ কত হবে তা নির্ণয় করো।`,
+                kh: String.raw`যদি $P(y)$ কে $y - a$ এবং $y - b$ দ্বারা ভাগ করলে একই ভাগশেষ থাকে যেখানে $a \neq b$ তবে দেখাও যে, $a^2 + b^2 + ab - a - b - 10 = 0$।`,
+                g: String.raw`$\frac{a^2 + a - 1}{Q(a)}$ কে আংশিক ভগ্নাংশে প্রকাশ করো।`
+            },
+            {
+                qNo: 5,
+                source: "রাজশাহী বোর্ড-২০২২",
+                stem: String.raw`(i) $F(x) = 36x^2 - Kx - 5$ এবং $Q(x) = x^3 - 6x^2 + 11x - 6$ <br> (ii) $\frac{p}{x^2 - yz} = \frac{q}{y^2 - zx} = \frac{r}{z^2 - xy} \neq 0$`,
+                k: String.raw`$F(x)$ এর একটি উৎপাদক $(2x - 1)$ হলে, $K$ এর মান নির্ণয় কর।`,
+                kh: String.raw`$\frac{x^3}{Q(x)}$ কে আংশিক ভগ্নাংশে প্রকাশ কর।`,
+                g: String.raw`(ii) নং হতে দেখাও যে, $(p + q + r)(x + y + z) = px + qy + rz$।`
+            },
+            {
+                qNo: 6,
+                source: "সিলেট বোর্ড-২০২৩",
+                stem: String.raw`$A(p, q, r) = (p + q + r)(pq + qr + rp)$ একটি বহুপদী এবং $Q(x) = \frac{2x^4}{x^4 - 16}$`,
+                k: String.raw`$A(p, q, r)$ চক্রক্রমিক এবং সমমাত্রিক কিনা যাচাই কর।`,
+                kh: String.raw`$A(p, q, r) = pqr$ হলে, দেখাও যে, $\frac{1}{(p + q + r)^3} = \frac{1}{p^3} + \frac{1}{q^3} + \frac{1}{r^3}$।`,
+                g: String.raw`$Q(x)$-কে আংশিক ভগ্নাংশে প্রকাশ কর।`
+            },
+            {
+                qNo: 7,
+                source: "ঢাকা বোর্ড-২০২২",
+                stem: String.raw`$F(x, y, z) = x^{-3} + y^{-3} + z^{-3} - 3x^{-1}y^{-1}z^{-1}$ এবং $a = y + z - x, b = z + x - y, c = x + y - z$`,
+                k: String.raw`দেখাও যে, $\frac{a}{b} + \frac{b}{c} + \frac{c}{a}$ রাশিটি $a, b, c$ চলকের চক্রক্রমিক রাশি।`,
+                kh: String.raw`$F(x, y, z) = 0$ হলে, প্রমাণ কর যে, $xy + yz + zx = 0$ এবং $x = y = z$`,
+                g: String.raw`প্রমাণ কর যে, $a^3 + b^3 + c^3 - 3abc = 4(x^3 + y^3 + z^3 - 3xyz)$।`
+            },
+            {
+                qNo: 8,
+                source: "বরিশাল বোর্ড-২০২৩",
+                stem: String.raw`$f(x) = x^3 + 2x^2 - 15x$ একটি বহুপদী।`,
+                k: String.raw`$x^3 + ax^2 + 2x + 1$ বহুপদীর একটি উৎপাদক $(x + 1)$ হলে $a$ এর মান নির্ণয় কর।`,
+                kh: String.raw`$f(x)$ কে $(x - m)$ এবং $(x - n)$ দ্বারা ভাগ করলে যদি একই ভাগশেষ থাকে যেখানে $m \neq n$, তবে দেখাও যে, $m^2 + mn + n^2 + 2m + 2n - 15 = 0$।`,
+                g: String.raw`$\frac{x + 2}{f(x)}$ কে আংশিক ভগ্নাংশে প্রকাশ কর।`
+            }
+        ];
+
+        // JavaScript function to generate HTML dynamically
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('cq-questions-wrapper');
+            let htmlContent = '';
+
+            questionsData.forEach(q => {
+                htmlContent += `
+                <div class="q-block">
+                    <div class="q-header">
+                        <span>প্রশ্ন নং ${q.qNo}</span>
+                        <span style="color:#555; font-size:10pt; font-weight:normal;">[${q.source}]</span>
+                    </div>
+                    <div class="q-stem">${q.stem}</div>
+                    
+                    <div class="sub-q-row">
+                        <div class="sub-q-text">
+                            <span class="sub-q-label">ক.</span>
+                            <span>${q.k}</span>
+                        </div>
+                        <div class="sub-q-marks">২</div>
+                    </div>
+                    
+                    <div class="sub-q-row">
+                        <div class="sub-q-text">
+                            <span class="sub-q-label">খ.</span>
+                            <span>${q.kh}</span>
+                        </div>
+                        <div class="sub-q-marks">৪</div>
+                    </div>
+                    
+                    <div class="sub-q-row">
+                        <div class="sub-q-text">
+                            <span class="sub-q-label">গ.</span>
+                            <span>${q.g}</span>
+                        </div>
+                        <div class="sub-q-marks">৪</div>
+                    </div>
+                </div>
+                `;
+            });
+
+            container.innerHTML = htmlContent;
+
+            // Notify MathJax to render the injected mathematical content
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        });
+    </script>
+</body>
+</html>

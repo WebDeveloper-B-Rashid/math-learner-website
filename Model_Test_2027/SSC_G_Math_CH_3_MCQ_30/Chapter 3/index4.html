@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC Preparation Test 2027 - Mathematics</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --text-color: #333;
+            --bg-color: #f9fafb;
+            --paper-bg: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--paper-bg);
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 8px;
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--border-color);
+        }
+
+        @media print {
+            .controls, .no-print {
+                display: none !important;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            body {
+                background: white;
+            }
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #2a4365;
+        }
+
+        button.active {
+            background-color: #2b6cb0;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 15px;
+            text-align: left;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info {
+            font-weight: bold;
+            font-size: 14px;
+            color: #4a5568;
+            margin-top: 10px;
+        }
+
+        .question-block {
+            margin-bottom: 35px;
+        }
+
+        .q-stem {
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .q-number {
+            min-width: 30px;
+        }
+
+        .sub-questions {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sub-questions td {
+            padding: 8px 0;
+            vertical-align: top;
+        }
+
+        .sub-questions td.marker {
+            width: 30px;
+            padding-left: 30px;
+            font-weight: 600;
+        }
+
+        .sub-questions td.marks {
+            width: 30px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .lang-en { display: none; }
+        .lang-bn { display: block; }
+
+        .scenario {
+            margin-bottom: 8px;
+            padding-left: 40px;
+            font-style: italic;
+            color: #2d3748;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Controls for toggling language -->
+        <div class="controls no-print">
+            <button id="btn-bn" class="active" onclick="setLanguage('bn')">Bangla Version</button>
+            <button id="btn-en" onclick="setLanguage('en')">English Version</button>
+        </div>
+
+        <!-- Exam Header -->
+        <div class="header">
+            <h1>SSC Preparation Test 2027</h1>
+            <div class="meta-grid">
+                <div><strong>Subject:</strong> Mathematics</div>
+                <div><strong>Subject Code:</strong> 109</div>
+                <div><strong>Chapter:</strong> 3</div>
+                <div><strong>Time:</strong> 01:00 Hours</div>
+                <div><strong>CQ:</strong> 30</div>
+                <div><strong>Full Marks:</strong> 30</div>
+            </div>
+            <div class="contact-info">
+                Contact: 01711008786, Rashid Sir, Assistant Professor in Mathematics.
+                <br>
+                <h3>[Answer any three questions]</h3>
+            </div>
+        </div>
+
+        <!-- Questions Section -->
+        <div class="questions">
+
+            <!-- CQ 01 -->
+            <div class="question-block">
+                <div class="q-stem">
+                    <div class="q-number lang-bn">1.</div>
+                    <div class="q-number lang-en">1.</div>
+                    <div>
+                        <span class="lang-bn">\(A = a + b + c\), \(B = x^2 - x\sqrt{5} + 1\) এবং \(C = x^3 + \frac{1}{x^3}\)</span>
+                        <span class="lang-en">\(A = a + b + c\), \(B = x^2 - x\sqrt{5} + 1\) and \(C = x^3 + \frac{1}{x^3}\)</span>
+                    </div>
+                </div>
+                <table class="sub-questions">
+                    <tr>
+                        <td class="marker lang-bn">ক.</td><td class="marker lang-en">a)</td>
+                        <td>
+                            <span class="lang-bn">\(A = 0\) হলে, প্রমাণ কর যে, \(a^3 + b^3 + c^3 = 3abc\)</span>
+                            <span class="lang-en">If \(A = 0\), prove that \(a^3 + b^3 + c^3 = 3abc\).</span>
+                        </td>
+                        <td class="marks">২<span class="lang-en" style="display:none;">2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">খ.</td><td class="marker lang-en">b)</td>
+                        <td>
+                            <span class="lang-bn">\(B = 0\) হলে, \(x^3 + \frac{1}{x^3} + \frac{x^8 + 1}{x^4}\) এর মান নির্ণয় কর।</span>
+                            <span class="lang-en">If \(B = 0\), find the value of \(x^3 + \frac{1}{x^3} + \frac{x^8 + 1}{x^4}\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">গ.</td><td class="marker lang-en">c)</td>
+                        <td>
+                            <span class="lang-bn">\(C = 18\) হলে, প্রমাণ কর যে, \(x = \frac{3 + \sqrt{5}}{2}\)</span>
+                            <span class="lang-en">If \(C = 18\), prove that \(x = \frac{3 + \sqrt{5}}{2}\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CQ 02 -->
+            <div class="question-block">
+                <div class="q-stem">
+                    <div class="q-number lang-bn">2.</div>
+                    <div class="q-number lang-en">2.</div>
+                    <div>
+                        <div class="scenario">
+                            <span class="lang-bn"><strong>দৃশ্যকল্প-১:</strong> প্রত্যেক ক্যাডেট সমান ভাড়া বহন করবে এই শর্তে 60000 টাকায় জয়পুরহাট থেকে রংপুর যাওয়ার বাস ভাড়া করা হলো। কিন্তু যাত্রা শুরুর আগে আরো 50 জন ক্যাডেট রংপুর যেতে চাওয়ায় মাথাপিছু ভাড়া পূর্বের তুলনায় 60 টাকা কমে গেল।</span>
+                            <span class="lang-en"><strong>Scenario-1:</strong> A bus was hired for 60000 Tk to go from Joypurhat to Rangpur on the condition that every cadet would bear an equal fare. However, before the journey started, 50 more cadets wanted to go to Rangpur, causing the fare per head to decrease by 60 Tk.</span>
+                        </div>
+                        <div class="scenario">
+                            <span class="lang-bn"><strong>দৃশ্যকল্প-২:</strong> \(p^3\) ও \(p^3\) এর গুণাত্মক বিপরীত রাশির সমষ্টি \(54 \times \frac{1}{\sqrt{3}}\)</span>
+                            <span class="lang-en"><strong>Scenario-2:</strong> The sum of \(p^3\) and the multiplicative inverse of \(p^3\) is \(54 \times \frac{1}{\sqrt{3}}\).</span>
+                        </div>
+                    </div>
+                </div>
+                <table class="sub-questions">
+                    <tr>
+                        <td class="marker lang-bn">ক.</td><td class="marker lang-en">a)</td>
+                        <td>
+                            <span class="lang-bn">\(y + \frac{1}{y} = 2\) হলে, সমাধান সেট নির্ণয় কর।</span>
+                            <span class="lang-en">If \(y + \frac{1}{y} = 2\), find the solution set.</span>
+                        </td>
+                        <td class="marks">২<span class="lang-en" style="display:none;">2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">খ.</td><td class="marker lang-en">b)</td>
+                        <td>
+                            <span class="lang-bn">দৃশ্যকল্প-১ অনুসারে, মাথাপিছু বর্তমান ভাড়ার পরিমাণ নির্ণয় কর।</span>
+                            <span class="lang-en">According to Scenario-1, find the present fare per head.</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">গ.</td><td class="marker lang-en">c)</td>
+                        <td>
+                            <span class="lang-bn">দৃশ্যকল্প-২ অনুসারে দেখাও যে, \(\frac{1}{p} = \sqrt{3} - \sqrt{2}\)।</span>
+                            <span class="lang-en">According to Scenario-2, show that \(\frac{1}{p} = \sqrt{3} - \sqrt{2}\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CQ 03 -->
+            <div class="question-block">
+                <div class="q-stem">
+                    <div class="q-number lang-bn">3.</div>
+                    <div class="q-number lang-en">3.</div>
+                    <div>
+                        <span>\(p^2 - 4\sqrt{5} = 9\)</span>
+                    </div>
+                </div>
+                <table class="sub-questions">
+                    <tr>
+                        <td class="marker lang-bn">ক.</td><td class="marker lang-en">a)</td>
+                        <td>
+                            <span class="lang-bn">উৎপাদকে বিশ্লেষণ কর: \(p^3 + 3p + 36\)</span>
+                            <span class="lang-en">Resolve into factors: \(p^3 + 3p + 36\).</span>
+                        </td>
+                        <td class="marks">২<span class="lang-en" style="display:none;">2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">খ.</td><td class="marker lang-en">b)</td>
+                        <td>
+                            <span class="lang-bn">মান নির্ণয় কর: \(p^4 - \frac{1}{p^4}\)</span>
+                            <span class="lang-en">Find the value of: \(p^4 - \frac{1}{p^4}\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">গ.</td><td class="marker lang-en">c)</td>
+                        <td>
+                            <span class="lang-bn">প্রমাণ কর যে, \(p^5 + \frac{1}{p^5} = 610\sqrt{5}\)</span>
+                            <span class="lang-en">Prove that \(p^5 + \frac{1}{p^5} = 610\sqrt{5}\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CQ 04-->
+            <div class="question-block">
+                <div class="q-stem">
+                    <div class="q-number lang-bn">4.</div>
+                    <div class="q-number lang-en">4.</div>
+                    <div>
+                        <div class="scenario">
+                            <span class="lang-bn">(i) \(x = \sqrt{\sqrt{5} + 2\sqrt{6}}\)</span>
+                            <span class="lang-en">(i) \(x = \sqrt{5} + 2\sqrt{6}\)</span>
+                        </div>
+                        <div class="scenario">
+                            <span class="lang-bn">(ii) একটি সংখ্যা 'a' ও তার গুণাত্মক বিপরীত সংখ্যার সমষ্টি 3।</span>
+                            <span class="lang-en">(ii) The sum of a number 'a' and its multiplicative inverse is 3.</span>
+                        </div>
+                    </div>
+                </div>
+                <table class="sub-questions">
+                    <tr>
+                        <td class="marker lang-bn">ক.</td><td class="marker lang-en">a)</td>
+                        <td>
+                            <span class="lang-bn">\(P = \{x : x \text{ যেকোনো বিজোড় স্বাভাবিক সংখ্যা এবং } x \le 15\}\) সেটটিকে তালিকা পদ্ধতিতে প্রকাশ কর।</span>
+                            <span class="lang-en">Express the set \(P = \{x : x \text{ is any odd natural number and } x \le 15\}\) in the tabular method.</span>
+                        </td>
+                        <td class="marks">২<span class="lang-en" style="display:none;">2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">খ.</td><td class="marker lang-en">b)</td>
+                        <td>
+                            <span class="lang-bn">প্রমাণ কর যে, \(\frac{x^6 - 1}{x^3} - \sqrt{2} \cdot \frac{x^4 + 1}{x^2} = 12\sqrt{2}\)</span>
+                            <span class="lang-en">Prove that \(\frac{x^6 - 1}{x^3} - \sqrt{2} \cdot \frac{x^4 + 1}{x^2} = 12\sqrt{2}\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">গ.</td><td class="marker lang-en">c)</td>
+                        <td>
+                            <span class="lang-bn">প্রমাণ কর যে, \(a^5 + \frac{1}{a^5} = 123\)</span>
+                            <span class="lang-en">Prove that \(a^5 + \frac{1}{a^5} = 123\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CQ 40 -->
+            <div class="question-block">
+                <div class="q-stem">
+                    <div class="q-number lang-bn">5.</div>
+                    <div class="q-number lang-en">5.</div>
+                    <div>
+                        <span>\(x^2 = 5 + 2\sqrt{6}\), \(a^4 + a^2b^2 + b^4 = 8\) <span class="lang-bn">এবং</span><span class="lang-en">and</span> \(a^2 + ab + b^2 = 4\)</span>
+                    </div>
+                </div>
+                <table class="sub-questions">
+                    <tr>
+                        <td class="marker lang-bn">ক.</td><td class="marker lang-en">a)</td>
+                        <td>
+                            <span class="lang-bn">উৎপাদকে বিশ্লেষণ কর: \(7x^2 - x - 116\)</span>
+                            <span class="lang-en">Resolve into factors: \(7x^2 - x - 116\).</span>
+                        </td>
+                        <td class="marks">২<span class="lang-en" style="display:none;">2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">খ.</td><td class="marker lang-en">b)</td>
+                        <td>
+                            <span class="lang-bn">\(x^5 + \frac{1}{x^5}\) এর মান নির্ণয় কর।</span>
+                            <span class="lang-en">Find the value of \(x^5 + \frac{1}{x^5}\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                    <tr>
+                        <td class="marker lang-bn">গ.</td><td class="marker lang-en">c)</td>
+                        <td>
+                            <span class="lang-bn">প্রমাণ কর যে, \(8(a^4 - b^4) = 24\sqrt{5}\)</span>
+                            <span class="lang-en">Prove that \(8(a^4 - b^4) = 24\sqrt{5}\).</span>
+                        </td>
+                        <td class="marks">৪<span class="lang-en" style="display:none;">4</span></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            // Update button states
+            document.getElementById('btn-bn').classList.remove('active');
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Hide all languages
+            const allBnElements = document.querySelectorAll('.lang-bn');
+            const allEnElements = document.querySelectorAll('.lang-en');
+
+            allBnElements.forEach(el => el.style.display = 'none');
+            allEnElements.forEach(el => el.style.display = 'none');
+
+            // Show selected language
+            const activeElements = document.querySelectorAll('.lang-' + lang);
+            activeElements.forEach(el => {
+                // Keep table cells displaying as table-cell if they are td elements
+                if(el.tagName.toLowerCase() === 'td') {
+                    el.style.display = 'table-cell';
+                } else if(el.tagName.toLowerCase() === 'span' && el.parentElement.classList.contains('marks')) {
+                    el.style.display = 'inline';
+                } else {
+                    el.style.display = 'block';
+                }
+            });
+        }
+        
+        // Initialize with Bangla as default
+        setLanguage('bn');
+    </script>
+</body>
+</html>
