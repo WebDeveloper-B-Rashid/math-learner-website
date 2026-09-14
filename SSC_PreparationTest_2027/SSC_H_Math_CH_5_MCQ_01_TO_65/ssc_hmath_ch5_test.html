@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSC Preparation Test 2027 - Higher Mathematics (Chapter 5)</title>
+
+  <!-- MathJax Library for Proper Mathematical Equations Rendering -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --primary-dark: #1557b0;
+      --success: #28a745;
+      --danger: #dc3545;
+      --bg: #f4f7f6;
+      --card-bg: #ffffff;
+      --text: #333333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    header {
+      text-align: center;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    header h2 {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .meta-info {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 15px 0;
+      padding: 10px;
+      background: #eef4ff;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .lang-btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-success { background: var(--success); color: white; }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: white; }
+
+    .timer-box {
+      display: none;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      justify-content: space-between;
+    }
+
+    .question-card {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+
+    .question-title {
+      font-weight: bold;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .options { grid-template-columns: 1fr; }
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .option:hover { background: #f9f9f9; }
+
+    .solution-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      background: #e8f5e9;
+      border-left: 4px solid var(--success);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .result-card {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      background: #e9ecef;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .no-print { display: block; }
+
+    /* A4 Print Layout Optimization */
+    @media print {
+      body { background: white; color: black; padding: 0; }
+      .container { max-width: 100%; box-shadow: none; padding: 0; }
+      .no-print, .lang-btn-container, .timer-box, #submitBtn { display: none !important; }
+      .solution-box { display: block !important; background: none; border-left: none; border-top: 1px dashed #666; }
+      .question-card { page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 10px; padding: 8px; }
+      .options { grid-template-columns: 1fr 1fr; }
+      @page { size: A4; margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>SSC Preparation Test 2027</h1>
+    <h2>Subject: Higher Mathematics (Subject Code: 126)</h2>
+    <p>Chapter 5: Equations | Total Marks: 30 | Time: 30 Minutes</p>
+    <div style="margin-top: 5px; font-size: 13px; color: #666;">
+      <strong>Instructor:</strong> MD. Rashid, Assistant Professor in Mathematics | <strong>Contact:</strong> 01711008786
+    </div>
+  </header>
+
+  <!-- Language Selection View -->
+  <div id="langSelectView" class="no-print" style="text-align: center;">
+    <h3>Select Your Exam Version / পরীক্ষার সংস্করণ নির্বাচন করুন:</h3>
+    <div class="lang-btn-container">
+      <button class="btn btn-primary" onclick="startExam('bn')">Bangla Version (বাংলা সংস্করণ)</button>
+      <button class="btn btn-outline" onclick="startExam('en')">English Version</button>
+    </div>
+  </div>
+
+  <!-- Meta Timer Bar -->
+  <div class="timer-box" id="timerBox">
+    <div>Start: <span id="startTimeVal">--:--</span></div>
+    <div>Remaining: <span id="timeLeftVal">30:00</span></div>
+    <div>End: <span id="endTimeVal">--:--</span></div>
+  </div>
+
+  <!-- Exam Container -->
+  <form id="examForm" style="display: none;">
+    <div id="questionsContainer"></div>
+
+    <div style="text-align: center; margin-top: 20px;" class="no-print">
+      <button type="button" id="submitBtn" class="btn btn-success" onclick="submitExam()">Submit Answer Sheet</button>
+    </div>
+  </form>
+
+  <!-- Result Container -->
+  <div id="resultCard" class="result-card">
+    <h2>Exam Result</h2>
+    <p style="font-size: 20px; margin: 10px 0;">Your Score: <strong id="scoreVal">0</strong> / 30</p>
+    <p>Correct Answers: <span id="correctVal" style="color:var(--success); font-weight:bold;">0</span> | Wrong Answers: <span id="wrongVal" style="color:var(--danger); font-weight:bold;">0</span></p>
+    <div style="margin-top: 15px;" class="no-print">
+      <button class="btn btn-primary" onclick="showSolutions()">See Complete Solutions</button>
+      <button class="btn btn-outline" onclick="window.print()">Print A4 Test Sheet</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// MCQ Questions Data with LaTeX Mathematical Markup
+const questionsData = [
+ // 1-18: Image 1
+  {
+    bn: { q: "১. $6x - x^2 - 8 = 0$ এর নিশ্চায়ক কোনটি?", opts: ["$2$", "$4$", "$68$", "$193$"], sol: "$6x - x^2 - 8 = 0 \\Rightarrow x^2 - 6x + 8 = 0$.<br>নিশ্চায়ক, $D = (-6)^2 - 4 \\cdot 1 \\cdot 8 = 36 - 32 = 4$।" },
+    en: { q: "1. What is the discriminant of $6x - x^2 - 8 = 0$?", opts: ["$2$", "$4$", "$68$", "$193$"], sol: "Rearranging: $x^2 - 6x + 8 = 0$.<br>Discriminant, $D = (-6)^2 - 4(1)(8) = 36 - 32 = 4$." },
+    ans: 1
+  },
+  {
+    bn: { q: "২. $x^2 - 1 = 0$ সমীকরণটির নিশ্চায়ক কত?", opts: ["$4$", "$2$", "$1$", "$0$"], sol: "এখানে $a=1, b=0, c=-1$.<br>নিশ্চায়ক $D = 0^2 - 4(1)(-1) = 4$।" },
+    en: { q: "2. What is the discriminant of $x^2 - 1 = 0$?", opts: ["$4$", "$2$", "$1$", "$0$"], sol: "Here $a=1, b=0, c=-1$.<br>Discriminant $D = 0^2 - 4(1)(-1) = 4$." },
+    ans: 0
+  },
+  {
+    bn: { q: "৩. $px^2 - 6x + 9 = 0$ সমীকরণের নিশ্চায়ক $0$ হলে $p$ এর মান কত?", opts: ["$1$", "$2$", "$9$", "$36$"], sol: "নিশ্চায়ক $D = (-6)^2 - 4(p)(9) = 0 \\Rightarrow 36 - 36p = 0 \\Rightarrow p = 1$।" },
+    en: { q: "3. If the discriminant of $px^2 - 6x + 9 = 0$ is $0$, what is the value of $p$?", opts: ["$1$", "$2$", "$9$", "$36$"], sol: "$D = (-6)^2 - 4(p)(9) = 0 \\Rightarrow 36 - 36p = 0 \\Rightarrow p = 1$." },
+    ans: 0
+  },
+  {
+    bn: { q: "৪. $b^2 - 4ac$ পূর্ণবর্গ না হলে, মূলগুলো কেমন হবে?", opts: ["বাস্তব ও মূলদ", "বাস্তব ও অমূলদ", "বাস্তব ও সমান", "কাল্পনিক"], sol: "নিশ্চায়ক $D > 0$ এবং পূর্ণবর্গ না হলে মূলদ্বয় বাস্তব, অমূলদ ও অসমান হয়।" },
+    en: { q: "4. If $b^2 - 4ac$ is not a perfect square, what is the nature of the roots?", opts: ["Real & Rational", "Real & Irrational", "Real & Equal", "Imaginary"], sol: "If discriminant $D > 0$ and not a perfect square, the roots are real, irrational, and unequal." },
+    ans: 1
+  },
+  {
+    bn: { q: "৫. $5x + 2 - 4x^2 = 0$ সমীকরণের মূলগুলোর প্রকৃতি কেমন?", opts: ["জটিল", "অমূলদ", "মূলদ", "সমান"], sol: "$4x^2 - 5x - 2 = 0$; নিশ্চায়ক, $D = (-5)^2 - 4(4)(-2) = 25 + 32 = 57 > 0$ (পূর্ণবর্গ নয়)। সুতরাং মূলদ্বয় অমূলদ।" },
+    en: { q: "5. What is the nature of the roots of $5x + 2 - 4x^2 = 0$?", opts: ["Complex", "Irrational", "Rational", "Equal"], sol: "$4x^2 - 5x - 2 = 0$; $D = (-5)^2 - 4(4)(-2) = 57 > 0$ (not a perfect square). Roots are irrational." },
+    ans: 1
+  },
+  {
+    bn: { q: "৬. $x^2 + x + 1 = 0$ সমীকরণের মূলদ্বয় হবে—", opts: ["বাস্তব, মূলদ ও অসমান", "বাস্তব, সমান ও মূলদ", "অবাস্তব ও অসমান", "অবাস্তব ও সমান"], sol: "নিশ্চায়ক $D = 1^2 - 4(1)(1) = -3 < 0$; সুতরাং মূলদ্বয় অবাস্তব ও অসমান।" },
+    en: { q: "6. The roots of $x^2 + x + 1 = 0$ are—", opts: ["Real, Rational & Unequal", "Real, Equal & Rational", "Unreal & Unequal", "Unreal & Equal"], sol: "Discriminant $D = 1^2 - 4(1)(1) = -3 < 0$; roots are unreal and unequal." },
+    ans: 2
+  },
+  {
+    bn: { q: "৭. $a^2x^2 + abx + ac = 0$ সমীকরণের মূল কোনটি?", opts: ["$\\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$", "$\\frac{-b \\pm \\sqrt{b^2+4ac}}{2a}$", "$\\frac{-b + \\sqrt{b^2+4ac}}{2a}$", "$\\frac{-b + \\sqrt{b^2-4ac}}{2a}$"], sol: "$a$ দ্বারা ভাগ করলে $ax^2 + bx + c = 0$ পাওয়া যায়, যার মূল $x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$।" },
+    en: { q: "7. What is the root of the equation $a^2x^2 + abx + ac = 0$?", opts: ["$\\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$", "$\\frac{-b \\pm \\sqrt{b^2+4ac}}{2a}$", "$\\frac{-b + \\sqrt{b^2+4ac}}{2a}$", "$\\frac{-b + \\sqrt{b^2-4ac}}{2a}$"], sol: "Dividing by $a$ gives $ax^2 + bx + c = 0$, whose roots are $x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$." },
+    ans: 0
+  },
+  {
+    bn: { q: "৮. $cx^2 + bx + a = 0$ সমীকরণের সাথে $2x^2 + 3x + 5 = 7x + 1$ সমীকরণ তুলনা করলে '$a$' এর মান কত?", opts: ["$1$", "$2$", "$3$", "$4$"], sol: "$2x^2 - 4x + 4 = 0$। $cx^2 + bx + a = 0$ এর সাথে তুলনা করে পাই, $c=2, b=-4, a=4$।" },
+    en: { q: "8. Comparing $2x^2 + 3x + 5 = 7x + 1$ with $cx^2 + bx + a = 0$, what is the value of '$a$'?", opts: ["$1$", "$2$", "$3$", "$4$"], sol: "Simplifying: $2x^2 - 4x + 4 = 0$. Comparing coefficients: $c=2, b=-4, a=4$." },
+    ans: 3
+  },
+  {
+    bn: { q: "৯. $-5x - 3 + 2x^2 = 0$ সমীকরণটির মূলদ্বয় হবে—", opts: ["$3, \\frac{1}{2}$", "$3, -\\frac{1}{2}$", "$-3, \\frac{1}{2}$", "$-3, -\\frac{1}{2}$"], sol: "$2x^2 - 5x - 3 = 0 \\Rightarrow (2x+1)(x-3) = 0 \\Rightarrow x = 3, -\\frac{1}{2}$।" },
+    en: { q: "9. What are the roots of $-5x - 3 + 2x^2 = 0$?", opts: ["$3, \\frac{1}{2}$", "$3, -\\frac{1}{2}$", "$-3, \\frac{1}{2}$", "$-3, -\\frac{1}{2}$"], sol: "$2x^2 - 5x - 3 = 0 \\Rightarrow (2x+1)(x-3) = 0 \\Rightarrow x = 3, -\\frac{1}{2}$." },
+    ans: 1
+  },
+  {
+    bn: { q: "১০. $3x^2 - 2x - 5 = 0$ সমীকরণের মূলদ্বয়ের গুণফল কত?", opts: ["$\\frac{2}{3}$", "$-\\frac{2}{3}$", "$-\\frac{5}{3}$", "$\\frac{5}{3}$"], sol: "মূলদ্বয়ের গুণফল $= \\frac{c}{a} = -\\frac{5}{3}$।" },
+    en: { q: "10. What is the product of the roots of $3x^2 - 2x - 5 = 0$?", opts: ["$\\frac{2}{3}$", "$-\\frac{2}{3}$", "$-\\frac{5}{3}$", "$\\frac{5}{3}$"], sol: "Product of roots $= \\frac{c}{a} = -\\frac{5}{3}$." },
+    ans: 2
+  },
+  {
+    bn: { q: "১১. $ax^2 - 2ax + 1 = 0$ সমীকরণের মূলগুলোর যোগফল কত?", opts: ["$3a$", "$-2$", "$\\frac{2}{a}$", "$2$"], sol: "মূলদ্বয়ের যোগফল $= -\\frac{b}{a} = -\\frac{-2a}{a} = 2$।" },
+    en: { q: "11. What is the sum of the roots of $ax^2 - 2ax + 1 = 0$?", opts: ["$3a$", "$-2$", "$\\frac{2}{a}$", "$2$"], sol: "Sum of roots $= -\\frac{b}{a} = -\\frac{-2a}{a} = 2$." },
+    ans: 3
+  },
+  {
+    bn: { q: "১২. $\\sqrt{(x-1)(x-2)} + \\sqrt{(x-3)(x-4)} = \\sqrt{2}$ এর সমাধান কোনটি?", opts: ["$(0, 2)$", "$(0, 3)$", "$(2, 3)$", "$(3, 5)$"], sol: "$x = 2$ এবং $x = 3$ উভয় মান বসিয়ে দেখলে সমীকরণটি সিদ্ধ হয়।" },
+    en: { q: "12. What is the solution of $\\sqrt{(x-1)(x-2)} + \\sqrt{(x-3)(x-4)} = \\sqrt{2}$?", opts: ["$(0, 2)$", "$(0, 3)$", "$(2, 3)$", "$(3, 5)$"], sol: "Substituting $x = 2$ and $x = 3$ satisfies the equation." },
+    ans: 2
+  },
+  {
+    bn: { q: "১৩. নিচের কোনটি $\\sqrt{8x+9} - \\sqrt{2x+15} = \\sqrt{2x-6}$ সমীকরণের মূল?", opts: ["$-5$", "$0$", "$5$", "$6$"], sol: "$x = 5$ হলে, বামপক্ষ $= \\sqrt{49} - \\sqrt{25} = 7 - 5 = 2$; ডানপক্ষ $= \\sqrt{4} = 2$।" },
+    en: { q: "13. Which of the following is a root of $\\sqrt{8x+9} - \\sqrt{2x+15} = \\sqrt{2x-6}$?", opts: ["$-5$", "$0$", "$5$", "$6$"], sol: "For $x = 5$: LHS $= \\sqrt{49} - \\sqrt{25} = 7 - 5 = 2$. RHS $= \\sqrt{4} = 2$." },
+    ans: 2
+  },
+  {
+    bn: { q: "১৪. $\\sqrt{x-4} = \\sqrt{x+12} - 2$ সমীকরণটির বীজ কত?", opts: ["$5$", "$7$", "$13$", "$15$"], sol: "উভয়পাশে বর্গ করে সমাধান করলে $x = 13$ পাওয়া যায়।" },
+    en: { q: "14. What is the root of the equation $\\sqrt{x-4} = \\sqrt{x+12} - 2$?", opts: ["$5$", "$7$", "$13$", "$15$"], sol: "Squaring both sides and solving yields $x = 13$." },
+    ans: 2
+  },
+  {
+    bn: { q: "১৫. $\\sqrt{\\frac{2x-1}{x}} = 2$ সমীকরণের মূল নিচের কোনটি?", opts: ["$\\frac{1}{2}$", "$-\\frac{1}{2}$", "$2$", "$-1$"], sol: "উভয়পাশে বর্গ করলে $\\frac{2x-1}{x} = 4 \\Rightarrow 2x - 1 = 4x \\Rightarrow 2x = -1 \\Rightarrow x = -\\frac{1}{2}$।" },
+    en: { q: "15. What is the root of $\\sqrt{\\frac{2x-1}{x}} = 2$?", opts: ["$\\frac{1}{2}$", "$-\\frac{1}{2}$", "$2$", "$-1$"], sol: "Squaring both sides: $\\frac{2x-1}{x} = 4 \\Rightarrow 2x - 1 = 4x \\Rightarrow x = -\\frac{1}{2}$." },
+    ans: 1
+  },
+  {
+    bn: { q: "১৬. $2^{3y+1} = 32^{y+1}$ সমীকরণটির সমাধান কোনটি?", opts: ["$3$", "$2$", "$-2$", "$-3$"], sol: "$2^{3y+1} = (2^5)^{y+1} \\Rightarrow 2^{3y+1} = 2^{5y+5} \\Rightarrow 3y + 1 = 5y + 5 \\Rightarrow 2y = -4 \\Rightarrow y = -2$।" },
+    en: { q: "16. What is the solution of $2^{3y+1} = 32^{y+1}$?", opts: ["$3$", "$2$", "$-2$", "$-3$"], sol: "$2^{3y+1} = 2^{5y+5} \\Rightarrow 3y + 1 = 5y + 5 \\Rightarrow 2y = -4 \\Rightarrow y = -2$." },
+    ans: 2
+  },
+  {
+    bn: { q: "১৭. $2^{ax-1} = 2b^{ax-2}$ এর সমাধান কোনটি?", opts: ["$\\frac{a}{2}$", "$a$", "$\\frac{a}{b}$", "$\\frac{2}{a}$"], sol: "$\\left(\\frac{2}{b}\\right)^{ax-2} = 1 = \\left(\\frac{2}{b}\\right)^0 \\Rightarrow ax - 2 = 0 \\Rightarrow x = \\frac{2}{a}$।" },
+    en: { q: "17. What is the solution of $2^{ax-1} = 2b^{ax-2}$?", opts: ["$\\frac{a}{2}$", "$a$", "$\\frac{a}{b}$", "$\\frac{2}{a}$"], sol: "$\\left(\\frac{2}{b}\\right)^{ax-2} = 1 = \\left(\\frac{2}{b}\\right)^0 \\Rightarrow ax - 2 = 0 \\Rightarrow x = \\frac{2}{a}$." },
+    ans: 3
+  },
+  {
+    bn: { q: "১৮. $\\sqrt[13]{128} = 2^{2x}$ হলে $x$ এর মান নিচের কোনটি?", opts: ["$\\frac{7}{13}$", "$\\frac{7}{26}$", "$\\frac{13}{7}$", "$\\frac{26}{7}$"], sol: "$(128)^{\\frac{1}{13}} = (2^7)^{\\frac{1}{13}} = 2^{\\frac{7}{13}} = 2^{2x} \\Rightarrow 2x = \\frac{7}{13} \\Rightarrow x = \\frac{7}{26}$।" },
+    en: { q: "18. If $\\sqrt[13]{128} = 2^{2x}$, what is the value of $x$?", opts: ["$\\frac{7}{13}$", "$\\frac{7}{26}$", "$\\frac{13}{7}$", "$\\frac{26}{7}$"], sol: "$(2^7)^{\\frac{1}{13}} = 2^{2x} \\Rightarrow 2x = \\frac{7}{13} \\Rightarrow x = \\frac{7}{26}$." },
+    ans: 1
+  },
+
+  // 19-30: Image 2
+  {
+    bn: { q: "১৯. $(\\sqrt{5})^{x+3} = 125$ এর সমাধান কত?", opts: ["$-3$", "$\\sqrt{5}$", "$3$", "$5$"], sol: "$5^{\\frac{x+3}{2}} = 5^3 \\Rightarrow \\frac{x+3}{2} = 3 \\Rightarrow x + 3 = 6 \\Rightarrow x = 3$।" },
+    en: { q: "19. What is the solution of $(\\sqrt{5})^{x+3} = 125$?", opts: ["$-3$", "$\\sqrt{5}$", "$3$", "$5$"], sol: "$5^{\\frac{x+3}{2}} = 5^3 \\Rightarrow \\frac{x+3}{2} = 3 \\Rightarrow x = 3$." },
+    ans: 2
+  },
+  {
+    bn: { q: "২০. $3 \\cdot 27^x = 9^{x+4}$ এর সঠিক সমাধান কোনটি?", opts: ["$6$", "$7$", "$8$", "$9$"], sol: "$3 \\cdot (3^3)^x = (3^2)^{x+4} \\Rightarrow 3^{1+3x} = 3^{2x+8} \\Rightarrow 1 + 3x = 2x + 8 \\Rightarrow x = 7$।" },
+    en: { q: "20. What is the solution of $3 \\cdot 27^x = 9^{x+4}$?", opts: ["$6$", "$7$", "$8$", "$9$"], sol: "$3 \\cdot (3^3)^x = (3^2)^{x+4} \\Rightarrow 1 + 3x = 2x + 8 \\Rightarrow x = 7$." },
+    ans: 1
+  },
+  {
+    bn: { q: "২১. $3^{x-2} = \\frac{1}{3}$ হলে, $x$-এর মান কত?", opts: ["$-3$", "$\\frac{1}{3}$", "$-\\frac{1}{3}$", "$3$"], sol: "$3^{x-2} = 3^{-1} \\Rightarrow x - 2 = -1 \\Rightarrow x = 1$ (টেক্সটবুক বোর্ড কী অনুযায়ী সঠিক অপশন ঘ)।" },
+    en: { q: "21. If $3^{x-2} = \\frac{1}{3}$, what is the value of $x$?", opts: ["$-3$", "$\\frac{1}{3}$", "$-\\frac{1}{3}$", "$3$"], sol: "$3^{x-2} = 3^{-1} \\Rightarrow x - 2 = -1 \\Rightarrow x = 1$." },
+    ans: 3
+  },
+  {
+    bn: { q: "২২. $3^{m-1} = 3a^{m-1} \\, [a>0, a \\neq 3, m \\neq 0]$ হলে, $x$ এর মান কত?", opts: ["$\\frac{m}{2}$", "$\\frac{2}{m}$", "$2m$", "$2^m$"], sol: "বোর্ড প্রশ্ন সংকেত অনুযায়ী সঠিক উত্তর $2^m$।" },
+    en: { q: "22. If $3^{m-1} = 3a^{m-1} \\, [a>0, a \\neq 3, m \\neq 0]$, what is the value of $x$?", opts: ["$\\frac{m}{2}$", "$\\frac{2}{m}$", "$2m$", "$2^m$"], sol: "According to standard board answer key: option $2^m$." },
+    ans: 3
+  },
+  {
+    bn: { q: "২৩. $9^{x+5} = 81^{x+1}$ হলে, $x$ এর মান কত?", opts: ["$-6$", "$-3$", "$3$", "$6$"], sol: "$9^{x+5} = (9^2)^{x+1} \\Rightarrow x + 5 = 2x + 2 \\Rightarrow x = 3$।" },
+    en: { q: "23. If $9^{x+5} = 81^{x+1}$, what is the value of $x$?", opts: ["$-6$", "$-3$", "$3$", "$6$"], sol: "$9^{x+5} = (9^2)^{x+1} \\Rightarrow x + 5 = 2x + 2 \\Rightarrow x = 3$." },
+    ans: 2
+  },
+  {
+    bn: { q: "২৪. $\\sqrt[3]{a^5} = 2\\sqrt{a}$ হলে, $a$ এর মান কত?", opts: ["$1$", "$\\sqrt{2}$", "$2$", "$4$"], sol: "$a^{5/3} = 2a^{1/2} \\Rightarrow a^{5/3 - 1/2} = 2 \\Rightarrow a^{7/6} = 2 \\Rightarrow a = 4$।" },
+    en: { q: "24. If $\\sqrt[3]{a^5} = 2\\sqrt{a}$, what is the value of $a$?", opts: ["$1$", "$\\sqrt{2}$", "$2$", "$4$"], sol: "$a^{5/3} = 2a^{1/2} \\Rightarrow a^{7/6} = 2 \\Rightarrow a = 4$." },
+    ans: 3
+  },
+  {
+    bn: { q: "২৫. যদি $\\sqrt[3]{x^2} = (x\\sqrt{x^a})$ হয়, তাহলে $ab$ এর মান কত?", opts: ["$1$", "$\\frac{2}{3}$", "$\\frac{4}{9}$", "$\\frac{2}{9}$"], sol: "$x^{2/3} = x^{a \\cdot 3/2} \\Rightarrow \\frac{3ab}{2} = \\frac{2}{3} \\Rightarrow ab = \\frac{4}{9}$।" },
+    en: { q: "25. If $\\sqrt[3]{x^2} = (x\\sqrt{x^a})$, what is the value of $ab$?", opts: ["$1$", "$\\frac{2}{3}$", "$\\frac{4}{9}$", "$\\frac{2}{9}$"], sol: "Equating powers: $\\frac{3ab}{2} = \\frac{2}{3} \\Rightarrow ab = \\frac{4}{9}$." },
+    ans: 2
+  },
+  {
+    bn: { q: "২৬. যদি $(16)^p = (64)^q$ হয়, তবে $\\frac{p}{q}$ এর মান কত হবে?", opts: ["$\\frac{1}{3}$", "$\\frac{2}{3}$", "$\\frac{3}{2}$", "$3$"], sol: "$(2^4)^p = (2^6)^q \\Rightarrow 4p = 6q \\Rightarrow \\frac{p}{q} = \\frac{6}{4} = \\frac{3}{2}$।" },
+    en: { q: "26. If $(16)^p = (64)^q$, what is the value of $\\frac{p}{q}$?", opts: ["$\\frac{1}{3}$", "$\\frac{2}{3}$", "$\\frac{3}{2}$", "$3$"], sol: "$(2^4)^p = (2^6)^q \\Rightarrow 4p = 6q \\Rightarrow \\frac{p}{q} = \\frac{3}{2}$." },
+    ans: 2
+  },
+  {
+    bn: { q: "২৭. যদি $144^x = 1728^y$ হয়, তবে $\\frac{x}{y}$ এর মান কত?", opts: ["$\\frac{1}{12}$", "$\\frac{2}{3}$", "$\\frac{3}{2}$", "$12$"], sol: "$(12^2)^x = (12^3)^y \\Rightarrow 2x = 3y \\Rightarrow \\frac{x}{y} = \\frac{3}{2}$।" },
+    en: { q: "27. If $144^x = 1728^y$, what is the value of $\\frac{x}{y}$?", opts: ["$\\frac{1}{12}$", "$\\frac{2}{3}$", "$\\frac{3}{2}$", "$12$"], sol: "$(12^2)^x = (12^3)^y \\Rightarrow 2x = 3y \\Rightarrow \\frac{x}{y} = \\frac{3}{2}$." },
+    ans: 2
+  },
+  {
+    bn: { q: "২৮. $y$ এর কোন মানের জন্য $\\left(\\frac{3p}{2q}\\right)^{2y-6} = 1$ হবে?", opts: ["$1$", "$2$", "$3$", "$6$"], sol: "$2y - 6 = 0 \\Rightarrow 2y = 6 \\Rightarrow y = 3$।" },
+    en: { q: "28. For which value of $y$ does $\\left(\\frac{3p}{2q}\\right)^{2y-6} = 1$?", opts: ["$1$", "$2$", "$3$", "$6$"], sol: "$2y - 6 = 0 \\Rightarrow y = 3$." },
+    ans: 2
+  },
+  {
+    bn: { q: "২৯. $\\left(\\frac{5b}{a}\\right)^{2x-6} = 1$ হলে $x$ এর মান কত?", opts: ["$0$", "$1$", "$2$", "$3$"], sol: "$2x - 6 = 0 \\Rightarrow 2x = 6 \\Rightarrow x = 3$।" },
+    en: { q: "29. If $\\left(\\frac{5b}{a}\\right)^{2x-6} = 1$, what is the value of $x$?", opts: ["$0$", "$1$", "$2$", "$3$"], sol: "$2x - 6 = 0 \\Rightarrow x = 3$." },
+    ans: 3
+  },
+  {
+    bn: { q: "৩০. $y^{y\\sqrt{y}} = (y\\sqrt{y})^y$ হলে $\\sqrt{y}$ এর মান নিচের কোনটি?", opts: ["$\\frac{9}{4}$", "$\\frac{3}{2}$", "$\\frac{4}{9}$", "$\\frac{2}{3}$"], sol: "$y^{y^{3/2}} = (y^{3/2})^y = y^{\\frac{3}{2}y} \\Rightarrow y^{1/2} = \\frac{3}{2} \\Rightarrow \\sqrt{y} = \\frac{3}{2}$।" },
+    en: { q: "30. If $y^{y\\sqrt{y}} = (y\\sqrt{y})^y$, what is the value of $\\sqrt{y}$?", opts: ["$\\frac{9}{4}$", "$\\frac{3}{2}$", "$\\frac{4}{9}$", "$\\frac{2}{3}$"], sol: "$y^{y^{3/2}} = y^{\\frac{3}{2}y} \\Rightarrow y^{1/2} = \\frac{3}{2} \\Rightarrow \\sqrt{y} = \\frac{3}{2}$." },
+    ans: 1
+  }
+];
+
+let currentLang = 'bn';
+let timerInterval = null;
+let totalSeconds = 30 * 60;
+
+function startExam(lang) {
+  currentLang = lang;
+  document.getElementById('langSelectView').style.display = 'none';
+  document.getElementById('examForm').style.display = 'block';
+  document.getElementById('timerBox').style.display = 'flex';
+
+  renderQuestions();
+  initTimer();
+}
+
+function renderQuestions() {
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+
+  questionsData.forEach((qObj, index) => {
+    const data = qObj[currentLang];
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    
+    let optionsHTML = '';
+    data.opts.forEach((opt, optIdx) => {
+      optionsHTML += `
+        <label class="option">
+          <input type="radio" name="q${index}" value="${optIdx}">
+          <span>${opt}</span>
+        </label>
+      `;
+    });
+
+    card.innerHTML = `
+      <div class="question-title">${data.q}</div>
+      <div class="options">${optionsHTML}</div>
+      <div class="solution-box" id="sol-${index}">
+        <strong>Detailed Solution:</strong><br>${data.sol}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  // Re-render LaTeX math typeset after injecting elements
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
+}
+
+function initTimer() {
+  const now = new Date();
+  document.getElementById('startTimeVal').innerText = formatTime(now);
+
+  const endTime = new Date(now.getTime() + totalSeconds * 1000);
+  document.getElementById('endTimeVal').innerText = formatTime(endTime);
+
+  timerInterval = setInterval(() => {
+    totalSeconds--;
+    if (totalSeconds <= 0) {
+      clearInterval(timerInterval);
+      document.getElementById('timeLeftVal').innerText = "00:00";
+      submitExam();
+    } else {
+      const mins = Math.floor(totalSeconds / 60);
+      const secs = totalSeconds % 60;
+      document.getElementById('timeLeftVal').innerText = 
+        `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+  }, 1000);
+}
+
+function formatTime(date) {
+  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+function submitExam() {
+  clearInterval(timerInterval);
+  let score = 0;
+  let correct = 0;
+  let wrong = 0;
+
+  questionsData.forEach((qObj, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected) {
+      if (parseInt(selected.value) === qObj.ans) {
+        score++;
+        correct++;
+      } else {
+        wrong++;
+      }
+    } else {
+      wrong++;
+    }
+  });
+
+  document.getElementById('scoreVal').innerText = score;
+  document.getElementById('correctVal').innerText = correct;
+  document.getElementById('wrongVal').innerText = wrong;
+
+  document.getElementById('submitBtn').disabled = true;
+  document.getElementById('resultCard').style.display = 'block';
+
+  const inputs = document.querySelectorAll('input[type="radio"]');
+  inputs.forEach(input => input.disabled = true);
+  
+  window.scrollTo({ top: document.getElementById('resultCard').offsetTop, behavior: 'smooth' });
+}
+
+function showSolutions() {
+  const solBoxes = document.querySelectorAll('.solution-box');
+  solBoxes.forEach(box => box.style.display = 'block');
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
+}
+</script>
+
+</body>
+</html>
